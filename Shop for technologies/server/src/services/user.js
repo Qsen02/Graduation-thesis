@@ -52,7 +52,7 @@ async function checkUserId(userId) {
 }
 
 function getUserById(userId) {
-    const user = Users.findById(userId);
+    const user = Users.findById(userId).populate("basket").populate("orderHistory");
     return user;
 }
 

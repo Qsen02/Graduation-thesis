@@ -53,10 +53,10 @@ async function unlikeProduct(user, productId) {
 }
 
 async function addProductToBasket(userId, product) {
-    await Users.findByIdAndUpdate(userId, { $push: { basket: product } });
+    await Users.findByIdAndUpdate(userId, { $push: { basket: product._id } });
 }
 async function removeProductFromBasket(userId, product) {
-    await Users.findByIdAndUpdate(userId, { $pull: { basket: product } });
+    await Users.findByIdAndUpdate(userId, { $pull: { basket: product._id } });
 }
 async function clearBasket(userId) {
     await Users.findByIdAndUpdate(userId, { $set: { basket: [] } });
