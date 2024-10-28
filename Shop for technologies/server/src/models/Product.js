@@ -20,6 +20,22 @@ const productSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         require: true
+    },
+    category: {
+        type: String,
+        enum: ["Computers", "Laptops", "Phones", "Keyboards and mouses", "Speakers and headphones",
+            "Stoves", "Washing machines", "TV", "Air conditioners", "Others"
+        ],
+        require: true
+    },
+    ownerId: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "Users"
+    },
+    likes: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Users",
+        default: []
     }
 });
 

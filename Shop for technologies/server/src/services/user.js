@@ -15,7 +15,7 @@ async function register(username, password, email) {
         email: email,
         password: await bcrypt.hash(password, 10)
     })
-    newUser.save();
+    await newUser.save();
     return newUser;
 }
 
@@ -38,7 +38,7 @@ async function changePassword(userId, newPassword) {
         throw new Error("New password can't be the old password!");
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    Users.findByIdAndUpdate(userId, { $set: { password: hashedPassword } });
+    await Users.findByIdAndUpdate(userId, { $set: { password: hashedPassword } });
     return user;
 }
 
