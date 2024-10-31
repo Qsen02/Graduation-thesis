@@ -19,9 +19,20 @@ async function buyProducts(user) {
     });
     await newOrder.save();
     await Users.findByIdAndUpdate(user._id.toString(), { $push: { orderHistory: newOrder } });
+    await Users.findByIdAndUpdate(user._id.toString(), { $set: { basket: [] } });
+}
+
+async function checkOrderId(orderId) {
+    const orders = await Orders.find().lean();
+    const isValid = orders.find(el => el._id.toString() == orderId);
+    if (isValid) {
+        return true;
+    }
+    return false;
 }
 
 module.exports = {
     getOrderById,
-    buyProducts
+    buyProducts,
+    checkOrderId
 }
