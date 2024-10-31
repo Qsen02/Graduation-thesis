@@ -1,6 +1,19 @@
 const { Products } = require("../models/Product");
 const { Users } = require("../models/user");
 
+function parseCharacteristics(charcateristicsStr) {
+    const characteristicsArr = charcateristicsStr.split(",");
+    const characteristics = [];
+    for (let items of characteristicsArr) {
+        const keyValuePairs = items.split(": ");
+        const objectItem = {
+            [keyValuePairs[0]]: keyValuePairs[1]
+        }
+        characteristics.push(objectItem);
+    }
+    return characteristics;
+}
+
 function getAllProducts() {
     const products = Products.find();
     return products;
@@ -30,14 +43,24 @@ function pagination(page) {
 }
 
 async function createProduct(product, user) {
-    const newProduct = new Products(product);
+    const characteristics = parseCharacteristics(product.characteristics);
+    const newProduct = new Products({
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        characteristics: characteristics,
+        imageUrl: product.imageUrl,
+        category: product.category
+    });
     newProduct.ownerId = user._id;
     await newProduct.save();
     return newProduct;
 }
 
 async function updateProduct(productId, data) {
-    await Products.findByIdAndUpdate(productId, { $set: { data } });
+    const characteristics = parseCharacteristics(data.characteristics);
+    data.characteristics = characteristics;
+    await Products.findByIdAndUpdate(productId, { $set: data });
 }
 
 async function deleteProduct(productId) {
@@ -58,9 +81,6 @@ async function addProductToBasket(userId, product) {
 async function removeProductFromBasket(userId, product) {
     await Users.findByIdAndUpdate(userId, { $pull: { basket: product._id } });
 }
-async function clearBasket(userId) {
-    await Users.findByIdAndUpdate(userId, { $set: { basket: [] } });
-}
 
 async function checkProductId(productId) {
     const products = await Products.find().lean();
@@ -77,7 +97,6 @@ module.exports = {
     searchProducts,
     pagination,
     checkProductId,
-    clearBasket,
     removeProductFromBasket,
     addProductToBasket,
     createProduct,

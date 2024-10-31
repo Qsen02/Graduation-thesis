@@ -56,10 +56,15 @@ function getUserById(userId) {
     return user;
 }
 
+async function clearBasket(userId) {
+    await Users.findByIdAndUpdate(userId, { $set: { basket: [] } });
+}
+
 module.exports = {
     getUserById,
     login,
     register,
     changePassword,
-    checkUserId
+    checkUserId,
+    clearBasket
 }

@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { checkUserId, getUserById, register, login, changePassword } = require("../services/user");
+const { checkUserId, getUserById, register, login, changePassword, clearBasket } = require("../services/user");
 const { body, validationResult } = require("express-validator");
 const { setToken } = require("../services/token");
 const { isUser } = require("../middlewares/guard");
@@ -91,6 +91,15 @@ userRouter.get("/:userId", async(req, res) => {
     }
     const user = await getUserById(userId).lean();
     res.json(user);
+})
+
+userRouter.put("/clearBasket/:userId", async(req, res) => {
+    const userId = req.params.userId;
+    if (!isValid) {
+        return res.status(404).json({ message: "Resource not found!" });
+    }
+    await clearBasket(userId);
+    res.status(200).json({ message: "User basket was cleared successfully!" });
 })
 
 module.exports = {

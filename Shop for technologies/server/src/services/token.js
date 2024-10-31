@@ -4,6 +4,7 @@ const secret = "Very secret json web token";
 
 function setToken(user) {
     const payload = {
+        _id: user._id,
         username: user.username,
         password: user.password,
         email: user.password,
