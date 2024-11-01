@@ -60,11 +60,20 @@ async function clearBasket(userId) {
     await Users.findByIdAndUpdate(userId, { $set: { basket: [] } });
 }
 
+async function editUser(userId, username, email) {
+    await Users.findByIdAndUpdate(userId, {
+        $set: {
+            username: username,
+            email: email
+        }
+    });
+}
+
 module.exports = {
     getUserById,
     login,
     register,
     changePassword,
     checkUserId,
-    clearBasket
+    clearBasket, editUser
 }
