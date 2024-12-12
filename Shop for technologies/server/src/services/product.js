@@ -2,15 +2,7 @@ const { Products } = require("../models/Product");
 const { Users } = require("../models/user");
 
 function parseCharacteristics(charcateristicsStr) {
-    const characteristicsArr = charcateristicsStr.split(",");
-    const characteristics = [];
-    for (let items of characteristicsArr) {
-        const keyValuePairs = items.split(": ");
-        const objectItem = {
-            [keyValuePairs[0]]: keyValuePairs[1]
-        }
-        characteristics.push(objectItem);
-    }
+    const characteristics = charcateristicsStr.split(",");
     return characteristics;
 }
 
@@ -30,7 +22,7 @@ function searchProducts(query, criteria) {
         results = Products.find({ name: new RegExp(query, "i") });
     } else if (criteria == "price") {
         results = Products.find({ price: Number(query) });
-    } else if (criteria = "category") {
+    } else if ((criteria = "category")) {
         results = Products.find({ category: new RegExp(query, "i") });
     }
     return results;
@@ -50,7 +42,7 @@ async function createProduct(product, user) {
         price: product.price,
         characteristics: characteristics,
         imageUrl: product.imageUrl,
-        category: product.category
+        category: product.category,
     });
     newProduct.ownerId = user._id;
     await newProduct.save();
@@ -60,7 +52,11 @@ async function createProduct(product, user) {
 async function updateProduct(productId, data) {
     const characteristics = parseCharacteristics(data.characteristics);
     data.characteristics = characteristics;
-    await Products.findByIdAndUpdate(productId, { $set: data });
+    return await Products.findByIdAndUpdate(
+        productId,
+        { $set: data },
+        { new: true }
+    ).lean();
 }
 
 async function deleteProduct(productId) {
@@ -68,15 +64,27 @@ async function deleteProduct(productId) {
 }
 
 async function likeProduct(user, productId) {
-    await Products.findByIdAndUpdate(productId, { $push: { likes: user._id } });
+    return await Products.findByIdAndUpdate(
+        productId,
+        { $push: { likes: user._id } },
+        { new: true }
+    ).lean();
 }
 
 async function unlikeProduct(user, productId) {
-    await Products.findByIdAndUpdate(productId, { $pull: { likes: user._id } });
+    return await Products.findByIdAndUpdate(
+        productId,
+        { $pull: { likes: user._id } },
+        { new: true }
+    ).lean();
 }
 
 async function addProductToBasket(userId, product) {
-    await Users.findByIdAndUpdate(userId, { $push: { basket: product._id } });
+    return await Users.findByIdAndUpdate(
+        userId,
+        { $push: { basket: product._id } },
+        { new: true }
+    ).lean();
 }
 async function removeProductFromBasket(userId, product) {
     await Users.findByIdAndUpdate(userId, { $pull: { basket: product._id } });
@@ -84,7 +92,7 @@ async function removeProductFromBasket(userId, product) {
 
 async function checkProductId(productId) {
     const products = await Products.find().lean();
-    const isValid = products.find(el => el._id.toString() == productId);
+    const isValid = products.find((el) => el._id.toString() == productId);
     if (isValid) {
         return true;
     }
@@ -103,5 +111,5 @@ module.exports = {
     deleteProduct,
     updateProduct,
     likeProduct,
-    unlikeProduct
-}
+    unlikeProduct,
+};

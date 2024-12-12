@@ -1,10 +1,11 @@
 const { Router } = require("express");
 const { checkOrderId, getOrderById, buyProducts } = require("../services/order");
 const { checkUserId, getUserById } = require("../services/user");
+const { isUser } = require("../middlewares/guard");
 
 const orderRouter = Router();
 
-orderRouter.post("/buy/:userId", async(req, res) => {
+orderRouter.post("/buy/:userId",isUser(), async(req, res) => {
     const userId = req.params.userId;
     const isValid = await checkUserId(userId);
     if (!isValid) {

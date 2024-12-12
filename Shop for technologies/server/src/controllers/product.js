@@ -80,14 +80,14 @@ productRouter.put("/:productId", isUser(),
             if (result.errors.length) {
                 throw new Error("Your data is not in valid format!");
             }
-            await updateProduct(productId, fields);
-            res.status(200).json({ message: "Record was updated successfully!" });
+           const product=await updateProduct(productId, fields);
+            res.status(200).json(product);
         } catch (err) {
             return res.status(400).json({ message: err.message });
         }
     })
 
-productRouter.delete("/:productId", async(req, res) => {
+productRouter.delete("/:productId", isUser(),async(req, res) => {
     const productId = req.params.productId;
     const isValid = await checkProductId(productId);
     if (!isValid) {
@@ -97,29 +97,29 @@ productRouter.delete("/:productId", async(req, res) => {
     res.status(200).json({ message: "Record was deleted successfully!" });
 })
 
-productRouter.post("/like/:productId", async(req, res) => {
+productRouter.post("/like/:productId",isUser(), async(req, res) => {
     const productId = req.params.productId;
     const isValid = await checkProductId(productId);
     const user = req.user;
     if (!isValid) {
         return res.status(404).json({ message: "Resource not found!" });
     }
-    await likeProduct(user, productId);
-    res.status(200).json({ message: "Record was liked successfully!" });
+    const product=await likeProduct(user, productId);
+    res.status(200).json(product);
 })
 
-productRouter.post("/unlike/:productId", async(req, res) => {
+productRouter.post("/unlike/:productId", isUser(),async(req, res) => {
     const productId = req.params.productId;
     const isValid = await checkProductId(productId);
     const user = req.user;
     if (!isValid) {
         return res.status(404).json({ message: "Resource not found!" });
     }
-    await unlikeProduct(user, productId);
-    res.status(200).json({ message: "Record was unliked successfully!" });
+    const product=await unlikeProduct(user, productId);
+    res.status(200).json(product);
 })
 
-productRouter.put("/add/:productId", async(req, res) => {
+productRouter.put("/add/:productId",isUser(), async(req, res) => {
     const productId = req.params.productId;
     const isValid = await checkProductId(productId);
     const user = req.user;
@@ -127,11 +127,11 @@ productRouter.put("/add/:productId", async(req, res) => {
         return res.status(404).json({ message: "Resource not found!" });
     }
     const product = await getProductById(productId).lean();
-    await addProductToBasket(user._id, product);
-    res.status(200).json({ message: "Record was added to user bakset successfully!" });
+    const updatedUser= await addProductToBasket(user._id, product);
+    res.status(200).json({ basket:updatedUser.basket});
 })
 
-productRouter.delete("/remove/:productId", async(req, res) => {
+productRouter.delete("/remove/:productId",isUser(), async(req, res) => {
     const productId = req.params.productId;
     const isValid = await checkProductId(productId);
     const user = req.user;

@@ -9,6 +9,7 @@ function setToken(user) {
         password: user.password,
         email: user.password,
         isAdmin: user.isAdmin,
+        address:user.address
     }
 
     const token = jwt.sign(payload, secret, { expiresIn: "3d" });

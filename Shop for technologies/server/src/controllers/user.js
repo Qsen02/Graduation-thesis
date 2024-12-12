@@ -9,6 +9,7 @@ const userRouter = Router();
 userRouter.post("/register",
     body("username").trim().isLength({ min: 3 }),
     body("email").trim().isLength({ min: 3 }).isEmail(),
+    body("address").trim().isLength(3),
     body("password").trim().matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[+!@#$%^&*])[A-Za-z\d+!@#$%^&*]{6,}$/),
     body("repass").trim().custom((value, { req }) => req.body.password == value),
     async (req, res) => {
@@ -18,11 +19,12 @@ userRouter.post("/register",
             if (results.errors.length) {
                 throw new Error("Данните ти не са в правилен формат!");
             }
-            const user = await register(fields.username, fields.password, fields.email);
+            const user = await register(fields.username, fields.password, fields.email,fields.address);
             const token = setToken(user);
             res.json({
                 username: user.username,
                 email: user.email,
+                address:user.addess,
                 isAdmin: user.isAdmin,
                 orderHistory: user.orderHistory,
                 basket: user.basket,
@@ -117,8 +119,8 @@ userRouter.put("/edit/:userId", isUser(),
             if (results.errors.length) {
                 throw new Error("Данните ти не са в правилен формат!");
             }
-            await editUser(userId, fields.username, fields.email);
-            res.status(200).json({ message: "User was edited succcessfully!" });
+            const updatedUser=await editUser(userId, fields.username, fields.email);
+            res.status(200).json(updatedUser);
         } catch (err) {
             return res.status(400).json({ message: err.message });
         }

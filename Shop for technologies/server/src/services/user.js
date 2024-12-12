@@ -1,7 +1,7 @@
 const { Users } = require("../models/user");
 const bcrypt = require("bcrypt");
 
-async function register(username, password, email) {
+async function register(username, password, email, address) {
     const userUsername = await Users.findOne({ username }).lean();
     if (userUsername) {
         throw new Error("Потребител с това име вече съществува!");
@@ -13,8 +13,9 @@ async function register(username, password, email) {
     const newUser = new Users({
         username: username,
         email: email,
-        password: await bcrypt.hash(password, 10)
-    })
+        password: await bcrypt.hash(password, 10),
+        address: address,
+    });
     await newUser.save();
     return newUser;
 }
@@ -38,13 +39,15 @@ async function changePassword(userId, newPassword) {
         throw new Error("Новата парола не може да бъде старата!");
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await Users.findByIdAndUpdate(userId, { $set: { password: hashedPassword } });
+    await Users.findByIdAndUpdate(userId, {
+        $set: { password: hashedPassword },
+    });
     return user;
 }
 
 async function checkUserId(userId) {
     const users = await Users.find().lean();
-    const isValid = users.find(el => el._id.toString() == userId);
+    const isValid = users.find((el) => el._id.toString() == userId);
     if (isValid) {
         return true;
     }
@@ -52,7 +55,9 @@ async function checkUserId(userId) {
 }
 
 function getUserById(userId) {
-    const user = Users.findById(userId).populate("basket").populate("orderHistory");
+    const user = Users.findById(userId)
+        .populate("basket")
+        .populate("orderHistory");
     return user;
 }
 
@@ -61,12 +66,16 @@ async function clearBasket(userId) {
 }
 
 async function editUser(userId, username, email) {
-    await Users.findByIdAndUpdate(userId, {
-        $set: {
-            username: username,
-            email: email
-        }
-    });
+    return await Users.findByIdAndUpdate(
+        userId,
+        {
+            $set: {
+                username: username,
+                email: email,
+            },
+        },{
+            new: true,
+        }).lean();
 }
 
 module.exports = {
@@ -75,5 +84,6 @@ module.exports = {
     register,
     changePassword,
     checkUserId,
-    clearBasket, editUser
-}
+    clearBasket,
+    editUser,
+};
