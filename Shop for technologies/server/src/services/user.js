@@ -65,13 +65,14 @@ async function clearBasket(userId) {
     await Users.findByIdAndUpdate(userId, { $set: { basket: [] } });
 }
 
-async function editUser(userId, username, email) {
+async function editUser(userId, username, email,address) {
     return await Users.findByIdAndUpdate(
         userId,
         {
             $set: {
                 username: username,
                 email: email,
+                address:address
             },
         },{
             new: true,

@@ -107,6 +107,7 @@ userRouter.put("/clearBasket/:userId", isUser(), async (req, res) => {
 userRouter.put("/edit/:userId", isUser(),
     body("username").trim().isLength({ min: 3 }),
     body("email").trim().isLength({ min: 3 }).isEmail(),
+    body("address").trim().isLength({min:3}),
     async (req, res) => {
         const userId = req.params.userId;
         const isValid = await checkUserId(userId);
@@ -119,7 +120,7 @@ userRouter.put("/edit/:userId", isUser(),
             if (results.errors.length) {
                 throw new Error("Данните ти не са в правилен формат!");
             }
-            const updatedUser=await editUser(userId, fields.username, fields.email);
+            const updatedUser=await editUser(userId, fields.username, fields.email,fields.addess);
             res.status(200).json(updatedUser);
         } catch (err) {
             return res.status(400).json({ message: err.message });

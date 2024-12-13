@@ -23,8 +23,8 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ["Computers", "Laptops", "Phones", "Keyboards and mouses", "Speakers and headphones",
-            "Stoves", "Washing machines", "TV", "Air conditioners", "Others"
+        enum: ["Компютри", "Лаптопи", "Телефони", "Мишки и клавиатури", "Тонколони и слушалки",
+            "Перални", "Съдомиялни", "Телевизори", "Климатци", "Други"
         ],
         require: true
     },
