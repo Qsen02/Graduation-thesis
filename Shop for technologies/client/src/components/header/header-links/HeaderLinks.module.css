@@ -1,0 +1,7 @@
+.linkItem a{
+   padding: 10px;
+}
+
+.linkItem a:hover{
+    color: lightgray;
+}

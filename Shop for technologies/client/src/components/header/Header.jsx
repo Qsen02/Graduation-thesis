@@ -1,4 +1,5 @@
 import HeaderLinks from "./header-links/HeaderLinks";
+import styles from "./Header.module.css";
 
 export default function Header() {
     const isLogged = false;
@@ -22,7 +23,7 @@ export default function Header() {
         {name:"Профил",link:"/profile"}
     ]
     return (
-        <header>
+        <header class={styles.navigation}>
             <nav>
                 <ul>
                 {

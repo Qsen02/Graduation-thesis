@@ -1,0 +1,12 @@
+.navigation{
+    background-color: rgb(238, 20, 20);
+    padding: 20px;
+}
+
+.navigation nav ul{
+    display: flex;
+    gap:20px;
+    color: white;
+    font-size:14pt;
+    font-weight: bold;
+}
