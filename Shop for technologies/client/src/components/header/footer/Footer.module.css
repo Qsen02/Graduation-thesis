@@ -1,0 +1,17 @@
+.footer{
+    width: 100%;
+    background-color: rgb(96, 96, 96);
+    padding: 20px;
+}
+
+.footer p{
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+}
+
+@media(max-width:620px){
+    .footer{
+        font-size: 12pt;
+    }
+}

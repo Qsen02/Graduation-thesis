@@ -23,7 +23,7 @@ export default function Header() {
         {name:"Профил",link:"/profile"}
     ]
     return (
-        <header class={styles.navigation}>
+        <header className={styles.navigation}>
             <nav>
                 <ul>
                 {

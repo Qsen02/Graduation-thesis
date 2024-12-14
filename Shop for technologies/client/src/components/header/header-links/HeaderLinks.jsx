@@ -3,7 +3,7 @@ import styles from "./HeaderLinks.module.css";
 
 export default function HeaderLinks({ name, link }) {
     return (
-        <li class={styles.linkItem}>
+        <li className={styles.linkItem}>
             <NavLink
                 style={({isActive}) =>
                     isActive ? { color: "lightgrey" } : {}

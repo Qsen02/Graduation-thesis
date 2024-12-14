@@ -1,4 +1,5 @@
 .navigation{
+    width:100%;
     background-color: rgb(238, 20, 20);
     padding: 20px;
 }
@@ -9,4 +10,12 @@
     color: white;
     font-size:14pt;
     font-weight: bold;
+}
+
+@media(max-width:620px){
+    .navigation nav ul{
+        font-size: 12pt;
+        flex-direction: column;
+        align-items: center;
+    }
 }
