@@ -20,6 +20,19 @@ li {
     list-style-type: none;
 }
 
-main {
-    height: 100vh;
+main{
+    min-height: 100vh;
+}
+
+.message{
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+}
+
+@media(max-width:620px){
+    body{
+        font-size: 12pt;
+    }
 }
