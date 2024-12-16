@@ -100,7 +100,7 @@ async function checkProductId(productId) {
 }
 
 function getLatestProducts(){
-    const products=Products.find().limit(6).sort({$natural:-1});
+    const products=Products.find().sort({$natural:-1}).limit(6);
     return products;
 }
 

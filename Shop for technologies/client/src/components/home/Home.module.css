@@ -1,0 +1,27 @@
+.homeWrapper{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap:20px;
+}
+
+.homeWrapper .title{
+    padding: 20px;
+    width: 50%;
+    border-radius: 10px;
+    background-color: rgb(238, 20, 20);
+    text-align: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+}
+
+.homeWrapper .title a{
+    color: rgb(194, 194, 194);
+}
+
+.homeWrapper .title a:hover{
+    color: #EEE;
+}
