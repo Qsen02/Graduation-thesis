@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { getAllProducts, checkProductId, getProductById, pagination, searchProducts, createProduct, updateProduct, deleteProduct, likeProduct, unlikeProduct, addProductToBasket, removeProductFromBasket } = require("../services/product");
+const { getAllProducts, checkProductId, getProductById, pagination, searchProducts, createProduct, updateProduct, deleteProduct, likeProduct, unlikeProduct, addProductToBasket, removeProductFromBasket, getLatestProducts } = require("../services/product");
 const { isUser } = require("../middlewares/guard");
 const { body, validationResult } = require("express-validator");
 
@@ -8,6 +8,11 @@ const productRouter = Router();
 productRouter.get("/", async(req, res) => {
     const products = await getAllProducts().lean();
     res.json(products);
+})
+
+productRouter.get("/latest",async(req,res)=>{
+    const product=await getLatestProducts().lean();
+    res.json(product);
 })
 
 productRouter.get("/:productId", async(req, res) => {

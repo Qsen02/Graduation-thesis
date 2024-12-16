@@ -99,6 +99,11 @@ async function checkProductId(productId) {
     return false;
 }
 
+function getLatestProducts(){
+    const products=Products.find().limit(6).sort({$natural:-1});
+    return products;
+}
+
 module.exports = {
     getAllProducts,
     getProductById,
@@ -112,4 +117,5 @@ module.exports = {
     updateProduct,
     likeProduct,
     unlikeProduct,
+    getLatestProducts
 };
