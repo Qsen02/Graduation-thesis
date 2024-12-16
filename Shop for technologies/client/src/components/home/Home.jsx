@@ -21,7 +21,13 @@ export default function Home() {
             </section>
             <h1>Най-новите продукти</h1>
             <section className={styles.productWrapper}>
-                {products.length == 0 ? (
+                {isLoading && !isError ? (
+                    <span className="loader"></span>
+                ) : !isLoading && isError ? (
+                    <section className="message">
+                        <p>Нещо се обърка, моля опитайте по късно.</p>
+                    </section>
+                ) : products.length == 0? (
                     <section className="message">
                         <p>Няма продукти все още :(</p>
                     </section>

@@ -15,6 +15,7 @@ export function useGetLatsetProducts(initalValue){
                 setIsLoading(false);
              }catch(err){
                 setIsError(true);
+                setIsLoading(false);
              }
           })()
      },[])
