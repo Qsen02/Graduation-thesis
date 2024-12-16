@@ -1,6 +1,6 @@
 import { del, get, post, put } from "./requester";
 
-const endpoint = "/posts";
+const endpoint = "/products";
 
 export async function getLatestProducts() {
     return await get(`${endpoint}/latest`);
