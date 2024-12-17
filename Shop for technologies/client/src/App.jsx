@@ -8,6 +8,7 @@ import Catalog from "./components/catalog/Catalog";
 import UserContextProvider from "./contexts/userContext";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
+import Logout from "./components/logout/Logout";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register/>}/>
+                    <Route path="/logout" element={<Logout/>}/>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

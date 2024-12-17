@@ -10,28 +10,32 @@ export { UserContext };
 export default function UserContextProvider(props) {
     const { user, setCurUser } = usePresistedState(null);
 
-    function setUserHanlder(user){
+    function setUserHanlder(user) {
         setCurUser(user);
         setUserData(user);
     }
 
-   async function clearUserHandler(){
-        removeUserData();
+    async function clearUserHandler() {
         await logout();
-        setUserData(null);
+        removeUserData();
+        setCurUser(null);
     }
 
     return (
-        <UserContext.Provider value={{user,setUserHanlder,clearUserHandler}}>
+        <UserContext.Provider
+            value={{ user, setUserHanlder, clearUserHandler }}
+        >
             {props.children}
         </UserContext.Provider>
     );
 }
 
-export function useUserContext(){
-    const {user,setUserHanlder,clearUserHandler}=useContext(UserContext);
+export function useUserContext() {
+    const { user, setUserHanlder, clearUserHandler } = useContext(UserContext);
 
     return {
-        user,setUserHanlder,clearUserHandler
-    }
+        user,
+        setUserHanlder,
+        clearUserHandler,
+    };
 }

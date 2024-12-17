@@ -5,6 +5,7 @@ import { useLogin } from "../../hooks/useUser";
 import { loginShema } from "../../shemas";
 import { useState } from "react";
 import { useUserContext } from "../../contexts/userContext";
+import { setUserData } from "../../utils/userHelper";
 
 export default function Login() {
     const login = useLogin();

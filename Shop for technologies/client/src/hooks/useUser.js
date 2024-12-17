@@ -1,4 +1,4 @@
-import { login, register } from "../api/userService"
+import { login, logout, register } from "../api/userService"
 
 export function useLogin(){
     return async function(data){

@@ -61,7 +61,7 @@ userRouter.post("/login",
     })
 
 userRouter.get("/logout", isUser(), (req, res) => {
-    res.status(200).json({ message: "Logout was successful" });
+    res.status(200).json({ message: "Logout was successfull" });
 })
 
 userRouter.put("/changePassword/:userId", isUser(),
