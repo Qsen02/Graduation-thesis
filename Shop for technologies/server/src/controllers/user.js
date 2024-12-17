@@ -7,9 +7,9 @@ const { isUser } = require("../middlewares/guard");
 const userRouter = Router();
 
 userRouter.post("/register",
-    body("username").trim().isLength({ min: 3 }),
-    body("email").trim().isLength({ min: 3 }).isEmail(),
-    body("address").trim().isLength(3),
+    body("username").trim().isLength({ min: 2 }),
+    body("email").trim().isLength({ min: 2 }).isEmail(),
+    body("address").trim().isLength({min:3}),
     body("password").trim().matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[+!@#$%^&*])[A-Za-z\d+!@#$%^&*]{6,}$/),
     body("repass").trim().custom((value, { req }) => req.body.password == value),
     async (req, res) => {
@@ -36,7 +36,7 @@ userRouter.post("/register",
     })
 
 userRouter.post("/login",
-    body("username").trim().isLength({ min: 3 }),
+    body("username").trim().isLength({ min: 2 }),
     body("password").trim().matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[+!@#$%^&*])[A-Za-z\d+!@#$%^&*]{6,}$/),
     async (req, res) => {
         const fields = req.body;
@@ -105,8 +105,8 @@ userRouter.put("/clearBasket/:userId", isUser(), async (req, res) => {
 })
 
 userRouter.put("/edit/:userId", isUser(),
-    body("username").trim().isLength({ min: 3 }),
-    body("email").trim().isLength({ min: 3 }).isEmail(),
+    body("username").trim().isLength({ min: 2 }),
+    body("email").trim().isLength({ min: 2 }).isEmail(),
     body("address").trim().isLength({min:3}),
     async (req, res) => {
         const userId = req.params.userId;

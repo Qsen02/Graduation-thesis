@@ -25,7 +25,7 @@ async function request(method, url, data) {
                 removeUserData();
             }
             const err = await res.json();
-            throw new Error(err);
+            throw new Error(err.message);
         }
         return await res.json();
     } catch (err) {

@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 async function register(username, password, email, address) {
     const userUsername = await Users.findOne({ username }).lean();
     if (userUsername) {
-        throw new Error("Потребител с това име вече съществува!");
+        throw new Error("Потребител с това има вече съществува!");
     }
     const userEmail = await Users.findOne({ email }).lean();
     if (userEmail) {

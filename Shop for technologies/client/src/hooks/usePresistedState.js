@@ -13,13 +13,13 @@ export function usePresistedState(initalValue) {
         return userData;
     });
 
-    function setUserData(value) {
+    function setCurUser(value) {
         const newState = typeof value === "function" ? value(user) : value;
         setUser(newState);
     }
 
     return {
         user,
-        setUserData,
+        setCurUser,
     };
 }

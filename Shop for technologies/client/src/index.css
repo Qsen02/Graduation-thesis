@@ -43,6 +43,10 @@ main {
     animation: rotation 1s linear infinite;
 }
 
+.error {
+    color: rgb(222, 13, 13);
+}
+
 .form {
     width: 40vw;
     margin: 30px auto;
@@ -95,6 +99,10 @@ main {
     color: silver;
 }
 
+.form i {
+    font-size: 30pt;
+}
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -121,5 +129,9 @@ main {
 
     .form input {
         font-size: 12pt;
+    }
+
+    .form i{
+        font-size: 20pt;
     }
 }

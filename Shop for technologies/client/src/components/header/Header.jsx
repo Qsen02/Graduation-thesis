@@ -14,13 +14,15 @@ export default function Header() {
         {name:"Начало",link:"/home"},
         {name:"Каталог",link:"/catalog"},
         {name:"Количка",link:"/cart"},
-        {name:"Профил",link:"/profile"}
+        {name:"Профил",link:"/profile"},
+        {name:"Изход",link:"/logout"}
     ]
     const adminNav=[
         {name:"Начало",link:"/home"},
         {name:"Каталог",link:"/catalog"},
         {name:"Създай",link:"/create"},
-        {name:"Профил",link:"/profile"}
+        {name:"Профил",link:"/profile"},
+        {name:"Изход",link:"/logout"}
     ]
     return (
         <header className={styles.navigation}>
