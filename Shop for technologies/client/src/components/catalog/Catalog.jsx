@@ -1,29 +1,59 @@
-import { useGetAllProducts } from "../../hooks/useProducts";
+import { useGetAllProducts, useSearchProducts } from "../../hooks/useProducts";
 import HomeProducts from "../home/home-products/HomeProducts";
 import styles from "./Catalog.module.css";
+import { Form, Formik } from "formik";
+import CustomInput from "../../commons/custom-input/CustomInput";
+import CustomSelect from "../../commons/custom-select/CustomSelect";
+import { useState } from "react";
 
 export default function Catalog() {
-    const { products, isLoading, isError } = useGetAllProducts([]);
+    const [isSearched,setIsSearched]=useState(false);
+    const { products,setProducts, isLoading,setLoading, isError,setError } = useGetAllProducts([]);
+    const searchProducts = useSearchProducts();
+
+    async function onSearch(value) {
+        try {
+            let query = value.query;
+            const criteria = value.criteria;
+            if(query==""){
+                query="No value";
+            }
+            setLoading(true);
+            const products=await searchProducts(query,criteria);
+            setProducts({type:"search",payload:products});
+            setLoading(false);
+            setIsSearched(true);
+        } catch (err) {
+           setError(true);
+           setLoading(false);
+        }
+    }
 
     return (
         <section className={styles.catalogWrapper}>
-            <form>
-                <h2>Търсете продукти</h2>
-                <div>
-                    <input
-                        type="text"
-                        name="query"
-                        id="query"
-                        placeholder="Въведете критерии..."
-                    />
-                    <select>
-                        <option value="name">Име</option>
-                        <option value="price">Цена</option>
-                        <option value="category">Категория</option>
-                    </select>
-                    <button type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-            </form>
+            <Formik
+                initialValues={{ query: "", criteria: "name" }}
+                onSubmit={onSearch}
+            >
+                {(props) => (
+                    <Form>
+                        <h2>Търсете продукти</h2>
+                        <div>
+                            <CustomInput
+                                label=""
+                                type="text"
+                                name="query"
+                                id="query"
+                                placeholder="Въведете критерии..."
+                            />
+                            <CustomSelect name="criteria" />
+                            <button type="submit">
+                                <i className="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </div>
+                    </Form>
+                )}
+            </Formik>
             <h2>Всички продукти</h2>
             <section>
                 {isLoading && !isError ? (
@@ -32,11 +62,17 @@ export default function Catalog() {
                     <section className="message">
                         <p>Нещо се обърка, моля опитайте по късно.</p>
                     </section>
-                ) : products.length == 0 ? (
+                ) : products.length == 0 && !isSearched? (
                     <section className="message">
                         <p>Няма продукти все още :(</p>
                     </section>
-                ) : (
+                ) :  products.length == 0 && isSearched
+                ?( 
+                <section className="message">
+                    <p>Няма резултати :(</p>
+                </section>
+                )
+                :(
                     products.map((el) => (
                         <HomeProducts
                             key={el._id}

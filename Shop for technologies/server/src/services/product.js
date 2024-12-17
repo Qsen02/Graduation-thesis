@@ -16,14 +16,20 @@ function getProductById(productId) {
     return product;
 }
 
-function searchProducts(query, criteria) {
+async function searchProducts(query, criteria) {
     let results = null;
     if (criteria == "name") {
-        results = Products.find({ name: new RegExp(query, "i") });
+        results = await Products.find({ name: new RegExp(query, "i") }).lean();
     } else if (criteria == "price") {
-        results = Products.find({ price: Number(query) });
+        if (/^\d+$/.test(query.trim())) {
+            results = await Products.find({ price: Number(query) }).lean();
+        } else {
+            return [];
+        }
     } else if ((criteria = "category")) {
-        results = Products.find({ category: new RegExp(query, "i") });
+        results = await Products.find({
+            category: new RegExp(query, "i"),
+        }).lean();
     }
     return results;
 }
@@ -99,8 +105,8 @@ async function checkProductId(productId) {
     return false;
 }
 
-function getLatestProducts(){
-    const products=Products.find().sort({$natural:-1}).limit(6);
+function getLatestProducts() {
+    const products = Products.find().sort({ $natural: -1 }).limit(6);
     return products;
 }
 
@@ -117,5 +123,5 @@ module.exports = {
     updateProduct,
     likeProduct,
     unlikeProduct,
-    getLatestProducts
+    getLatestProducts,
 };
