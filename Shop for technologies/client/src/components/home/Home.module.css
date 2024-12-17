@@ -44,4 +44,8 @@
         flex-wrap: nowrap;
         justify-content: baseline;
     }
+
+    .homeWrapper .title{
+        width: 80%;
+    }
 }

@@ -3,6 +3,7 @@ import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import Redirect from "./commons/redirect/Redirect";
+import NotFound from "./components/not-found/NotFound";
 
 function App() {
     return (
@@ -10,8 +11,9 @@ function App() {
             <Header />
             <main>
                 <Routes>
-                    <Route path="/" element={<Redirect/>}/>
+                    <Route path="/" element={<Redirect />} />
                     <Route path="/home" element={<Home />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
             <Footer />
