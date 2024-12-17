@@ -1,9 +1,9 @@
+import { useUserContext } from "../../contexts/userContext";
 import HeaderLinks from "./header-links/HeaderLinks";
 import styles from "./Header.module.css";
 
 export default function Header() {
-    const isLogged = false;
-    const isAdmin = false;
+    const {user}=useUserContext();
     const guestNav=[
         {name:"Начало",link:"/home"},
         {name:"Каталог",link:"/catalog"},
@@ -27,8 +27,8 @@ export default function Header() {
             <nav>
                 <ul>
                 {
-                  isLogged
-                  ? isAdmin
+                  user
+                  ? user.isAdmin
                     ? adminNav.map(el=><HeaderLinks key={el.name} name={el.name} link={el.link}/>)
                     : userNav.map(el=><HeaderLinks key={el.name} name={el.name} link={el.link}/>)
                   : guestNav.map(el=><HeaderLinks key={el.name} name={el.name} link={el.link}/>)

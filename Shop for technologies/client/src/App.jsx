@@ -5,10 +5,11 @@ import Home from "./components/home/Home";
 import Redirect from "./commons/redirect/Redirect";
 import NotFound from "./components/not-found/NotFound";
 import Catalog from "./components/catalog/Catalog";
+import UserContextProvider from "./contexts/userContext";
 
 function App() {
     return (
-        <>
+        <UserContextProvider>
             <Header />
             <main>
                 <Routes>
@@ -19,7 +20,7 @@ function App() {
                 </Routes>
             </main>
             <Footer />
-        </>
+        </UserContextProvider>
     );
 }
 
