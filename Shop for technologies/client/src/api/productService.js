@@ -2,6 +2,10 @@ import { del, get, post, put } from "./requester";
 
 const endpoint = "/products";
 
+export async function getAllProducts(){
+    return await get(endpoint);
+}
+
 export async function getLatestProducts() {
     return await get(`${endpoint}/latest`);
 }

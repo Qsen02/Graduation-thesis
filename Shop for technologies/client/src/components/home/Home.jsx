@@ -39,6 +39,7 @@ export default function Home() {
                             name={el.name}
                             productId={el._id}
                             price={el.price}
+                            category={el.category}
                         />
                     ))
                 )}
