@@ -6,6 +6,7 @@ import Redirect from "./commons/redirect/Redirect";
 import NotFound from "./components/not-found/NotFound";
 import Catalog from "./components/catalog/Catalog";
 import UserContextProvider from "./contexts/userContext";
+import Login from "./components/login/Login";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     <Route path="/" element={<Redirect />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

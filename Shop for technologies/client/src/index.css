@@ -27,7 +27,8 @@ main {
 .message {
     margin-top: 20px;
     padding: 20px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
     border-radius: 15px;
 }
 
@@ -42,6 +43,58 @@ main {
     animation: rotation 1s linear infinite;
 }
 
+.form {
+    width: 40vw;
+    margin: 30px auto;
+    padding: 20px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.form .field {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.form input {
+    width: 70%;
+    border-radius: 9px;
+    height: 40px;
+    font-size: 14pt;
+    padding-left: 10px;
+}
+
+.form button {
+    border: none;
+    padding: 20px 30px 20px 30px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    font-size: 14pt;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: rgb(199, 36, 36);
+}
+
+.form a {
+    color: grey;
+}
+
+.form a:hover {
+    color: silver;
+}
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -51,8 +104,22 @@ main {
     }
 }
 
+@media (max-width: 920px) {
+    .form {
+        width: 80vw;
+    }
+}
+
 @media (max-width: 620px) {
     body {
+        font-size: 12pt;
+    }
+
+    .form button {
+        font-size: 12pt;
+    }
+
+    .form input {
         font-size: 12pt;
     }
 }
