@@ -3,9 +3,11 @@ import {
     createProduct,
     getAllProducts,
     getLatestProducts,
+    getProductById,
     searchProducts,
 } from "../api/productService";
 import productReducer from "../reducers/productReducer";
+import { useNavigate } from "react-router-dom";
 
 export function useGetLatsetProducts(initalValue) {
     const [products, setProducts] = useState(initalValue);
@@ -39,19 +41,19 @@ export function useGetAllProducts(initalValue) {
     const [isError, setIsError] = useState(false);
 
     function setProducts(products) {
-        if (typeof(products)=== "object") {
+        if (typeof products === "object") {
             dispatch(products);
         }
     }
 
-    function setLoading(value){
-        if(typeof(value)==="boolean"){
+    function setLoading(value) {
+        if (typeof value === "boolean") {
             setIsLoading(value);
         }
     }
 
-    function setError(value){
-        if(typeof(value)==="boolean"){
+    function setError(value) {
+        if (typeof value === "boolean") {
             setIsError(value);
         }
     }
@@ -76,7 +78,7 @@ export function useGetAllProducts(initalValue) {
         isLoading,
         setLoading,
         isError,
-        setError
+        setError,
     };
 }
 
@@ -86,8 +88,36 @@ export function useSearchProducts() {
     };
 }
 
-export function useCreateProduct(){
-    return async function (data){
+export function useCreateProduct() {
+    return async function (data) {
         return await createProduct(data);
+    };
+}
+
+export function useGetOneProduct(initalValue, productId) {
+    const [product, setProduct] = useState(initalValue);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const navigate=useNavigate();
+
+    useEffect(() => {
+        (async () => {
+            try {
+                setIsLoading(true);
+                const product = await getProductById(productId);
+                setProduct(product);
+                setIsLoading(false);
+            } catch (err) {
+                if(err.message=="Resource not found!"){
+                    return navigate("/404");
+                }
+                setIsError(true);
+                setIsLoading(false);
+            }
+        })();
+    }, [productId]);
+
+    return {
+        product,isLoading,isError
     }
 }
