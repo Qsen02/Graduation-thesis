@@ -5,7 +5,6 @@ import { useLogin } from "../../hooks/useUser";
 import { loginShema } from "../../shemas";
 import { useState } from "react";
 import { useUserContext } from "../../contexts/userContext";
-import { setUserData } from "../../utils/userHelper";
 
 export default function Login() {
     const login = useLogin();
@@ -13,6 +12,7 @@ export default function Login() {
     const [errMessage, setErrMessage] = useState("");
     const { setUserHanlder } = useUserContext();
     const navigate = useNavigate();
+    const [show, setShow] = useState(false);
 
     async function onLogin(value, actions) {
         try {
@@ -25,6 +25,14 @@ export default function Login() {
         } catch (err) {
             setIsError(true);
             setErrMessage(err.message);
+        }
+    }
+
+    function showPassword() {
+        if (show) {
+            setShow(false);
+        } else {
+            setShow(true);
         }
     }
 
@@ -42,13 +50,17 @@ export default function Login() {
                     <div className="field">
                         <CustomInput label="Име" type="text" name="username" />
                     </div>
-                    <div className="field">
-                        <CustomInput
-                            label="Парола"
-                            type="password"
-                            name="password"
-                        />
-                    </div>
+                    {show ? (
+                        <div className="field">
+                            <CustomInput label="Парола" type="text" name="password"/>
+                            <i class="fa-regular fa-eye" onClick={showPassword}></i>
+                        </div>
+                    ) : (
+                        <div className="field">
+                            <CustomInput label="Парола" type="password" name="password"/>
+                            <i class="fa-regular fa-eye-slash" onClick={showPassword}></i>
+                        </div>
+                    )}
                     <button type="submit">Вход</button>
                     <p>
                         Нямате акаунт все още?

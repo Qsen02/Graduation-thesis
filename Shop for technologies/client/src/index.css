@@ -44,6 +44,7 @@ main {
 }
 
 .error {
+    width: 600px;
     color: rgb(222, 13, 13);
 }
 
@@ -62,7 +63,7 @@ main {
 }
 
 .form .field {
-    width: 95%;
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -70,7 +71,7 @@ main {
 }
 
 .form input {
-    width: 70%;
+    width: 500px;
     border-radius: 9px;
     height: 40px;
     font-size: 14pt;
@@ -103,6 +104,14 @@ main {
     font-size: 30pt;
 }
 
+.form .field i{
+    position: absolute;
+    top:42px;
+    right: 60px;
+    cursor: pointer;
+    font-size: 20pt;
+}
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -112,7 +121,7 @@ main {
     }
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1300px) {
     .form {
         width: 80vw;
     }
@@ -128,10 +137,39 @@ main {
     }
 
     .form input {
+        width: 300px;
         font-size: 12pt;
+    }
+
+    .error {
+        width: 300px;
     }
 
     .form i{
         font-size: 20pt;
+    }
+
+    .form .field i{
+        top:35px;
+        right: 40px;
+    }
+}
+
+@media(max-width:400px){
+    body {
+        font-size: 10pt;
+    }
+    .form input {
+        width: 175px;
+        font-size: 10pt;
+    }
+    .error {
+        width: 175px;
+    }
+
+    .form .field i{
+        font-size: 16pt;
+        top:37px;
+        right:20px;
     }
 }

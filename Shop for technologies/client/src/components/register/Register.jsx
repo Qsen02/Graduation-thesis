@@ -12,6 +12,8 @@ export default function Register() {
     const [errMessage, setErrMessage] = useState("");
     const { setUserHanlder } = useUserContext();
     const navigate = useNavigate();
+    const [showPass, setShowPass] = useState(false);
+    const [showRepass, setShowRepass] = useState(false);
 
     async function onRegister(value, actions) {
         try {
@@ -36,6 +38,22 @@ export default function Register() {
         }
     }
 
+    function showPassword() {
+        if (showPass) {
+            setShowPass(false);
+        } else {
+            setShowPass(true);
+        }
+    }
+
+    function showRepassword() {
+        if (showRepass) {
+            setShowRepass(false);
+        } else {
+            setShowRepass(true);
+        }
+    }
+
     return (
         <Formik
             initialValues={{
@@ -54,28 +72,36 @@ export default function Register() {
                     <i className="fa-solid fa-arrow-right-to-bracket"></i>
                     {isError ? <p className="error">{errMessage}</p> : ""}
                     <div className="field">
-                        <CustomInput label="Име" type="text" name="username" />
+                        <CustomInput label="Име" type="text" name="username"/>
                     </div>
                     <div className="field">
-                        <CustomInput label="Имейл" type="text" name="email" />
+                        <CustomInput label="Имейл" type="text" name="email"/>
                     </div>
                     <div className="field">
-                        <CustomInput label="Адрес" type="text" name="address" />
+                        <CustomInput label="Адрес" type="text" name="address"/>
                     </div>
-                    <div className="field">
-                        <CustomInput
-                            label="Парола"
-                            type="password"
-                            name="password"
-                        />
-                    </div>
-                    <div className="field">
-                        <CustomInput
-                            label="Повторете паролата"
-                            type="password"
-                            name="repass"
-                        />
-                    </div>
+                    {showPass ? (
+                        <div className="field">
+                            <CustomInput label="Парола" type="text" name="password"/>
+                            <i class="fa-regular fa-eye" onClick={showPassword}></i>
+                        </div>
+                    ) : (
+                        <div className="field">
+                            <CustomInput label="Парола" type="password" name="password"/>
+                            <i class="fa-regular fa-eye-slash" onClick={showPassword}></i>
+                        </div>
+                    )}
+                    {showRepass ? (
+                        <div className="field">
+                            <CustomInput label="Повторете паролата" type="text" name="repass"/>
+                            <i class="fa-regular fa-eye" onClick={showRepassword}></i>
+                        </div>
+                    ) : (
+                        <div className="field">
+                            <CustomInput label="Повторете паролата" type="password" name="repass"/>
+                            <i class="fa-regular fa-eye-slash" onClick={showRepassword}></i>
+                        </div>
+                    )}
                     <button type="submit">Регистрация</button>
                     <p>
                         Вече имате акаунт?
