@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import {
+    createProduct,
     getAllProducts,
     getLatestProducts,
     searchProducts,
@@ -83,4 +84,10 @@ export function useSearchProducts() {
     return async function (query, criteria) {
         return await searchProducts(query, criteria);
     };
+}
+
+export function useCreateProduct(){
+    return async function (data){
+        return await createProduct(data);
+    }
 }

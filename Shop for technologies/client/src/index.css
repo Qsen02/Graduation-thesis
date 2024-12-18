@@ -70,12 +70,20 @@ main {
     align-items: center;
 }
 
-.form input {
+.form input,
+.form textarea,
+.form select {
     width: 500px;
     border-radius: 9px;
     height: 40px;
     font-size: 14pt;
     padding-left: 10px;
+}
+
+.form textarea{
+    height: 70px;
+    padding-top: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .form button {
@@ -104,9 +112,9 @@ main {
     font-size: 30pt;
 }
 
-.form .field i{
+.form .field i {
     position: absolute;
-    top:42px;
+    top: 42px;
     right: 60px;
     cursor: pointer;
     font-size: 20pt;
@@ -136,7 +144,9 @@ main {
         font-size: 12pt;
     }
 
-    .form input {
+    .form input,
+    .form textarea,
+    .form select {
         width: 300px;
         font-size: 12pt;
     }
@@ -145,21 +155,23 @@ main {
         width: 300px;
     }
 
-    .form i{
+    .form i {
         font-size: 20pt;
     }
 
-    .form .field i{
-        top:35px;
+    .form .field i {
+        top: 35px;
         right: 40px;
     }
 }
 
-@media(max-width:400px){
+@media (max-width: 400px) {
     body {
         font-size: 10pt;
     }
-    .form input {
+    .form input,
+    .form textarea,
+    .form select{
         width: 175px;
         font-size: 10pt;
     }
@@ -167,9 +179,9 @@ main {
         width: 175px;
     }
 
-    .form .field i{
+    .form .field i {
         font-size: 16pt;
-        top:37px;
-        right:20px;
+        top: 37px;
+        right: 20px;
     }
 }

@@ -9,6 +9,7 @@ import UserContextProvider from "./contexts/userContext";
 import Login from "./components/login/Login";
 import Register from "./components/register/Register";
 import Logout from "./components/logout/Logout";
+import Create from "./components/create/Create";
 
 function App() {
     return (
@@ -20,8 +21,9 @@ function App() {
                     <Route path="/home" element={<Home />} />
                     <Route path="/catalog" element={<Catalog />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register/>}/>
-                    <Route path="/logout" element={<Logout/>}/>
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/logout" element={<Logout />} />
+                    <Route path="/create" element={<Create />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
