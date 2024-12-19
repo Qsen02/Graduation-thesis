@@ -1,6 +1,7 @@
 import { useEffect, useReducer, useState } from "react";
 import {
     createProduct,
+    deleteProduct,
     getAllProducts,
     getLatestProducts,
     getProductById,
@@ -94,13 +95,13 @@ export function useCreateProduct() {
     };
 }
 
-export function useGetOneProduct(initalValue, productId,user) {
+export function useGetOneProduct(initalValue, productId, user) {
     const [product, setProduct] = useState(initalValue);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [isLiked,setIsLiked]=useState(false);
-    const [isAdded,setIsAdded]=useState(false);
-    const navigate=useNavigate();
+    const [isLiked, setIsLiked] = useState(false);
+    const [isAdded, setIsAdded] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -108,13 +109,17 @@ export function useGetOneProduct(initalValue, productId,user) {
                 setIsLoading(true);
                 const product = await getProductById(productId);
                 setProduct(product);
-                const like=Boolean(product.likes.find(el=>el._id==user._id));
+                const like = Boolean(
+                    product.likes.find((el) => el._id == user._id)
+                );
                 setIsLiked(like);
-                const added=Boolean(user.basket.find(el=>el._id==product._id));
+                const added = Boolean(
+                    user.basket.find((el) => el._id == product._id)
+                );
                 setIsAdded(added);
                 setIsLoading(false);
             } catch (err) {
-                if(err.message=="Resource not found!"){
+                if (err.message == "Resource not found!") {
                     return navigate("/404");
                 }
                 setIsError(true);
@@ -124,6 +129,36 @@ export function useGetOneProduct(initalValue, productId,user) {
     }, [productId]);
 
     return {
-        product,isLoading,isError,isLiked,isAdded
+        product,
+        isLoading,
+        isError,
+        isLiked,
+        isAdded,
+    };
+}
+
+export function useDeleteProduct(initalValue, productId) {
+    const [product, setProduct] = useState(initalValue);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const product = await getProductById(productId);
+                setProduct(product);
+            } catch (err) {
+                if (err.message == "Resource not found!") {
+                    return navigate("/404");
+                }
+            }
+        })();
+    }, []);
+
+    async function deleteThisProduct(productId) {
+        return await deleteProduct(productId);
+    };
+
+    return {
+        product,deleteThisProduct,navigate
     }
 }
