@@ -44,7 +44,7 @@ main {
 }
 
 .error {
-    width: 600px;
+    width: 500px;
     color: rgb(222, 13, 13);
 }
 
@@ -115,7 +115,7 @@ main {
 .form .field i {
     position: absolute;
     top: 42px;
-    right: 60px;
+    right: 40px;
     cursor: pointer;
     font-size: 20pt;
 }

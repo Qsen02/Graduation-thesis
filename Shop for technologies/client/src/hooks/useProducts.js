@@ -94,10 +94,12 @@ export function useCreateProduct() {
     };
 }
 
-export function useGetOneProduct(initalValue, productId) {
+export function useGetOneProduct(initalValue, productId,user) {
     const [product, setProduct] = useState(initalValue);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [isLiked,setIsLiked]=useState(false);
+    const [isAdded,setIsAdded]=useState(false);
     const navigate=useNavigate();
 
     useEffect(() => {
@@ -106,6 +108,10 @@ export function useGetOneProduct(initalValue, productId) {
                 setIsLoading(true);
                 const product = await getProductById(productId);
                 setProduct(product);
+                const like=Boolean(product.likes.find(el=>el._id==user._id));
+                setIsLiked(like);
+                const added=Boolean(user.basket.find(el=>el._id==product._id));
+                setIsAdded(added);
                 setIsLoading(false);
             } catch (err) {
                 if(err.message=="Resource not found!"){
@@ -118,6 +124,6 @@ export function useGetOneProduct(initalValue, productId) {
     }, [productId]);
 
     return {
-        product,isLoading,isError
+        product,isLoading,isError,isLiked,isAdded
     }
 }
