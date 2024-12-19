@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useGetOneProduct } from "../../hooks/useProducts";
 import { useUserContext } from "../../contexts/userContext";
 import styles from "./ProductDetails.module.css";
+import ProductDetailsChars from "./product-details-chars/ProductDetailsChars";
 
 export default function ProductDetails() {
     const { productId } = useParams();
@@ -61,9 +62,7 @@ export default function ProductDetails() {
                 <div className={styles.characteristics}>
                 <h2>Характеристики:</h2>
                 {product.characteristics?.map((el) => (
-                    <div>
-                        <p>{el}</p>
-                    </div>
+                    <ProductDetailsChars key={el} text={el}/>
                 ))}
                 </div>
             </section>
