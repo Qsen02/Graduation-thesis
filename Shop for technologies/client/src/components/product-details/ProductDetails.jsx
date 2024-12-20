@@ -7,7 +7,7 @@ import ProductDetailsChars from "./product-details-chars/ProductDetailsChars";
 export default function ProductDetails() {
     const { productId } = useParams();
     const { user } = useUserContext();
-    const { product, isError, isLoading, isLiked, isAdded } = useGetOneProduct(
+    const { product, setCurProduct,isError, isLoading, isLiked, isAdded } = useGetOneProduct(
         {},
         productId,
         user
@@ -15,7 +15,7 @@ export default function ProductDetails() {
 
     return (
         <>
-            <Outlet />
+            <Outlet context={[setCurProduct]}/>
             <section className={styles.detailsWrapper}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>
@@ -42,7 +42,11 @@ export default function ProductDetails() {
                                             >
                                                 <button>Изтрий</button>
                                             </Link>
-                                            <button>Редактирай</button>
+                                            <Link
+                                                to={`/catalog/${product._id}/edit`}
+                                            >
+                                                <button>Редактирай</button>
+                                            </Link>
                                         </div>
                                     ) : (
                                         <div className={styles.buttons}>
