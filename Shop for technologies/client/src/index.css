@@ -83,8 +83,8 @@ main {
     border: 5px solid black;
     border-bottom-color: transparent;
     border-radius: 50%;
-    display: inline-block;
-    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
     animation: rotation 1s linear infinite;
 }
 

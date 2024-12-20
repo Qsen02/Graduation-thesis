@@ -9,11 +9,11 @@ import {
 } from "../api/productService";
 import productReducer from "../reducers/productReducer";
 import { useNavigate } from "react-router-dom";
+import { useLoadingError } from "./useLoadingError";
 
 export function useGetLatsetProducts(initalValue) {
     const [products, setProducts] = useState(initalValue);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
 
     useEffect(() => {
         (async () => {
@@ -38,8 +38,7 @@ export function useGetLatsetProducts(initalValue) {
 
 export function useGetAllProducts(initalValue) {
     const [products, dispatch] = useReducer(productReducer, initalValue);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
 
     function setProducts(products) {
         if (typeof products === "object") {
@@ -97,8 +96,7 @@ export function useCreateProduct() {
 
 export function useGetOneProduct(initalValue, productId, user) {
     const [product, setProduct] = useState(initalValue);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
+    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
     const [isLiked, setIsLiked] = useState(false);
     const [isAdded, setIsAdded] = useState(false);
     const navigate = useNavigate();
@@ -139,26 +137,35 @@ export function useGetOneProduct(initalValue, productId, user) {
 
 export function useDeleteProduct(initalValue, productId) {
     const [product, setProduct] = useState(initalValue);
+    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
     const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
             try {
+                setIsLoading(true);
                 const product = await getProductById(productId);
                 setProduct(product);
+                setIsLoading(false);
             } catch (err) {
                 if (err.message == "Resource not found!") {
                     return navigate("/404");
                 }
+                setIsError(true);
+                setIsLoading(false);
             }
         })();
     }, []);
 
     async function deleteThisProduct(productId) {
         return await deleteProduct(productId);
-    };
+    }
 
     return {
-        product,deleteThisProduct,navigate
-    }
+        product,
+        deleteThisProduct,
+        navigate,
+        isLoading,
+        isError
+    };
 }

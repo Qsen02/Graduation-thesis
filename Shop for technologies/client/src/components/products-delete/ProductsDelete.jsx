@@ -3,13 +3,14 @@ import { useDeleteProduct } from "../../hooks/useProducts";
 
 export default function ProductsDelete() {
     const { productId } = useParams();
-    const { product, deleteThisProduct,navigate } = useDeleteProduct({}, productId);
+    const { product, deleteThisProduct, navigate, isLoading, isError } =
+        useDeleteProduct({}, productId);
 
-    function onCancel(){
+    function onCancel() {
         navigate(`/catalog/${productId}`);
     }
 
-   async function onDelete(){
+    async function onDelete() {
         await deleteThisProduct(productId);
         navigate("/catalog");
     }
@@ -17,11 +18,21 @@ export default function ProductsDelete() {
     return (
         <div className="modal">
             <section className="modalWrapper">
-                <h2>Сигурни ли сте че искате да изтриете {product.name}?</h2>
-                <div>
-                    <button onClick={onDelete}>Да</button>
-                    <button onClick={onCancel}>He</button>
-                </div>
+                {isLoading && !isError ? (
+                    <span className="loader"></span>
+                ) : isError ? (
+                    <h2>Something went wrong, please try again later</h2>
+                ) : (
+                    <>
+                        <h2>
+                            Сигурни ли сте че искате да изтриете {product.name}?
+                        </h2>
+                        <div>
+                            <button onClick={onDelete}>Да</button>
+                            <button onClick={onCancel}>He</button>
+                        </div>
+                    </>
+                )}
             </section>
         </div>
     );
