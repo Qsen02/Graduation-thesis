@@ -88,6 +88,16 @@ productRouter.post(
     }
 );
 
+productRouter.delete("/:productId", isUser(), async (req, res) => {
+    const productId = req.params.productId;
+    const isValid = await checkProductId(productId);
+    if (!isValid) {
+        return res.status(404).json({ message: "Resource not found!" });
+    }
+    await deleteProduct(productId);
+    res.status(200).json({ message: "Record was deleted successfully!" });
+});
+
 productRouter.put(
     "/:productId",
     isUser(),
@@ -116,16 +126,6 @@ productRouter.put(
         }
     }
 );
-
-productRouter.delete("/:productId", isUser(), async (req, res) => {
-    const productId = req.params.productId;
-    const isValid = await checkProductId(productId);
-    if (!isValid) {
-        return res.status(404).json({ message: "Resource not found!" });
-    }
-    await deleteProduct(productId);
-    res.status(200).json({ message: "Record was deleted successfully!" });
-});
 
 productRouter.post("/like/:productId", isUser(), async (req, res) => {
     const productId = req.params.productId;

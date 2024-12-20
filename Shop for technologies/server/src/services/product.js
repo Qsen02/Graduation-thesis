@@ -2,7 +2,7 @@ const { Products } = require("../models/Product");
 const { Users } = require("../models/user");
 
 function parseCharacteristics(charcateristicsStr) {
-    const characteristics = charcateristicsStr.split(",");
+    const characteristics = charcateristicsStr.split(", ");
     return characteristics;
 }
 
