@@ -134,11 +134,11 @@ main {
 
 .form button {
     border: none;
-    padding: 20px 30px 20px 30px;
+    padding: 10px 20px 10px 20px;
     background-color: red;
     color: white;
     border-radius: 20px;
-    font-size: 14pt;
+    font-size: 16pt;
     cursor: pointer;
 }
 
@@ -155,7 +155,7 @@ main {
 }
 
 .form i {
-    font-size: 30pt;
+    font-size: 25pt;
 }
 
 .form .field i {

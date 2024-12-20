@@ -83,23 +83,23 @@ export default function Register() {
                     {showPass ? (
                         <div className="field">
                             <CustomInput label="Парола" type="text" name="password"/>
-                            <i class="fa-regular fa-eye" onClick={showPassword}></i>
+                            <i className="fa-regular fa-eye" onClick={showPassword}></i>
                         </div>
                     ) : (
                         <div className="field">
                             <CustomInput label="Парола" type="password" name="password"/>
-                            <i class="fa-regular fa-eye-slash" onClick={showPassword}></i>
+                            <i className="fa-regular fa-eye-slash" onClick={showPassword}></i>
                         </div>
                     )}
                     {showRepass ? (
                         <div className="field">
                             <CustomInput label="Повторете паролата" type="text" name="repass"/>
-                            <i class="fa-regular fa-eye" onClick={showRepassword}></i>
+                            <i className="fa-regular fa-eye" onClick={showRepassword}></i>
                         </div>
                     ) : (
                         <div className="field">
                             <CustomInput label="Повторете паролата" type="password" name="repass"/>
-                            <i class="fa-regular fa-eye-slash" onClick={showRepassword}></i>
+                            <i className="fa-regular fa-eye-slash" onClick={showRepassword}></i>
                         </div>
                     )}
                     <button type="submit">Регистрация</button>
