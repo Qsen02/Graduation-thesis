@@ -10,9 +10,16 @@ import { useState } from "react";
 
 export default function ProductsEdit() {
     const { productId } = useParams();
-    const [setCurProduct] = useOutletContext();
-    const { product, editThistProduct, isLoading, navigate, isError } =
-        useEditProduct({}, productId);
+    const {setCurProduct} = useOutletContext();
+    const initialValues={
+        name:"",
+        price:0,
+        imageUrl:"",
+        description:"",
+        characteristics:[],
+        category:"",
+    }
+    const { product, editThistProduct, isLoading, navigate, isError }=useEditProduct(initialValues, productId);
     const [isSubmitError, setSubmitError] = useState(false);
     const [errMessage, setErrMessage] = useState("");
 

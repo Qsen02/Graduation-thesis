@@ -7,15 +7,11 @@ import ProductDetailsChars from "./product-details-chars/ProductDetailsChars";
 export default function ProductDetails() {
     const { productId } = useParams();
     const { user } = useUserContext();
-    const { product, setCurProduct,isError, isLoading, isLiked, isAdded } = useGetOneProduct(
-        {},
-        productId,
-        user
-    );
+    const { product, setCurProduct, isError, isLoading, isLiked, isAdded } = useGetOneProduct({}, productId, user);
 
     return (
         <>
-            <Outlet context={[setCurProduct]}/>
+            <Outlet context={{ setCurProduct }} />
             <section className={styles.detailsWrapper}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>
@@ -37,6 +33,13 @@ export default function ProductDetails() {
                                 {user ? (
                                     user.isAdmin ? (
                                         <div className={styles.buttons}>
+                                            <div className={styles.likes}>
+                                                <i
+                                                    className="fa-solid fa-heart"
+                                                    id={styles.liked}
+                                                ></i>
+                                                <p>{product.likes?.length}</p>
+                                            </div>
                                             <Link
                                                 to={`/catalog/${product._id}/delete`}
                                             >
