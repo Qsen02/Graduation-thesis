@@ -12,7 +12,8 @@ function getAllProducts() {
 }
 
 function getProductById(productId) {
-    const product = Products.findById(productId).populate("likes").populate("ownerId");
+    const product = Products.findById(productId)
+        .populate("ownerId");
     return product;
 }
 
@@ -93,7 +94,11 @@ async function addProductToBasket(userId, product) {
     ).lean();
 }
 async function removeProductFromBasket(userId, product) {
-    await Users.findByIdAndUpdate(userId, { $pull: { basket: product._id } });
+    return await Users.findByIdAndUpdate(
+        userId,
+        { $pull: { basket: product._id } },
+        { new: true }
+    ).populate("basket").lean();
 }
 
 async function checkProductId(productId) {

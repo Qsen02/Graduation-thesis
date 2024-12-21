@@ -52,7 +52,7 @@ export default function ProductDetailsButtons({
                 ) : (
                     <div className={styles.buttons}>
                         {Boolean(
-                            product.likes?.find((el) => el._id == user._id)
+                            product.likes?.find((el) => el == user._id)
                         ) ? (
                             <div className={styles.likes}>
                                 <i

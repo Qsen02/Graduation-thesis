@@ -4,8 +4,8 @@ import CartProducts from "./cart-products/CartProducts";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
-    const { user } = useUserContext();
-    const { products, isLoading, isError,totalPrice } = useUserCart([], user._id);
+    const { user,setUserHanlder} = useUserContext();
+    const { products,setProductHandler, isLoading, isError,totalPrice } = useUserCart([], user._id);
 
     return (
         <section className={styles.cartWrapper}>
@@ -23,9 +23,13 @@ export default function Cart() {
                     products.map((el) => (
                         <CartProducts
                             key={el._id}
+                            id={el._id}
                             imageUrl={el.imageUrl}
                             name={el.name}
                             price={el.price}
+                            user={user}
+                            setProduct={setProductHandler}
+                            setUser={setUserHanlder}
                         />
                     ))
                 )}

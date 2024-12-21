@@ -8,6 +8,7 @@ import {
     getLatestProducts,
     getProductById,
     likeProduct,
+    removeProductFromCart,
     searchProducts,
     unlikeProduct,
 } from "../api/productService";
@@ -219,5 +220,11 @@ export function useUnlikeProduct(){
 export function useAddToCart(){
     return async function(productId){
         return await addProductToCart(productId);
+    }
+}
+
+export function useRemoveProductFromCart(){
+    return async function(productId){
+        return await removeProductFromCart(productId);
     }
 }

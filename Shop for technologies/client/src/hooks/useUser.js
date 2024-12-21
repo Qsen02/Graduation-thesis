@@ -20,7 +20,13 @@ export function useUserCart(initialValue, userId) {
         false,
         false
     );
-const [totalPrice,setTotalPrice]=useState(0);
+    const [totalPrice,setTotalPrice]=useState(0);
+
+    function setProductHandler(value){
+        if(value instanceof Array){
+            setProducts(value)
+        }
+    }
 
     useEffect(() => {
         (async () => {
@@ -40,6 +46,6 @@ const [totalPrice,setTotalPrice]=useState(0);
     }, []);
 
     return {
-        products,isLoading,isError,totalPrice
+        products,setProductHandler,isLoading,isError,totalPrice
     }
 }

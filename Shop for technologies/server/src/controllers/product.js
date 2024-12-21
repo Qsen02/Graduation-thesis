@@ -169,10 +169,8 @@ productRouter.delete("/remove/:productId", isUser(), async (req, res) => {
         return res.status(404).json({ message: "Resource not found!" });
     }
     const product = await getProductById(productId).lean();
-    await removeProductFromBasket(user._id, product);
-    res.status(200).json({
-        message: "Record was removed from user bakset successfully!",
-    });
+    const updatedUser=await removeProductFromBasket(user._id, product);
+    res.status(200).json({basket:updatedUser.basket});
 });
 
 module.exports = {
