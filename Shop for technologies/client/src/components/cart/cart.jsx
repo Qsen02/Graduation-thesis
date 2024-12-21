@@ -1,18 +1,21 @@
 import { useUserContext } from "../../contexts/userContext";
 import { useUserCart } from "../../hooks/useUser";
 import CartProducts from "./cart-products/CartProducts";
+import styles from "./Cart.module.css";
 
 export default function Cart() {
     const { user } = useUserContext();
-    const { products, isLoading, isError } = useUserCart([], user._id);
+    const { products, isLoading, isError,totalPrice } = useUserCart([], user._id);
 
     return (
-        <section>
-            <h2>Вашата количка с продукти.</h2>
-            <section>
+        <section className={styles.cartWrapper}>
+            <div className={styles.title}>
+                <h2>Вашата количка с продукти.</h2>
+            </div>
+            <section className={styles.products}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>
-                ) : isError && products.length <= 0? (
+                ) : isError && products.length <= 0 ? (
                     <h2>Нещо се обърка, моля опитайте по късно!</h2>
                 ) : products.length <= 0 ? (
                     <h2>Няма добавени продукти все още</h2>
@@ -27,9 +30,10 @@ export default function Cart() {
                     ))
                 )}
             </section>
-            <div className="buttons">
+            <div className={styles.buttons}>
                 <button>Изчисти количка</button>
                 <button>Купи продуктите</button>
+                <p>Общо: {totalPrice}лв.</p>
             </div>
         </section>
     );

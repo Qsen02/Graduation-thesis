@@ -20,6 +20,7 @@ export function useUserCart(initialValue, userId) {
         false,
         false
     );
+const [totalPrice,setTotalPrice]=useState(0);
 
     useEffect(() => {
         (async () => {
@@ -27,7 +28,9 @@ export function useUserCart(initialValue, userId) {
                 setIsLoading(true);
                 const user = await getUserById(userId);
                 setProducts(user.basket);
-                console.log(products);
+                let price=0;
+                user.basket.forEach(el => price+=el.price);
+                setTotalPrice(price);
                 setIsLoading(false);
             } catch (err) {
                 setIsError(true);
@@ -37,6 +40,6 @@ export function useUserCart(initialValue, userId) {
     }, []);
 
     return {
-        products,isLoading,isError
+        products,isLoading,isError,totalPrice
     }
 }
