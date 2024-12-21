@@ -1,13 +1,15 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { useGetOneProduct } from "../../hooks/useProducts";
 import { useUserContext } from "../../contexts/userContext";
 import styles from "./ProductDetails.module.css";
 import ProductDetailsChars from "./product-details-chars/ProductDetailsChars";
+import ProductDetailsButtons from "./product-details-buttons/ProductDetailsButtons";
 
 export default function ProductDetails() {
     const { productId } = useParams();
     const { user } = useUserContext();
-    const { product, setCurProduct, isError, isLoading, isLiked, isAdded } = useGetOneProduct({}, productId, user);
+    const { product, setCurProduct, isError, isLoading } =
+        useGetOneProduct({}, productId, user);
 
     return (
         <>
@@ -30,64 +32,12 @@ export default function ProductDetails() {
                                 <h2>{product.name}</h2>
                                 <p>Категория: {product.category}</p>
                                 <p>Цена: {product.price}лв.</p>
-                                {user ? (
-                                    user.isAdmin ? (
-                                        <div className={styles.buttons}>
-                                            <div className={styles.likes}>
-                                                <i
-                                                    className="fa-solid fa-heart"
-                                                    id={styles.liked}
-                                                ></i>
-                                                <p>{product.likes?.length}</p>
-                                            </div>
-                                            <Link
-                                                to={`/catalog/${product._id}/delete`}
-                                            >
-                                                <button>Изтрий</button>
-                                            </Link>
-                                            <Link
-                                                to={`/catalog/${product._id}/edit`}
-                                            >
-                                                <button>Редактирай</button>
-                                            </Link>
-                                        </div>
-                                    ) : (
-                                        <div className={styles.buttons}>
-                                            {isLiked ? (
-                                                <div className={styles.likes}>
-                                                    <i
-                                                        className="fa-solid fa-heart"
-                                                        id={styles.liked}
-                                                    ></i>
-                                                    <p>
-                                                        {product.likes?.length}
-                                                    </p>
-                                                </div>
-                                            ) : (
-                                                <div className={styles.likes}>
-                                                    <i className="fa-regular fa-heart"></i>
-                                                    <p>
-                                                        {product.likes?.length}
-                                                    </p>
-                                                </div>
-                                            )}
-                                            {isAdded ? (
-                                                <button
-                                                    className={styles.added}
-                                                >
-                                                    Добавено в количка!
-                                                </button>
-                                            ) : (
-                                                <button>
-                                                    Добави в количка
-                                                </button>
-                                            )}
-                                            <i className="fa-solid fa-cart-shopping"></i>
-                                        </div>
-                                    )
-                                ) : (
-                                    ""
-                                )}
+                                <ProductDetailsButtons
+                                    user={user}
+                                    product={product}
+                                    setProductHandler={setCurProduct}
+                                    id={productId}
+                                />
                             </div>
                         </section>
                         <section className={styles.body}>
