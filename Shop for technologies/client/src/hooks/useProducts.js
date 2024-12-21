@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import {
+    addProductToCart,
     createProduct,
     deleteProduct,
     editProduct,
@@ -212,5 +213,11 @@ export function useLikeProduct(){
 export function useUnlikeProduct(){
     return async function(productId){
         return await unlikeProduct(productId);
+    }
+}
+
+export function useAddToCart(){
+    return async function(productId){
+        return await addProductToCart(productId);
     }
 }

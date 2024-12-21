@@ -7,7 +7,7 @@ import ProductDetailsButtons from "./product-details-buttons/ProductDetailsButto
 
 export default function ProductDetails() {
     const { productId } = useParams();
-    const { user } = useUserContext();
+    const { user,setUserHanlder } = useUserContext();
     const { product, setCurProduct, isError, isLoading } =
         useGetOneProduct({}, productId, user);
 
@@ -37,6 +37,7 @@ export default function ProductDetails() {
                                     product={product}
                                     setProductHandler={setCurProduct}
                                     id={productId}
+                                    setUser={setUserHanlder}
                                 />
                             </div>
                         </section>

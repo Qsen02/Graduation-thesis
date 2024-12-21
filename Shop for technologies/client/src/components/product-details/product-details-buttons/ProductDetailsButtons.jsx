@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useLikeProduct, useUnlikeProduct } from "../../../hooks/useProducts";
+import { useAddToCart, useLikeProduct, useUnlikeProduct } from "../../../hooks/useProducts";
 import styles from "../ProductDetails.module.css";
 
 export default function ProductDetailsButtons({
@@ -7,9 +7,11 @@ export default function ProductDetailsButtons({
     product,
     setProductHandler,
     id,
+    setUser
 }) {
     const likeProduct = useLikeProduct();
     const unlikeProduct = useUnlikeProduct();
+    const addProductToCart=useAddToCart();
 
     async function onLike() {
         const newProduct = await likeProduct(id);
@@ -20,6 +22,14 @@ export default function ProductDetailsButtons({
         const newProduct = await unlikeProduct(id);
         setProductHandler(newProduct);
     }
+
+    async function addProduct(){
+        const addedProduct=await addProductToCart(id);
+        user.basket.push(addedProduct._id);
+        setUser(user);
+        setProductHandler(addedProduct);
+    }
+
     return (
         <>
             {user ? (
@@ -62,13 +72,13 @@ export default function ProductDetailsButtons({
                             </div>
                         )}
                         {Boolean(
-                            user.basket.find((el) => el._id == product._id)
+                            user.basket?.find((el) => el == product._id)
                         ) ? (
                             <button className={styles.added}>
                                 Добавено в количка!
                             </button>
                         ) : (
-                            <button>Добави в количка</button>
+                            <button onClick={addProduct}>Добави в количка</button>
                         )}
                         <i className="fa-solid fa-cart-shopping"></i>
                     </div>
