@@ -22,6 +22,7 @@ userRouter.post("/register",
             const user = await register(fields.username, fields.password, fields.email,fields.address);
             const token = setToken(user);
             res.json({
+                _id:user._id,
                 username: user.username,
                 email: user.email,
                 address:user.addess,
@@ -48,6 +49,7 @@ userRouter.post("/login",
             const user = await login(fields.username, fields.password);
             const token = setToken(user);
             res.json({
+                _id:user._id,
                 username: user.username,
                 email: user.email,
                 isAdmin: user.isAdmin,

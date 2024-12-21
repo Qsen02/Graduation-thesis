@@ -157,8 +157,8 @@ productRouter.put("/add/:productId", isUser(), async (req, res) => {
         return res.status(404).json({ message: "Resource not found!" });
     }
     const product = await getProductById(productId).lean();
-    const updatedUser = await addProductToBasket(user._id, product);
-    res.status(200).json({ basket: updatedUser.basket });
+    await addProductToBasket(user._id, product);
+    res.status(200).json(product);
 });
 
 productRouter.delete("/remove/:productId", isUser(), async (req, res) => {

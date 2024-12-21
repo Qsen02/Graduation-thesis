@@ -18,7 +18,7 @@ export default function ProductDetails() {
                 {isLoading && !isError ? (
                     <span className="loader"></span>
                 ) : !isLoading && isError ? (
-                    <h2>Something went wrong, please try again later.</h2>
+                    <h2>Нещо се обърка, моля опитайте по късно!</h2>
                 ) : (
                     <>
                         <section className={styles.header}>

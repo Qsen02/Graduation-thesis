@@ -1,13 +1,42 @@
-import { login, logout, register } from "../api/userService"
+import { useEffect, useState } from "react";
+import { getUserById, login, logout, register } from "../api/userService";
+import { useLoadingError } from "./useLoadingError";
 
-export function useLogin(){
-    return async function(data){
+export function useLogin() {
+    return async function (data) {
         return await login(data);
-    }
+    };
 }
 
-export function useRegister(){
-    return async function(data){
+export function useRegister() {
+    return async function (data) {
         return await register(data);
+    };
+}
+
+export function useUserCart(initialValue, userId) {
+    const [products, setProducts] = useState(initialValue);
+    const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
+        false,
+        false
+    );
+
+    useEffect(() => {
+        (async () => {
+            try {
+                setIsLoading(true);
+                const user = await getUserById(userId);
+                setProducts(user.basket);
+                console.log(products);
+                setIsLoading(false);
+            } catch (err) {
+                setIsError(true);
+                setIsLoading(false);
+            }
+        })();
+    }, []);
+
+    return {
+        products,isLoading,isError
     }
 }

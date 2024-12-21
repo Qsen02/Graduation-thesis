@@ -21,7 +21,7 @@ export default function ProductsDelete() {
                 {isLoading && !isError ? (
                     <span className="loader"></span>
                 ) : isError ? (
-                    <h2>Something went wrong, please try again later</h2>
+                    <h2>Нещо се обърка, може да опитате по късно!</h2>
                 ) : (
                     <>
                         <h2>

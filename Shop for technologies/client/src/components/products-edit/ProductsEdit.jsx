@@ -73,11 +73,11 @@ export default function ProductsEdit() {
                             <span className="loader"></span>
                         ) : isError ? (
                             <h2>
-                                Something went wrong, please try again later.
+                               Нещо се обърка, моля опитайте по късно!
                             </h2>
                         ) : (
                             <>
-                                <h2>Тук може да създадете продукт</h2>
+                                <h2>Тук може да редактирате вашия продукт</h2>
                                 {isSubmitError ? (
                                     <p className="error">{errMessage}</p>
                                 ) : (

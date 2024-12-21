@@ -12,7 +12,7 @@ function getAllProducts() {
 }
 
 function getProductById(productId) {
-    const product = Products.findById(productId);
+    const product = Products.findById(productId).populate("likes").populate("ownerId");
     return product;
 }
 

@@ -80,7 +80,7 @@ export default function ProductDetailsButtons({
                         ) : (
                             <button onClick={addProduct}>Добави в количка</button>
                         )}
-                        <i className="fa-solid fa-cart-shopping"></i>
+                        <Link to="/cart"><i className="fa-solid fa-cart-shopping"></i></Link>
                     </div>
                 )
             ) : (
