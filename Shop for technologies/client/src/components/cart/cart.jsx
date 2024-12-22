@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../contexts/userContext";
+import { useBuyProducts } from "../../hooks/useOrders";
 import { useClearUserCart, useUserCart } from "../../hooks/useUser";
 import CartProducts from "./cart-products/CartProducts";
 import styles from "./Cart.module.css";
@@ -7,6 +9,8 @@ export default function Cart() {
     const { user,setUserHanlder} = useUserContext();
     const { products,setProductHandler, isLoading, isError } = useUserCart([], user._id);
     const clearCart=useClearUserCart();
+    const buyProducts=useBuyProducts();
+    const navigate=useNavigate();
     let totalPrice=0;
     products.forEach(el => totalPrice+=el.price);
 
@@ -15,6 +19,14 @@ export default function Cart() {
         user.basket=updatedUser.basket;
         setUserHanlder(user);
         setProductHandler(updatedUser.basket);
+    }
+
+    async function onBuy(){
+        const updatedUser=await buyProducts(user._id);
+        user.basket=updatedUser.basket;
+        user.orderHistory=updatedUser.orderHistory
+        setUserHanlder(user);
+        navigate("/profile");
     }
 
     return (
@@ -46,7 +58,7 @@ export default function Cart() {
             </section>
             <div className={styles.buttons}>
                 <button onClick={onClear}>Изчисти количка</button>
-                <button>Купи продуктите</button>
+                <button onClick={onBuy}>Купи продуктите</button>
                 <p>Общо: {totalPrice}лв.</p>
             </div>
         </section>

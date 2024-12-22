@@ -12,8 +12,8 @@ orderRouter.post("/buy/:userId",isUser(), async(req, res) => {
         return res.status(404).json({ message: "Resource not found!" });
     }
     const user = await getUserById(userId).lean();
-    await buyProducts(user);
-    res.json({ message: "Products was bought successfully!" });
+    const updatedUser=await buyProducts(user);
+    res.json(updatedUser);
 })
 
 orderRouter.get("/:orderId", async(req, res) => {

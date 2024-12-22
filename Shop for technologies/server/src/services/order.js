@@ -15,16 +15,22 @@ async function buyProducts(user) {
     const newOrder = new Orders({
         ownerId: user._id,
         products: userBasket,
-        totalPrice: orderPrice
+        totalPrice: orderPrice,
     });
     await newOrder.save();
-    await Users.findByIdAndUpdate(user._id.toString(), { $push: { orderHistory: newOrder } });
-    await Users.findByIdAndUpdate(user._id.toString(), { $set: { basket: [] } });
+    await Users.findByIdAndUpdate(user._id.toString(), {
+        $push: { orderHistory: newOrder },
+    });
+    return await Users.findByIdAndUpdate(
+        user._id.toString(),
+        { $set: { basket: [] } },
+        { new: true }
+    );
 }
 
 async function checkOrderId(orderId) {
     const orders = await Orders.find().lean();
-    const isValid = orders.find(el => el._id.toString() == orderId);
+    const isValid = orders.find((el) => el._id.toString() == orderId);
     if (isValid) {
         return true;
     }
@@ -34,5 +40,5 @@ async function checkOrderId(orderId) {
 module.exports = {
     getOrderById,
     buyProducts,
-    checkOrderId
-}
+    checkOrderId,
+};
