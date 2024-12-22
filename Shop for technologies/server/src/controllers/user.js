@@ -99,10 +99,11 @@ userRouter.get("/:userId", async (req, res) => {
 
 userRouter.put("/clearBasket/:userId", isUser(), async (req, res) => {
     const userId = req.params.userId;
+    const isValid = await checkUserId(userId);
     if (!isValid) {
         return res.status(404).json({ message: "Resource not found!" });
     }
-   const newUser= await clearBasket(userId);
+    const newUser= await clearBasket(userId);
     res.status(200).json(newUser);
 })
 

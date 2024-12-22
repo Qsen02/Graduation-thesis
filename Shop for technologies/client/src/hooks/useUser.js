@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getUserById, login, logout, register } from "../api/userService";
+import { clearCart, getUserById, login, logout, register } from "../api/userService";
 import { useLoadingError } from "./useLoadingError";
 
 export function useLogin() {
@@ -20,7 +20,6 @@ export function useUserCart(initialValue, userId) {
         false,
         false
     );
-    const [totalPrice,setTotalPrice]=useState(0);
 
     function setProductHandler(value){
         if(value instanceof Array){
@@ -34,9 +33,6 @@ export function useUserCart(initialValue, userId) {
                 setIsLoading(true);
                 const user = await getUserById(userId);
                 setProducts(user.basket);
-                let price=0;
-                user.basket.forEach(el => price+=el.price);
-                setTotalPrice(price);
                 setIsLoading(false);
             } catch (err) {
                 setIsError(true);
@@ -46,6 +42,12 @@ export function useUserCart(initialValue, userId) {
     }, []);
 
     return {
-        products,setProductHandler,isLoading,isError,totalPrice
+        products,setProductHandler,isLoading,isError
+    }
+}
+
+export function useClearUserCart(){
+    return async function(userId){
+        return await clearCart(userId);
     }
 }

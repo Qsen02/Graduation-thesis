@@ -1,11 +1,21 @@
 import { useUserContext } from "../../contexts/userContext";
-import { useUserCart } from "../../hooks/useUser";
+import { useClearUserCart, useUserCart } from "../../hooks/useUser";
 import CartProducts from "./cart-products/CartProducts";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
     const { user,setUserHanlder} = useUserContext();
-    const { products,setProductHandler, isLoading, isError,totalPrice } = useUserCart([], user._id);
+    const { products,setProductHandler, isLoading, isError } = useUserCart([], user._id);
+    const clearCart=useClearUserCart();
+    let totalPrice=0;
+    products.forEach(el => totalPrice+=el.price);
+
+    async function onClear(){
+        const updatedUser=await clearCart(user._id);
+        user.basket=updatedUser.basket;
+        setUserHanlder(user);
+        setProductHandler(updatedUser.basket);
+    }
 
     return (
         <section className={styles.cartWrapper}>
@@ -35,7 +45,7 @@ export default function Cart() {
                 )}
             </section>
             <div className={styles.buttons}>
-                <button>Изчисти количка</button>
+                <button onClick={onClear}>Изчисти количка</button>
                 <button>Купи продуктите</button>
                 <p>Общо: {totalPrice}лв.</p>
             </div>

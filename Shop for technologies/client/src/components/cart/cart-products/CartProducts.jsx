@@ -15,7 +15,7 @@ export default function CartProducts({
     async function onRemove() {
         const updatedUser = await removeProductFromCart(id);
         setProduct(updatedUser.basket);
-        user.basket=updatedUser.basket;
+        user.basket=updatedUser.basket.map(el=>el._id);
         setUser(user);
     }
 
