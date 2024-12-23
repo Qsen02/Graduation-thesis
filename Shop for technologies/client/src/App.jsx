@@ -13,9 +13,11 @@ import Create from "./components/create/Create";
 import ProductDetails from "./components/product-details/ProductDetails";
 import ProductsDelete from "./components/products-delete/ProductsDelete";
 import ProductsEdit from "./components/products-edit/ProductsEdit";
-import Cart from "./components/cart/cart";
 import NoProducts from "./components/cart/no-products/NoPoroducts";
 import Profile from "./components/profile/Profile";
+import ProfileOrderProduct from "./components/profile/profile-orders-details/profile-order-product/ProfileOrderProduct";
+import Cart from "./components/cart/Cart";
+import ProfileOrdersDetails from "./components/profile/profile-orders-details/ProdileOrdersDetails";
 
 function App() {
     return (
@@ -38,6 +40,7 @@ function App() {
                         <Route path="no-products" element={<NoProducts/>}/>
                     </Route>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/profile/orders/:orderId" element={<ProfileOrdersDetails/>}/>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

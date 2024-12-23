@@ -8,6 +8,7 @@ import {
     register,
 } from "../api/userService";
 import { useLoadingError } from "./useLoadingError";
+import { useNavigate } from "react-router-dom";
 
 export function useLogin() {
     return async function (data) {
@@ -70,6 +71,7 @@ export function useGetOneUser(initialValue, userId) {
         false,
         false
     );
+    const navigate=useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -84,6 +86,9 @@ export function useGetOneUser(initialValue, userId) {
                 }
                 setIsLoading(false);
             } catch (err) {
+                if(err.message=="Resource not found!"){
+                    return navigate("/404");
+                }
                 setIsError(true);
                 setIsLoading(false);
             }
