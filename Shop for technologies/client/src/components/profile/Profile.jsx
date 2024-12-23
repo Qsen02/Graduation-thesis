@@ -2,6 +2,7 @@ import { useUserContext } from "../../contexts/userContext";
 import { useGetOneUser } from "../../hooks/useUser";
 import HomeProducts from "../home/home-products/HomeProducts";
 import ProfileOrders from "./profile-orders/ProfileOrders";
+import styles from "./Profile.module.css";
 
 export default function Profile() {
     const { user } = useUserContext();
@@ -14,24 +15,27 @@ export default function Profile() {
         <>
             {profileUser.isAdmin ? (
                 <>
-                    <section>
-                        <div>
-                            <h2>{profileUser.username}</h2>
-                            <p>{profileUser.email}</p>
-                            <p>{profileUser.address}</p>
-                        </div>
-                        <div>
-                            <h2>Създадени продукти:</h2>
-                            <h2>{adminProducts?.length}</h2>
-                        </div>
-                        <div>
+                    <section className={styles.profileHeader}>
+                        <section className={styles.headerData}>
+                            <div>
+                                <h2>{profileUser.username}</h2>
+                                <p>{profileUser.email}</p>
+                                <p>{profileUser.address}</p>
+                            </div>
+                            <div>
+                                <h2>Създадени продукти:</h2>
+                                <h2>{adminProducts?.length}</h2>
+                            </div>
+                        </section>
+                        <div className={styles.buttons}>
                             <button>Редактирай профил</button>
                             <button>Промени парола</button>
                         </div>
                     </section>
-                    <section>
+                    <h2 className={styles.title}>Всички създадени продукти</h2>
+                    <section className={styles.profileAdminBody}>
                         {adminProducts?.length > 0 ? (
-                           adminProducts?.map((el) => (
+                            adminProducts?.map((el) => (
                                 <HomeProducts
                                     key={el._id}
                                     imageUrl={el.imageUrl}
@@ -50,23 +54,25 @@ export default function Profile() {
                 </>
             ) : (
                 <>
-                    <section>
-                        <div>
-                            <h2>{profileUser.username}</h2>
-                            <p>{profileUser.email}</p>
-                            <p>{profileUser.address}</p>
-                        </div>
-                        <div>
-                            <h2>Брой поръчки:</h2>
-                            <h2>{profileUser.orderHistory?.length}</h2>
-                        </div>
-                        <div>
+                    <section className={styles.profileHeader}>
+                        <section className={styles.headerData}>
+                            <div>
+                                <h2>{profileUser.username}</h2>
+                                <p>{profileUser.email}</p>
+                                <p>{profileUser.address}</p>
+                            </div>
+                            <div>
+                                <h2>Брой поръчки:</h2>
+                                <h2>{profileUser.orderHistory?.length}</h2>
+                            </div>
+                        </section>
+                        <div className={styles.buttons}>
                             <button>Редактирай профил</button>
                             <button>Промени парола</button>
                         </div>
                     </section>
-                    <h2>Вашите поръчки</h2>
-                    <section>
+                    <h2 className={styles.title}>Вашите поръчки</h2>
+                    <section className={styles.profileUserBody}>
                         {profileUser.orderHistory?.length > 0 ? (
                             profileUser.orderHistory?.map((el) => (
                                 <ProfileOrders
