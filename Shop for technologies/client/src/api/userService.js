@@ -29,3 +29,7 @@ export async function editUser(userId,data){
 export async function clearCart(userId){
     return await put(`${endpoint}/clearBasket/${userId}`,{});
 }
+
+export async function getAdminProducts(){
+    return await get(`${endpoint}/admin/products`);
+}

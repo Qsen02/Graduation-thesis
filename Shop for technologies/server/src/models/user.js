@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
         require: true,
         unique: true
     },
-    addess:{
+    address:{
         type: String,
         require: true
     },

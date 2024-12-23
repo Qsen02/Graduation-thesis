@@ -14,7 +14,7 @@ const orderSchema = new mongoose.Schema({
         type: Number,
         require: true
     }
-});
+},{ timestamps: { createdAt: "created_at" } });
 
 const Orders = mongoose.model("Orders", orderSchema);
 

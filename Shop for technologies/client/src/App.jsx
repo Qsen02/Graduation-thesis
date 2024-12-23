@@ -15,6 +15,7 @@ import ProductsDelete from "./components/products-delete/ProductsDelete";
 import ProductsEdit from "./components/products-edit/ProductsEdit";
 import Cart from "./components/cart/cart";
 import NoProducts from "./components/cart/no-products/NoPoroducts";
+import Profile from "./components/profile/Profile";
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                     <Route path="/cart" element={<Cart />} >
                         <Route path="no-products" element={<NoProducts/>}/>
                     </Route>
+                    <Route path="/profile" element={<Profile/>}/>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

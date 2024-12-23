@@ -1,3 +1,4 @@
+const { Products } = require("../models/Product");
 const { Users } = require("../models/user");
 const bcrypt = require("bcrypt");
 
@@ -16,6 +17,7 @@ async function register(username, password, email, address) {
         password: await bcrypt.hash(password, 10),
         address: address,
     });
+
     await newUser.save();
     return newUser;
 }
@@ -62,21 +64,32 @@ function getUserById(userId) {
 }
 
 async function clearBasket(userId) {
-    return await Users.findByIdAndUpdate(userId, { $set: { basket: [] } },{new:true}).lean();
+    return await Users.findByIdAndUpdate(
+        userId,
+        { $set: { basket: [] } },
+        { new: true }
+    ).lean();
 }
 
-async function editUser(userId, username, email,address) {
+async function editUser(userId, username, email, address) {
     return await Users.findByIdAndUpdate(
         userId,
         {
             $set: {
                 username: username,
                 email: email,
-                address:address
+                address: address,
             },
-        },{
+        },
+        {
             new: true,
-        }).lean();
+        }
+    ).lean();
+}
+
+function getAdminProducts(user) {
+    const products = Products.find({ ownerId: user._id });
+    return products;
 }
 
 module.exports = {
@@ -87,4 +100,5 @@ module.exports = {
     checkUserId,
     clearBasket,
     editUser,
+    getAdminProducts
 };

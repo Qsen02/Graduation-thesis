@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
-import { clearCart, getUserById, login, logout, register } from "../api/userService";
+import {
+    clearCart,
+    getAdminProducts,
+    getUserById,
+    login,
+    logout,
+    register,
+} from "../api/userService";
 import { useLoadingError } from "./useLoadingError";
 
 export function useLogin() {
@@ -21,9 +28,9 @@ export function useUserCart(initialValue, userId) {
         false
     );
 
-    function setProductHandler(value){
-        if(value instanceof Array){
-            setProducts(value)
+    function setProductHandler(value) {
+        if (value instanceof Array) {
+            setProducts(value);
         }
     }
 
@@ -42,12 +49,49 @@ export function useUserCart(initialValue, userId) {
     }, []);
 
     return {
-        products,setProductHandler,isLoading,isError
-    }
+        products,
+        setProductHandler,
+        isLoading,
+        isError,
+    };
 }
 
-export function useClearUserCart(){
-    return async function(userId){
+export function useClearUserCart() {
+    return async function (userId) {
         return await clearCart(userId);
-    }
+    };
+}
+
+export function useGetOneUser(initialValue, userId) {
+    const [profileUser, setProfileUser] = useState(initialValue);
+    const [adminProducts, setAdminProducts] = useState(null);
+    const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
+        false,
+        false
+    );
+
+    useEffect(() => {
+        (async () => {
+            try {
+                setIsLoading(true);
+                const user = await getUserById(userId);
+                setProfileUser(user);
+                if (user.isAdmin) {
+                    const products = await getAdminProducts();
+                    setAdminProducts(products);
+                }
+                setIsLoading(false);
+            } catch (err) {
+                setIsError(true);
+                setIsLoading(false);
+            }
+        })();
+    }, []);
+
+    return {
+        profileUser,
+        adminProducts,
+        isLoading,
+        isError,
+    };
 }

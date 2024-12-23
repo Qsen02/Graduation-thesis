@@ -25,7 +25,7 @@ export default function Cart() {
     }
 
     async function onBuy() {
-        if (user.basket > 0) {
+        if (user.basket?.length > 0) {
             const updatedUser = await buyProducts(user._id);
             user.basket = updatedUser.basket;
             user.orderHistory = updatedUser.orderHistory;
