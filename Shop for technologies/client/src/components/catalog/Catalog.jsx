@@ -59,18 +59,18 @@ export default function Catalog() {
                 {isLoading && !isError ? (
                     <span className="loader"></span>
                 ) : !isLoading && isError ? (
-                    <section className="message">
+                    <div className="message">
                         <p>Нещо се обърка, моля опитайте по късно.</p>
-                    </section>
+                    </div>
                 ) : products.length == 0 && !isSearched? (
-                    <section className="message">
+                    <div className="message">
                         <p>Няма продукти все още :(</p>
-                    </section>
+                    </div>
                 ) :  products.length == 0 && isSearched
                 ?( 
-                <section className="message">
+                <div className="message">
                     <p>Няма резултати :(</p>
-                </section>
+                </div>
                 )
                 :(
                     products.map((el) => (

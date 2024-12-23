@@ -65,6 +65,7 @@ export function useClearUserCart() {
 export function useGetOneUser(initialValue, userId) {
     const [profileUser, setProfileUser] = useState(initialValue);
     const [adminProducts, setAdminProducts] = useState(null);
+    const [isAdmin,setIsAdmin]=useState(false);
     const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
         false,
         false
@@ -77,6 +78,7 @@ export function useGetOneUser(initialValue, userId) {
                 const user = await getUserById(userId);
                 setProfileUser(user);
                 if (user.isAdmin) {
+                    setIsAdmin(true);
                     const products = await getAdminProducts();
                     setAdminProducts(products);
                 }
@@ -93,5 +95,6 @@ export function useGetOneUser(initialValue, userId) {
         adminProducts,
         isLoading,
         isError,
+        isAdmin
     };
 }
