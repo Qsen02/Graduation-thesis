@@ -55,7 +55,7 @@ main {
     gap:30px;
 }
 
-.modalWrapper div button{
+.modalWrapper button{
     border: none;
     padding: 10px 20px 10px 20px;
     background-color: red;
@@ -65,7 +65,7 @@ main {
     cursor: pointer;
 }
 
-.modalWrapper div button:hover{
+.modalWrapper button:hover{
     background-color: rgb(199, 36, 36);
 }
 

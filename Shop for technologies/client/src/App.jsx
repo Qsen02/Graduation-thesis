@@ -14,6 +14,7 @@ import ProductDetails from "./components/product-details/ProductDetails";
 import ProductsDelete from "./components/products-delete/ProductsDelete";
 import ProductsEdit from "./components/products-edit/ProductsEdit";
 import Cart from "./components/cart/cart";
+import NoProducts from "./components/cart/no-products/NoPoroducts";
 
 function App() {
     return (
@@ -32,7 +33,9 @@ function App() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path="/create" element={<Create />} />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/cart" element={<Cart />} >
+                        <Route path="no-products" element={<NoProducts/>}/>
+                    </Route>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
