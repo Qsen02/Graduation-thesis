@@ -17,15 +17,21 @@ export default function ProfileOrdersDetails() {
                 <h2>Продукти в поръчаката:</h2>
             </div>
             <section className={styles.products}>
-                {order.products?.map((el) => (
-                    <ProfileOrderProduct
-                        key={el._id}
-                        id={el._id}
-                        imageUrl={el.imageUrl}
-                        name={el.name}
-                        price={el.price}
-                    />
-                ))}
+                {isLoading && !isError ? (
+                    <span className="loader"></span>
+                ) : isError ? (
+                    <h2>Нещо се обърка, моля опитайте по късно.</h2>
+                ) : (
+                    order.products?.map((el) => (
+                        <ProfileOrderProduct
+                            key={el._id}
+                            id={el._id}
+                            imageUrl={el.imageUrl}
+                            name={el.name}
+                            price={el.price}
+                        />
+                    ))
+                )}
             </section>
             <div className={styles.buttons}>
                 <button onClick={onBack}>Назад</button>
