@@ -1,3 +1,4 @@
+import { Link, Outlet } from "react-router-dom";
 import { useUserContext } from "../../contexts/userContext";
 import { useGetOneUser } from "../../hooks/useUser";
 import HomeProducts from "../home/home-products/HomeProducts";
@@ -5,12 +6,33 @@ import ProfileOrders from "./profile-orders/ProfileOrders";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
-    const { user } = useUserContext();
-    const { profileUser, adminProducts, isLoading, isError, isAdmin } =
-        useGetOneUser({}, user._id);
+    const { user, setUserHanlder } = useUserContext();
+    const initialValues = {
+        _id: "",
+        username: "",
+        address: "",
+        email: "",
+        orderHistory: [],
+        basket: [],
+    };
+    const {
+        profileUser,
+        setUserOnProfile,
+        adminProducts,
+        isLoading,
+        isError,
+        isAdmin,
+    } = useGetOneUser(initialValues, user._id);
 
     return (
         <>
+            <Outlet
+                context={{
+                    profileUser,
+                    setUserOnProfile,
+                    curUser:user,
+                }}
+            />
             {isAdmin ? (
                 <>
                     <section className={styles.profileHeader}>
@@ -32,7 +54,9 @@ export default function Profile() {
                             </section>
                         )}
                         <div className={styles.buttons}>
-                            <button>Редактирай профил</button>
+                            <Link to="/profile/edit">
+                                <button>Редактирай профил</button>
+                            </Link>
                             <button>Промени парола</button>
                         </div>
                     </section>
@@ -82,12 +106,14 @@ export default function Profile() {
                                 </div>
                                 <div>
                                     <h2>Брой поръчки:</h2>
-                                    <h2>{profileUser.orderHistory?.length}</h2>
+                                    <h2>{profileUser.orderHistory.length}</h2>
                                 </div>
                             </section>
                         )}
                         <div className={styles.buttons}>
-                            <button>Редактирай профил</button>
+                            <Link to="/profile/edit">
+                                <button>Редактирай профил</button>
+                            </Link>
                             <button>Промени парола</button>
                         </div>
                     </section>
@@ -97,8 +123,8 @@ export default function Profile() {
                             <section className={styles.profileUserBody}>
                                 {isLoading && !isError ? (
                                     <span className="loader"></span>
-                                ) : profileUser.orderHistory?.length > 0 ? (
-                                    profileUser.orderHistory?.map((el) => (
+                                ) : profileUser.orderHistory.length > 0 ? (
+                                    profileUser.orderHistory.map((el) => (
                                         <ProfileOrders
                                             key={el._id}
                                             orderId={el._id}

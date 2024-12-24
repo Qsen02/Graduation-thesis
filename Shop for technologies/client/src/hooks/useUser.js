@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
     clearCart,
+    editUser,
     getAdminProducts,
     getUserById,
     login,
@@ -73,6 +74,12 @@ export function useGetOneUser(initialValue, userId) {
     );
     const navigate=useNavigate();
 
+    function setUserOnProfile(value){
+        if(typeof(value)==="object"){
+            setProfileUser(value);
+        }
+    }
+
     useEffect(() => {
         (async () => {
             try {
@@ -97,9 +104,16 @@ export function useGetOneUser(initialValue, userId) {
 
     return {
         profileUser,
+        setUserOnProfile,
         adminProducts,
         isLoading,
         isError,
         isAdmin
     };
+}
+
+export function useEditUser(){
+    return async function(userId,data){
+        return await editUser(userId,data);
+    }
 }

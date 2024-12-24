@@ -81,3 +81,19 @@ export const createShema = yup.object().shape({
             "Трябва да изберете една от изброените опции!"
         ),
 });
+
+export const editProfileShema=yup.object().shape({
+    username: yup
+        .string()
+        .required("Името е задължително!")
+        .min(2, "Името трябва да бъде с дължина поне 2 символа!"),
+    email: yup
+        .string()
+        .required("Имейла е задължителен!")
+        .email("Имейла трябва да бъде валиден!")
+        .min(2, "Имейла трябва да е с дължина поне 2 символа!"),
+    address: yup
+        .string()
+        .required("Адреса е задължителен!")
+        .min(3, "Адреса трябва да бъде с дължина поне 3 символа!")
+});

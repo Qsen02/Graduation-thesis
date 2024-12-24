@@ -18,6 +18,7 @@ import Profile from "./components/profile/Profile";
 import ProfileOrderProduct from "./components/profile/profile-orders-details/profile-order-product/ProfileOrderProduct";
 import Cart from "./components/cart/Cart";
 import ProfileOrdersDetails from "./components/profile/profile-orders-details/ProdileOrdersDetails";
+import ProfileEdit from "./components/profile/profile-edit/ProfileEdit";
 
 function App() {
     return (
@@ -39,7 +40,9 @@ function App() {
                     <Route path="/cart" element={<Cart />} >
                         <Route path="no-products" element={<NoProducts/>}/>
                     </Route>
-                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/profile" element={<Profile/>}>
+                    <Route path="edit" element={<ProfileEdit/>}/>
+                    </Route>
                     <Route path="/profile/orders/:orderId" element={<ProfileOrdersDetails/>}/>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
