@@ -8,12 +8,20 @@ import ProductDetailsButtons from "./product-details-buttons/ProductDetailsButto
 export default function ProductDetails() {
     const { productId } = useParams();
     const { user,setUserHanlder } = useUserContext();
+    const initialValues={
+        name:"",
+        price:0,
+        imageUrl:"",
+        description:"",
+        characteristics:[],
+        category:"",
+    }
     const { product, setCurProduct, isError, isLoading } =
-        useGetOneProduct({}, productId, user);
+        useGetOneProduct(initialValues, productId, user);
 
     return (
         <>
-            <Outlet context={{ setCurProduct }} />
+            <Outlet context={{ product,setCurProduct,isError,isLoading }} />
             <section className={styles.detailsWrapper}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>

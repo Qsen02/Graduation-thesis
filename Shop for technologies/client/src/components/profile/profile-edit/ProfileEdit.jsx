@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useEditUser } from "../../../hooks/useUser";
 
 export default function ProfileEdit() {
-    const { profileUser, setUserOnProfile, curUser } = useOutletContext();
+    const { profileUser, setUserOnProfile, curUser, isLoading, isError } = useOutletContext();
     const [errMessage, setErrMessage] = useState("");
     const [error, setError] = useState(false);
     const editUser = useEditUser();
@@ -54,15 +54,23 @@ export default function ProfileEdit() {
             {(props) => (
                 <div className="modal">
                     <Form className="form">
-                        <h2>Редактирай профила си тук</h2>
-                        {error ? <p className="error">{errMessage}</p> : ""}
-                        <CustomInput label="Име" type="text" name="username" />
-                        <CustomInput label="Имейл" type="text" name="email" />
-                        <CustomInput label="Адрес" type="text" name="address" />
-                        <div className={styles.buttons}>
-                            <button onClick={onBack}>Отмяна</button>
-                            <button type="submit">Запази</button>
-                        </div>
+                        {isLoading && !isError ? (
+                            <span className="loader"></span>
+                        ) : isError ? (
+                            <h2>Нещо се обърка, моля опитайте по късно.</h2>
+                        ) : (
+                            <>
+                                <h2>Редактирай профила си тук</h2>
+                                { error ? <p className="error">{errMessage}</p> : "" }
+                                <CustomInput label="Име" type="text" name="username"/>
+                                <CustomInput label="Имейл" type="text" name="email"/>
+                                <CustomInput label="Адрес" type="text" name="address"/>
+                                <div className={styles.buttons}>
+                                    <button onClick={onBack}>Отмяна</button>
+                                    <button type="submit">Запази</button>
+                                </div>
+                            </>
+                        )}
                     </Form>
                 </div>
             )}

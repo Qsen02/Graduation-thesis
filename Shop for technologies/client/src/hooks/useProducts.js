@@ -170,39 +170,12 @@ export function useDeleteProduct(initalValue, productId) {
     };
 }
 
-export function useEditProduct(initalValue, productId) {
-    const [product, setProduct] = useState(initalValue);
-    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        (async () => {
-            try {
-                setIsLoading(true);
-                const product = await getProductById(productId);
-                setProduct(product);
-                setIsLoading(false);
-            } catch (err) {
-                if (err.message == "Resource not found!") {
-                    return navigate("/404");
-                }
-                setIsError(true);
-                setIsLoading(false);
-            }
-        })();
-    }, []);
-
+export function useEditProduct() {
     async function editThistProduct(productId,data) {
         return await editProduct(productId,data);
     }
 
-    return {
-        product,
-        editThistProduct,
-        navigate,
-        isLoading,
-        isError
-    };
+    return editThistProduct;
 }
 
 export function useLikeProduct(){

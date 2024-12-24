@@ -6,7 +6,7 @@ import ProfileOrders from "./profile-orders/ProfileOrders";
 import styles from "./Profile.module.css";
 
 export default function Profile() {
-    const { user, setUserHanlder } = useUserContext();
+    const { user } = useUserContext();
     const initialValues = {
         _id: "",
         username: "",
@@ -31,6 +31,8 @@ export default function Profile() {
                     profileUser,
                     setUserOnProfile,
                     curUser:user,
+                    isLoading,
+                    isError
                 }}
             />
             {isAdmin ? (

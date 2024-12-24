@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { useOutletContext, useParams } from "react-router-dom";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import CustomInput from "../../commons/custom-input/CustomInput";
 import CustomTextarea from "../../commons/custom-textarea/CustomTextarea";
 import CustomCategorySelect from "../../commons/custom-category-select/CustomCategorySelect";
@@ -10,18 +10,11 @@ import { useState } from "react";
 
 export default function ProductsEdit() {
     const { productId } = useParams();
-    const {setCurProduct} = useOutletContext();
-    const initialValues={
-        name:"",
-        price:0,
-        imageUrl:"",
-        description:"",
-        characteristics:[],
-        category:"",
-    }
-    const { product, editThistProduct, isLoading, navigate, isError }=useEditProduct(initialValues, productId);
+    const {product,setCurProduct,isLoading,isError} = useOutletContext();
+    const editThistProduct=useEditProduct();
     const [isSubmitError, setSubmitError] = useState(false);
     const [errMessage, setErrMessage] = useState("");
+    const navigate=useNavigate();
 
     async function onEdit(value, actions) {
         const name = value.name;
