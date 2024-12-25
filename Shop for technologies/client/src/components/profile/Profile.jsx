@@ -30,9 +30,9 @@ export default function Profile() {
                 context={{
                     profileUser,
                     setUserOnProfile,
-                    curUser:user,
+                    curUser: user,
                     isLoading,
-                    isError
+                    isError,
                 }}
             />
             {isAdmin ? (
@@ -59,7 +59,9 @@ export default function Profile() {
                             <Link to="/profile/edit">
                                 <button>Редактирай профил</button>
                             </Link>
-                            <button>Промени парола</button>
+                            <Link to="/profile/changePassword">
+                                <button>Промени парола</button>
+                            </Link>
                         </div>
                     </section>
                     {!isError ? (
@@ -116,7 +118,9 @@ export default function Profile() {
                             <Link to="/profile/edit">
                                 <button>Редактирай профил</button>
                             </Link>
-                            <button>Промени парола</button>
+                            <Link to="/profile/changePassword">
+                                <button>Промени парола</button>
+                            </Link>
                         </div>
                     </section>
                     {!isError ? (

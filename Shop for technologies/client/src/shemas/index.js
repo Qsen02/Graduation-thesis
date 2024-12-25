@@ -97,3 +97,13 @@ export const editProfileShema=yup.object().shape({
         .required("Адреса е задължителен!")
         .min(3, "Адреса трябва да бъде с дължина поне 3 символа!")
 });
+
+export const changePasswordSchema=yup.object().shape({
+    newPassword: yup
+    .string()
+    .required("Паролата е задължителна!")
+    .matches(
+        /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[+!@#$%^&*])[A-Za-z\d+!@#$%^&*]{6,}$/,
+        "Паролата трябва да бъде с дължина поне 6 символа, да има поне 1 специален символ, главна буква и букви и цифри!"
+    )
+})

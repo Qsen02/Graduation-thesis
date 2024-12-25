@@ -15,10 +15,11 @@ import ProductsDelete from "./components/products-delete/ProductsDelete";
 import ProductsEdit from "./components/products-edit/ProductsEdit";
 import NoProducts from "./components/cart/no-products/NoPoroducts";
 import Profile from "./components/profile/Profile";
-import ProfileOrderProduct from "./components/profile/profile-orders-details/profile-order-product/ProfileOrderProduct";
 import Cart from "./components/cart/Cart";
 import ProfileOrdersDetails from "./components/profile/profile-orders-details/ProdileOrdersDetails";
 import ProfileEdit from "./components/profile/profile-edit/ProfileEdit";
+import ProfileChangePassword from "./components/profile/profile-change-password/ProfileChangePassword";
+import ProfileSuccessfullyChanged from "./components/profile/profile-successfully-changed/ProfileSuccessfullyChanged";
 
 function App() {
     return (
@@ -29,7 +30,10 @@ function App() {
                     <Route path="/" element={<Redirect />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/catalog" element={<Catalog />} />
-                    <Route path="/catalog/:productId" element={<ProductDetails />}>
+                    <Route
+                        path="/catalog/:productId"
+                        element={<ProductDetails />}
+                    >
                         <Route path="delete" element={<ProductsDelete />} />
                         <Route path="edit" element={<ProductsEdit />} />
                     </Route>
@@ -37,13 +41,18 @@ function App() {
                     <Route path="/register" element={<Register />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path="/create" element={<Create />} />
-                    <Route path="/cart" element={<Cart />} >
-                        <Route path="no-products" element={<NoProducts/>}/>
+                    <Route path="/cart" element={<Cart />}>
+                        <Route path="no-products" element={<NoProducts />} />
                     </Route>
-                    <Route path="/profile" element={<Profile/>}>
-                    <Route path="edit" element={<ProfileEdit/>}/>
+                    <Route path="/profile" element={<Profile />}>
+                        <Route path="edit" element={<ProfileEdit />} />
+                        <Route path="changePassword" element={<ProfileChangePassword/>}/>
+                        <Route path="successfullyChanged" element={<ProfileSuccessfullyChanged/>}/>
                     </Route>
-                    <Route path="/profile/orders/:orderId" element={<ProfileOrdersDetails/>}/>
+                    <Route
+                        path="/profile/orders/:orderId"
+                        element={<ProfileOrdersDetails />}
+                    />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>

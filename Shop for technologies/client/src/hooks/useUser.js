@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import {
+    changePassword,
     clearCart,
     editUser,
     getAdminProducts,
     getUserById,
     login,
-    logout,
     register,
 } from "../api/userService";
 import { useLoadingError } from "./useLoadingError";
@@ -115,5 +115,11 @@ export function useGetOneUser(initialValue, userId) {
 export function useEditUser(){
     return async function(userId,data){
         return await editUser(userId,data);
+    }
+}
+
+export function useChangePassword(){
+    return async function (userId,data){
+        return await changePassword(userId,data);
     }
 }
