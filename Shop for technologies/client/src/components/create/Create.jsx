@@ -26,7 +26,7 @@ export default function Create() {
             navigate("/catalog");
          }catch(err){
             setIsError(true);
-            errMessage(err.message);
+            setErrMessage(err.message);
          }
     }
 

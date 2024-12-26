@@ -24,60 +24,66 @@ import GuestGuard from "./commons/guards/GuestGuard";
 import UserGuard from "./commons/guards/UserGuard";
 import AdminGuard from "./commons/guards/AdminGuard";
 import OnlyUsersGuard from "./commons/guards/OnlyUsersGuard";
+import ErrorBoundary from "./components/error-boundary/ErrorBoundary";
 
 function App() {
     return (
         <UserContextProvider>
             <Header />
             <main>
-                <Routes>
-                    <Route path="/" element={<Redirect />} />
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/catalog" element={<Catalog />} />
-                    <Route
-                        path="/catalog/:productId"
-                        element={<ProductDetails />}
-                    >
-                        <Route element={<AdminGuard />}>
-                            <Route path="delete" element={<ProductsDelete />} />
-                            <Route path="edit" element={<ProductsEdit />} />
-                        </Route>
-                    </Route>
-                    <Route element={<GuestGuard />}>
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                    </Route>
-                    <Route element={<UserGuard />}>
-                        <Route path="/logout" element={<Logout />} />
-                        <Route path="/profile" element={<Profile />}>
-                            <Route path="edit" element={<ProfileEdit />} />
-                            <Route
-                                path="changePassword"
-                                element={<ProfileChangePassword />}
-                            />
-                            <Route
-                                path="successfullyChanged"
-                                element={<ProfileSuccessfullyChanged />}
-                            />
-                        </Route>
-                    </Route>
-                    <Route element={<AdminGuard />}>
-                        <Route path="/create" element={<Create />} />
-                    </Route>
-                    <Route element={<OnlyUsersGuard />}>
-                        <Route path="/cart" element={<Cart />}>
-                            <Route
-                                path="no-products"
-                                element={<NoProducts />}
-                            />
-                        </Route>
+                <ErrorBoundary>
+                    <Routes>
+                        <Route path="/" element={<Redirect />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/catalog" element={<Catalog />} />
                         <Route
-                            path="/profile/orders/:orderId"
-                            element={<ProfileOrdersDetails />}
-                        />
-                    </Route>
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
+                            path="/catalog/:productId"
+                            element={<ProductDetails />}
+                        >
+                            <Route element={<AdminGuard />}>
+                                <Route
+                                    path="delete"
+                                    element={<ProductsDelete />}
+                                />
+                                <Route path="edit" element={<ProductsEdit />} />
+                            </Route>
+                        </Route>
+                        <Route element={<GuestGuard />}>
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                        </Route>
+                        <Route element={<UserGuard />}>
+                            <Route path="/logout" element={<Logout />} />
+                            <Route path="/profile" element={<Profile />}>
+                                <Route path="edit" element={<ProfileEdit />} />
+                                <Route
+                                    path="changePassword"
+                                    element={<ProfileChangePassword />}
+                                />
+                                <Route
+                                    path="successfullyChanged"
+                                    element={<ProfileSuccessfullyChanged />}
+                                />
+                            </Route>
+                        </Route>
+                        <Route element={<AdminGuard />}>
+                            <Route path="/create" element={<Create />} />
+                        </Route>
+                        <Route element={<OnlyUsersGuard />}>
+                            <Route path="/cart" element={<Cart />}>
+                                <Route
+                                    path="no-products"
+                                    element={<NoProducts />}
+                                />
+                            </Route>
+                            <Route
+                                path="/profile/orders/:orderId"
+                                element={<ProfileOrdersDetails />}
+                            />
+                        </Route>
+                        <Route path="*" element={<NotFound />} />
+                    </Routes>
+                </ErrorBoundary>
             </main>
             <Footer />
         </UserContextProvider>
