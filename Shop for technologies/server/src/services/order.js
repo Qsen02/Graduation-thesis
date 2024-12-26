@@ -2,7 +2,7 @@ const { Orders } = require("../models/Order");
 const { Users } = require("../models/user");
 
 function getOrderById(orderId) {
-    const order = Orders.findById(orderId);
+    const order = Orders.findById(orderId).populate("products");
     return order;
 }
 

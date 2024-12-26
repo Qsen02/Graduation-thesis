@@ -164,7 +164,7 @@ userRouter.put(
                 userId,
                 fields.username,
                 fields.email,
-                fields.addess
+                fields.address
             );
             res.status(200).json(updatedUser);
         } catch (err) {
