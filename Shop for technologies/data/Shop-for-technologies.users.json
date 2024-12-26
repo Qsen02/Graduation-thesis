@@ -1,0 +1,82 @@
+[{
+  "_id": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "username": "Ясен",
+  "email": "qsen@gmail.com",
+  "password": "$2b$10$fq5HFyRuVsVUhueK2f1mUuGlNWiar1/rbgU1hFf6xvAghHQYkeCee",
+  "isAdmin": true,
+  "basket": [],
+  "orderHistory": [],
+  "__v": 0,
+  "address": "Бургас, България"
+},
+{
+  "_id": {
+    "$oid": "6761e047d8fdb78015ca9e0f"
+  },
+  "username": "Пешо",
+  "email": "pesho@gmail.com",
+  "password": "$2b$10$Us6aKap.ikSMsK6oRhS/uOCiVqwKFBnem1T8FNWsl.S3pBry83T4C",
+  "isAdmin": false,
+  "basket": [],
+  "orderHistory": [
+    {
+      "$oid": "676946e411953f7154c13047"
+    },
+    {
+      "$oid": "6769b6453281faf8c2c92bf2"
+    },
+    {
+      "$oid": "676dca87e627a1cb8eaadda2"
+    }
+  ],
+  "__v": 0,
+  "address": "Варна, България"
+},
+{
+  "_id": {
+    "$oid": "6763eeead7d4e3010b141e93"
+  },
+  "username": "Гошо",
+  "email": "gosho@gmail.com",
+  "password": "$2b$10$rTOuwzixa1h0EC2n9cO7sutMk4a7c/h99mLWAxTCGBu4oPyx60Iue",
+  "isAdmin": false,
+  "basket": [],
+  "orderHistory": [
+    {
+      "$oid": "6769b6953281faf8c2c92c5c"
+    },
+    {
+      "$oid": "676dc80ce627a1cb8eaadb62"
+    },
+    {
+      "$oid": "676dc921e627a1cb8eaadc07"
+    },
+    {
+      "$oid": "676dc946e627a1cb8eaadc4f"
+    }
+  ],
+  "__v": 0,
+  "address": "София, България"
+},
+{
+  "_id": {
+    "$oid": "67693d7ae2be7a7efaea9eca"
+  },
+  "username": "Драго",
+  "email": "drago@gmail.com",
+  "address": "Пловдив, България",
+  "password": "$2b$10$FWNR7443QS99waYAFIpT4uZ2ASNtJOkygS94Pub0mfGPji/iKngF6",
+  "isAdmin": false,
+  "basket": [],
+  "orderHistory": [
+    {
+      "$oid": "676dc982e627a1cb8eaadcbf"
+    },
+    {
+      "$oid": "676dc9dce627a1cb8eaadcef"
+    }
+  ],
+  "__v": 0
+}]

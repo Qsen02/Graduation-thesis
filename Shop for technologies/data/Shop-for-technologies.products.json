@@ -1,0 +1,336 @@
+[{
+  "_id": {
+    "$oid": "675b3dd91ef75c1b9e68813d"
+  },
+  "name": "Samsung Galaxy A13 5G",
+  "price": 379,
+  "characteristics": [
+    "RAM: 4GB",
+    "Памет: 128GB",
+    "Цвят: Черен"
+  ],
+  "description": "Много хубав телефон",
+  "imageUrl": "https://images.samsung.com/is/image/samsung/p6pim/bg/sm-a136bzkveue/gallery/bg-galaxy-a13-5g-sm-a136-sm-a136bzkveue-533362782?$650_519_PNG$",
+  "category": "Телефони",
+  "likes": [
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
+    },
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6762a8d02c41e67feedcc201"
+  },
+  "name": "Acer Nitro V16",
+  "price": 2400,
+  "characteristics": [
+    "Процесор: AMD Ryzen 7",
+    "Видеокарта: Nvidia Geforce RTX 4060",
+    "RAM: 32GB DDR5",
+    "SSD: 1 TB"
+  ],
+  "description": "Много добър лаптоп, подходящ за работа и игри.",
+  "imageUrl": "https://s13emagst.akamaized.net/products/75397/75396943/images/res_4f5c235cf119839847c558a03fdf42bc.jpg",
+  "category": "Лаптопи",
+  "likes": [
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676574c20ea70153271f4dce"
+  },
+  "name": "Creative тонколони",
+  "price": 120,
+  "characteristics": [
+    "Марка: Creative",
+    "Честота: 40-20000Hz",
+    "Мощност: 27W"
+  ],
+  "description": "Хубави тонколони със кристален, плътен звук. 5 броя тонколони със суб буфер.",
+  "imageUrl": "https://cdncloudcart.com/402/products/images/3924/image_57c086f086ca9_800x800.jpeg?1564752283",
+  "category": "Тонколони и слушалки",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676d72444ff1a288fdb94338"
+  },
+  "name": "Мишка Gaming Canyon Puncher",
+  "price": 40,
+  "characteristics": [
+    "Скорост: 10000 DPI",
+    "Бутони: 7 на брой",
+    "Цвят: Черен"
+  ],
+  "description": "Хубава мишка със 7 бутона , голяма бързина и RGB светлина",
+  "imageUrl": "https://s13emagst.akamaized.net/products/37334/37333172/images/res_a2f87b53e3be64017d276763014f27bf.jpg?width=720&height=720&hash=E92D93988EDD8ED22D12C61CBDB94EBC",
+  "category": "Мишки и клавиатури",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676d73604ff1a288fdb9434a"
+  },
+  "name": "Клавиатура SureFire KingPin M1",
+  "price": 100,
+  "characteristics": [
+    "Време на реакция: 1ms",
+    "Тегло: 600 грама",
+    "Подцветка: RGB подцветка",
+    "Живот на клавишите: 50 милиона клика"
+  ],
+  "description": "Много добра геймърска клавиатура.",
+  "imageUrl": "https://www.store.bg/prdimg/419749287/gejmyrska-mehanichna-klaviatura-surefire-kingpin-m1.jpg",
+  "category": "Мишки и клавиатури",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676d8785ae45e2b35ae741b7"
+  },
+  "name": "Прахосмокачка робот Roventa Smart Force",
+  "price": 700,
+  "characteristics": [
+    "Време на работа: работи до 150 минути с 1 зареждане",
+    "Обем на контейнера за боклук: 500мл  "
+  ],
+  "description": "Много добра  и удобна за използване прахосмукачка робот.",
+  "imageUrl": "https://magprom.net/bmz_cache/r/rr6875jpg.image.750x750.jpg",
+  "category": "Електроуреди",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676d88a2ae45e2b35ae741c9"
+  },
+  "name": "Голяма готварска печка Muhler ELC-500E",
+  "price": 400,
+  "characteristics": [
+    "Тип: Свободностояща",
+    "Електрическа мощност: 6465W",
+    "Горен нагревател: 650W",
+    "Долен нагревател: 800W",
+    "Енергиен клас: А",
+    "Цвят: Бял"
+  ],
+  "description": "Много добра печка , идеална за приготвяне на каквито и да е ястия.",
+  "imageUrl": "https://reno.bg/product_images/30241/1006228.jpg",
+  "category": "Електроуреди",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    },
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676dc29ae627a1cb8eaadadf"
+  },
+  "name": "Лаптоп HP",
+  "price": 1600,
+  "characteristics": [
+    "Процесор: Intel core i7-1355U",
+    "RAM: 8GB DDR4",
+    "SSD: 512GB",
+    "Операционна система: Windows 11",
+    "Графична карта: Intel Iris Xe Graphics"
+  ],
+  "description": "Хубав лаптоп, подходящ за работа.",
+  "imageUrl": "https://s13emagst.akamaized.net/products/74604/74603270/images/res_f3164c911c38b1a3ce39606e682b5213.jpg?width=720&height=720&hash=C504E88F7FFFB1CF6A1F81FCA2AAC922",
+  "category": "Лаптопи",
+  "likes": [
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676dc3ace627a1cb8eaadafb"
+  },
+  "name": "Samsung Galaxy S24 Ultra",
+  "price": 2289,
+  "characteristics": [
+    "Оперативна памет: 512GB",
+    "RAM: 12GB",
+    "Цвят: Черен",
+    "Камера: 200+50+12+10 MP",
+    "Процесор: Qualcom Snapdragon 8 gen 3"
+  ],
+  "description": "Страхотен телефон, подходящ за ежедневни нужди, игри и забавления.",
+  "imageUrl": "https://api.technopolis.bg/medias/503271.jpg-Product-details-main?context=bWFzdGVyfHJvb3R8MjI0NjMxfGltYWdlL2pwZWd8YUdZMEwyaGhOQzh6TXpBeE1EQXlPREE0TlRJM09DNXFjR2N8MDA1NGY4ZGM1N2VlYmEzYzQ5NWRmNmNmMmJlYTU5ZmE3MjE1MDdlNmYyYTA5NGIyNmUyZmFiY2U4OTRlMjg2ZA",
+  "category": "Телефони",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676dc516e627a1cb8eaadb0f"
+  },
+  "name": "Телевизор Philips 65PUS7009/12",
+  "price": 1000,
+  "characteristics": [
+    "Резолюция: 3840x2160 UHD-4K",
+    "Големина: 65 инча",
+    "Операционна система: Titan OS",
+    "Брой говорители: 2",
+    "Брой HDMI входа: 3",
+    "Брой USB входа: 2"
+  ],
+  "description": "Хубав телевизор със добра резолюция, Wi-Fi и вградена операционна система.",
+  "imageUrl": "https://cdncloudcart.com/402/products/images/153526/televizor-philips-65pus700912--led--65-inch-164-sm-3840x2160-uhd-4k--smart-tv--titan-os-6661aa8c2e014_1280x1280.jpeg?1717676707",
+  "category": "Други",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676dc68ce627a1cb8eaadb1d"
+  },
+  "name": "Смартфон Xiaomi Redmi Note 13 Pro",
+  "price": 702,
+  "characteristics": [
+    "Оперативна памет: 256GB",
+    "RAM: 8GB",
+    "Батерия: 5000mAh",
+    "Процесорни ядра: 8"
+  ],
+  "description": "Много хубав телефон, подходящ за ежедневни задачи, игри и забавления.",
+  "imageUrl": "https://expresslink.bg/wp-content/uploads/2024/01/xiaomi_redmi_note_13_pro_4g_negro_01_l.jpg",
+  "category": "Телефони",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "676dc7c6e627a1cb8eaadb31"
+  },
+  "name": "Пералня BOSCH WGG2440REU",
+  "price": 1360,
+  "characteristics": [
+    "Капацитет: 9кг",
+    "Обороти: 1400",
+    "енергиен клас: A"
+  ],
+  "description": "Много добра пералня.",
+  "imageUrl": "https://www.relaxbg.org/wp-content/uploads/2023/06/WGG2440REU.jpg",
+  "category": "Електроуреди",
+  "likes": [
+    {
+      "$oid": "6763eeead7d4e3010b141e93"
+    },
+    {
+      "$oid": "67693d7ae2be7a7efaea9eca"
+    },
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
+    }
+  ],
+  "ownerId": {
+    "$oid": "675b3bf24f911a8b0a74e23d"
+  },
+  "__v": 0
+}]

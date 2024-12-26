@@ -22,7 +22,7 @@ export default function CartProducts({
     return (
         <article className={styles.cartProductWrapper}>
             <img src={imageUrl} alt={name} />
-            <h2>{name}</h2>
+            <p className={styles.bold}>{name}</p>
             <p>{price}лв.</p>
             <button onClick={onRemove}>Премахни</button>
         </article>

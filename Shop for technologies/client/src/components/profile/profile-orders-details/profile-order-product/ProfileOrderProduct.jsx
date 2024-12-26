@@ -10,7 +10,7 @@ export default function ProfileOrderProduct({
     return (
         <article className={styles.cartProductWrapper}>
             <img src={imageUrl} alt={name} />
-            <h2>{name}</h2>
+            <p className={styles.bold}>{name}</p>
             <p>{price}лв.</p>
             <Link to={`/catalog/${id}`}><button>Детайли</button></Link>
         </article>
