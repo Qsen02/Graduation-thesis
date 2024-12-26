@@ -17,11 +17,11 @@ export default function ProductDetails() {
         category:"",
     }
     const { product, setCurProduct, isError, isLoading } =
-        useGetOneProduct(initialValues, productId, user);
+        useGetOneProduct(initialValues, productId);
 
     return (
         <>
-            <Outlet context={{ product,setCurProduct,isError,isLoading }} />
+            <Outlet context={{product,setCurProduct,isError,isLoading}} />
             <section className={styles.detailsWrapper}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>

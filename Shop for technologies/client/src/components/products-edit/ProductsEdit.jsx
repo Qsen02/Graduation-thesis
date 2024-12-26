@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export default function ProductsEdit() {
     const { productId } = useParams();
-    const {product,setCurProduct,isLoading,isError} = useOutletContext();
+    const {product,setCurProduct,isError,isLoading} =useOutletContext();
     const editThistProduct=useEditProduct();
     const [isSubmitError, setSubmitError] = useState(false);
     const [errMessage, setErrMessage] = useState("");
@@ -52,7 +52,7 @@ export default function ProductsEdit() {
                 price: product.price,
                 imageUrl: product.imageUrl,
                 description: product.description,
-                characteristics: product.characteristics?.join(", "),
+                characteristics: product.characteristics.join(", "),
                 category: product.category,
             }}
             validationSchema={createShema}

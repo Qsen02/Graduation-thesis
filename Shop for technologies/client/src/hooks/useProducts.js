@@ -99,7 +99,7 @@ export function useCreateProduct() {
     };
 }
 
-export function useGetOneProduct(initalValue, productId, user) {
+export function useGetOneProduct(initalValue, productId) {
     const [product, setProduct] = useState(initalValue);
     const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
     const navigate = useNavigate();
@@ -114,8 +114,8 @@ export function useGetOneProduct(initalValue, productId, user) {
         (async () => {
             try {
                 setIsLoading(true);
-                const product = await getProductById(productId);
-                setProduct(product);
+                const curProduct = await getProductById(productId);
+                setProduct(curProduct);
                 setIsLoading(false);
             } catch (err) {
                 if (err.message == "Resource not found!") {
