@@ -1,4 +1,8 @@
-import { useGetAllProducts, useSearchProducts } from "../../hooks/useProducts";
+import {
+    useGetAllProducts,
+    usePagination,
+    useSearchProducts,
+} from "../../hooks/useProducts";
 import HomeProducts from "../home/home-products/HomeProducts";
 import styles from "./Catalog.module.css";
 import { Form, Formik } from "formik";
@@ -7,26 +11,56 @@ import CustomSelect from "../../commons/custom-select/CustomSelect";
 import { useState } from "react";
 
 export default function Catalog() {
-    const [isSearched,setIsSearched]=useState(false);
-    const { products,setProducts, isLoading,setLoading, isError,setError,maximumPage} = useGetAllProducts([]);
+    const [isSearched, setIsSearched] = useState(false);
+    const {
+        products,
+        setProducts,
+        isLoading,
+        setLoading,
+        isError,
+        setError,
+        maximumPage,
+    } = useGetAllProducts([]);
     const searchProducts = useSearchProducts();
+    const { curPage, setCurPage } = usePagination(
+        1,
+        setProducts,
+        setError,
+        setLoading
+    );
 
     async function onSearch(value) {
         try {
             let query = value.query;
             const criteria = value.criteria;
-            if(query==""){
-                query="No value";
+            if (query == "") {
+                query = "No value";
             }
             setLoading(true);
-            const products=await searchProducts(query,criteria);
-            setProducts({type:"search",payload:products});
+            const products = await searchProducts(query, criteria);
+            setProducts({ type: "search", payload: products });
             setLoading(false);
             setIsSearched(true);
         } catch (err) {
-           setError(true);
-           setLoading(false);
+            setError(true);
+            setLoading(false);
         }
+    }
+
+    function firstPage() {
+        setCurPage(1);
+    }
+
+    function nextPage() {
+        setCurPage((page) => page + 1);
+    }
+
+    function previousPage() {
+        setCurPage((page) => page - 1);
+    }
+
+    function lastPage() {
+        setCurPage(maximumPage);
     }
 
     return (
@@ -62,17 +96,15 @@ export default function Catalog() {
                     <div className="message">
                         <p>Нещо се обърка, моля опитайте по късно.</p>
                     </div>
-                ) : products.length == 0 && !isSearched? (
+                ) : products.length == 0 && !isSearched ? (
                     <div className="message">
                         <p>Няма продукти все още :(</p>
                     </div>
-                ) :  products.length == 0 && isSearched
-                ?( 
-                <div className="message">
-                    <p>Няма резултати :(</p>
-                </div>
-                )
-                :(
+                ) : products.length == 0 && isSearched ? (
+                    <div className="message">
+                        <p>Няма резултати :(</p>
+                    </div>
+                ) : (
                     products.map((el) => (
                         <HomeProducts
                             key={el._id}
@@ -86,11 +118,29 @@ export default function Catalog() {
                 )}
             </section>
             <section className={styles.pagination}>
-                <button><i class="fa-solid fa-angles-left"></i></button>
-                <button><i class="fa-solid fa-angle-left"></i></button>
-                <p>1 от {maximumPage}</p>
-                <button><i class="fa-solid fa-angle-right"></i></button>
-                <button><i class="fa-solid fa-angles-right"></i></button>
+                <button onClick={firstPage}>
+                    <i className="fa-solid fa-angles-left"></i>
+                </button>
+                {curPage <= 1 ? (
+                    ""
+                ) : (
+                    <button onClick={previousPage}>
+                        <i className="fa-solid fa-angle-left"></i>
+                    </button>
+                )}
+                <p>
+                    {curPage} от {maximumPage}
+                </p>
+                {curPage >= maximumPage ? (
+                    ""
+                ) : (
+                    <button onClick={nextPage}>
+                        <i className="fa-solid fa-angle-right"></i>
+                    </button>
+                )}
+                <button onClick={lastPage}>
+                    <i className="fa-solid fa-angles-right"></i>
+                </button>
             </section>
         </section>
     );

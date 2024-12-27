@@ -6,6 +6,7 @@ import {
     editProduct,
     getAllProducts,
     getLatestProducts,
+    getNextProducts,
     getProductById,
     likeProduct,
     removeProductFromCart,
@@ -18,7 +19,10 @@ import { useLoadingError } from "./useLoadingError";
 
 export function useGetLatsetProducts(initalValue) {
     const [products, setProducts] = useState(initalValue);
-    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
+    const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
+        false,
+        false
+    );
 
     useEffect(() => {
         (async () => {
@@ -43,8 +47,11 @@ export function useGetLatsetProducts(initalValue) {
 
 export function useGetAllProducts(initalValue) {
     const [products, dispatch] = useReducer(productReducer, initalValue);
-    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
-    const [maximumPage,setMaximumPage]=useState(0);
+    const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
+        false,
+        false
+    );
+    const [maximumPage, setMaximumPage] = useState(0);
 
     function setProducts(products) {
         if (typeof products === "object") {
@@ -68,7 +75,7 @@ export function useGetAllProducts(initalValue) {
         (async () => {
             try {
                 setIsLoading(true);
-                const {products,maxPage} = await getAllProducts();
+                const { products, maxPage } = await getAllProducts();
                 dispatch({ payload: products, type: "getAll" });
                 setMaximumPage(maxPage);
                 setIsLoading(false);
@@ -86,7 +93,7 @@ export function useGetAllProducts(initalValue) {
         setLoading,
         isError,
         setError,
-        maximumPage
+        maximumPage,
     };
 }
 
@@ -104,11 +111,14 @@ export function useCreateProduct() {
 
 export function useGetOneProduct(initalValue, productId) {
     const [product, setProduct] = useState(initalValue);
-    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
+    const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
+        false,
+        false
+    );
     const navigate = useNavigate();
 
-    function setCurProduct(value){
-        if(typeof(value)==="object"){
+    function setCurProduct(value) {
+        if (typeof value === "object") {
             setProduct(value);
         }
     }
@@ -140,7 +150,10 @@ export function useGetOneProduct(initalValue, productId) {
 
 export function useDeleteProduct(initalValue, productId) {
     const [product, setProduct] = useState(initalValue);
-    const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
+    const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
+        false,
+        false
+    );
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -169,38 +182,67 @@ export function useDeleteProduct(initalValue, productId) {
         deleteThisProduct,
         navigate,
         isLoading,
-        isError
+        isError,
     };
 }
 
 export function useEditProduct() {
-    async function editThistProduct(productId,data) {
-        return await editProduct(productId,data);
+    async function editThistProduct(productId, data) {
+        return await editProduct(productId, data);
     }
 
     return editThistProduct;
 }
 
-export function useLikeProduct(){
-    return async function(productId){
+export function useLikeProduct() {
+    return async function (productId) {
         return await likeProduct(productId);
-    }
+    };
 }
 
-export function useUnlikeProduct(){
-    return async function(productId){
+export function useUnlikeProduct() {
+    return async function (productId) {
         return await unlikeProduct(productId);
-    }
+    };
 }
 
-export function useAddToCart(){
-    return async function(productId){
+export function useAddToCart() {
+    return async function (productId) {
         return await addProductToCart(productId);
-    }
+    };
 }
 
-export function useRemoveProductFromCart(){
-    return async function(productId){
+export function useRemoveProductFromCart() {
+    return async function (productId) {
         return await removeProductFromCart(productId);
-    }
+    };
+}
+
+export function usePagination(
+    initValue,
+    setProductsHandler,
+    setError,
+    setLoading
+) {
+    const [curPage, setCurPage] = useState(initValue);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                setLoading(true);
+                const count = curPage - 1;
+                const { products } = await getNextProducts(count);
+                setProductsHandler({ payload: products, type: "pagination" });
+                setLoading(false);
+            } catch (err) {
+                setError(true);
+                setLoading(false);
+            }
+        })();
+    }, [curPage]);
+
+    return {
+        curPage,
+        setCurPage
+    };
 }

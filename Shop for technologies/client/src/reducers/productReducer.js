@@ -4,6 +4,8 @@ export default function productReducer(state, action) {
             return action.payload.slice();
         case "search":
             return action.payload.slice();
+        case "pagination":
+            return action.payload.slice();
         default:
             return state;
     }
