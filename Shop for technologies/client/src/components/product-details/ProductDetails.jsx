@@ -5,6 +5,7 @@ import styles from "./ProductDetails.module.css";
 import ProductDetailsChars from "./product-details-chars/ProductDetailsChars";
 import ProductDetailsButtons from "./product-details-buttons/ProductDetailsButtons";
 import { imageErrorHandler } from "../../utils/imageErrorHandler";
+import { addDots } from "../../utils/addDots";
 
 export default function ProductDetails() {
     const { productId } = useParams();
@@ -34,7 +35,7 @@ export default function ProductDetails() {
                             <div className={styles.left}>
                                 <img
                                     src={product.imageUrl}
-                                    alt={product.name}
+                                    alt="details image"
                                 />
                             </div>
                             <div className={styles.right}>

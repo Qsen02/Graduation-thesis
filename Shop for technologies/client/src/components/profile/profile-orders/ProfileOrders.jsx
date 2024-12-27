@@ -11,7 +11,7 @@ const newDate=new Date(date);
         <Link to={`/profile/orders/${orderId}`} className={styles.orderItem}>
             <article>
                 <p>Обща цена: {totalPrice}лв.</p>
-                <p>Дата: {`${newDate.getFullYear()}.${newDate.getMonth()+1}.${newDate.getDate()}`}, Час: {`${newDate.getHours()}:${newDate.getMinutes()}`}</p>
+                <p>Дата: {`${newDate.getDate()}.${newDate.getMonth()+1}.${newDate.getFullYear()}`}, Час: {`${newDate.getHours()}:${newDate.getMinutes()}`}</p>
             </article>
         </Link>
     );
