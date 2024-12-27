@@ -1,4 +1,5 @@
 import { useRemoveProductFromCart } from "../../../hooks/useProducts";
+import { imageErrorHandler } from "../../../utils/imageErrorHandler";
 import styles from "./CartProducts.module.css";
 
 export default function CartProducts({
@@ -21,7 +22,7 @@ export default function CartProducts({
 
     return (
         <article className={styles.cartProductWrapper}>
-            <img src={imageUrl} alt={name} />
+            <img src={imageUrl} alt={name} onError={imageErrorHandler}/>
             <p className={styles.bold}>{name}</p>
             <p>{price}лв.</p>
             <button onClick={onRemove}>Премахни</button>

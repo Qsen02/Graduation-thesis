@@ -38,7 +38,7 @@ export default function Create() {
                 imageUrl:"",
                 description:"",
                 characteristics:"",
-                category:""
+                category:"Компютри"
             }} 
             validationSchema={createShema}
             onSubmit={onCreate}

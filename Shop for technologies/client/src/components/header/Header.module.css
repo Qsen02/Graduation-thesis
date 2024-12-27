@@ -4,12 +4,20 @@
     padding: 20px;
 }
 
+.navigation nav ul img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .navigation nav ul{
     display: flex;
     gap:20px;
     color: white;
     font-size:14pt;
     font-weight: bold;
+    align-items: center;
 }
 
 @media(max-width:620px){
@@ -17,5 +25,10 @@
         font-size: 12pt;
         flex-direction: column;
         align-items: center;
+    }
+
+    .navigation nav ul img{
+        width: 50px;
+        height: 50px;
     }
 }

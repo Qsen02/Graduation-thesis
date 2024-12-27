@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useUserContext } from "../../contexts/userContext";
 import HeaderLinks from "./header-links/HeaderLinks";
 import styles from "./Header.module.css";
@@ -5,20 +6,17 @@ import styles from "./Header.module.css";
 export default function Header() {
     const {user}=useUserContext();
     const guestNav=[
-        {name:"Начало",link:"/home"},
         {name:"Каталог",link:"/catalog"},
         {name:"Вход",link:"/login"},
         {name:"Регистрация",link:"/register"}
     ]
     const userNav=[
-        {name:"Начало",link:"/home"},
         {name:"Каталог",link:"/catalog"},
         {name:"Количка",link:"/cart"},
         {name:"Профил",link:"/profile"},
         {name:"Изход",link:"/logout"}
     ]
     const adminNav=[
-        {name:"Начало",link:"/home"},
         {name:"Каталог",link:"/catalog"},
         {name:"Създай",link:"/create"},
         {name:"Профил",link:"/profile"},
@@ -28,6 +26,9 @@ export default function Header() {
         <header className={styles.navigation}>
             <nav>
                 <ul>
+                    <li>
+                        <Link to="/home"><img src="assets/logo.jpg"/></Link>
+                    </li>
                 {
                   user
                   ? user.isAdmin
