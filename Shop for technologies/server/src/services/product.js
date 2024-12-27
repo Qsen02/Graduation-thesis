@@ -12,8 +12,7 @@ function getAllProducts() {
 }
 
 function getProductById(productId) {
-    const product = Products.findById(productId)
-        .populate("ownerId");
+    const product = Products.findById(productId).populate("ownerId");
     return product;
 }
 
@@ -35,10 +34,14 @@ async function searchProducts(query, criteria) {
     return results;
 }
 
-function pagination(page) {
+async function pagination(page) {
     const skipCount = 6 * page;
-    const products = Products.find().limit(6).skip(skipCount);
-    return products;
+    const products = await Products.find().limit(6).skip(skipCount).lean();
+    const maxPage = Math.floor((await Products.find().lean()).length / 6);
+    const data={
+        products,maxPage
+    }
+    return data;
 }
 
 async function createProduct(product, user) {
@@ -98,7 +101,9 @@ async function removeProductFromBasket(userId, product) {
         userId,
         { $pull: { basket: product._id } },
         { new: true }
-    ).populate("basket").lean();
+    )
+        .populate("basket")
+        .lean();
 }
 
 async function checkProductId(productId) {

@@ -3,7 +3,7 @@ import { del, get, post, put } from "./requester";
 const endpoint = "/products";
 
 export async function getAllProducts(){
-    return await get(endpoint);
+    return await get(`${endpoint}/page/0`);
 }
 
 export async function getLatestProducts() {

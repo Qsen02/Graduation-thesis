@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function Catalog() {
     const [isSearched,setIsSearched]=useState(false);
-    const { products,setProducts, isLoading,setLoading, isError,setError } = useGetAllProducts([]);
+    const { products,setProducts, isLoading,setLoading, isError,setError,maximumPage} = useGetAllProducts([]);
     const searchProducts = useSearchProducts();
 
     async function onSearch(value) {
@@ -55,7 +55,7 @@ export default function Catalog() {
                 )}
             </Formik>
             <h2>Всички продукти</h2>
-            <section>
+            <section className={styles.productWrapper}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>
                 ) : !isLoading && isError ? (
@@ -84,6 +84,13 @@ export default function Catalog() {
                         />
                     ))
                 )}
+            </section>
+            <section className={styles.pagination}>
+                <button><i class="fa-solid fa-angles-left"></i></button>
+                <button><i class="fa-solid fa-angle-left"></i></button>
+                <p>1 от {maximumPage}</p>
+                <button><i class="fa-solid fa-angle-right"></i></button>
+                <button><i class="fa-solid fa-angles-right"></i></button>
             </section>
         </section>
     );

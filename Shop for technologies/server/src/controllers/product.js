@@ -41,11 +41,11 @@ productRouter.get("/:productId", async (req, res) => {
 
 productRouter.get("/page/:pageNumber", async (req, res) => {
     const pageNumber = Number(req.params.pageNumber);
-    if (!pageNumber) {
+    if (!pageNumber && pageNumber!=0) {
         return res.status(400).json({ message: "This page isn't exist!" });
     }
-    const products = await pagination(pageNumber).lean();
-    res.json(products);
+    const data = await pagination(pageNumber);
+    res.json(data);
 });
 
 productRouter.get("/search/:query/by/:criteria", async (req, res) => {

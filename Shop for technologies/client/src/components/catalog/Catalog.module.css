@@ -48,13 +48,35 @@
     color: darkgrey;
 }
 
-.catalogWrapper section{
+.catalogWrapper .productWrapper{
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     gap:20px;
     justify-content: center;
+}
+
+.pagination{
+    display: flex;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination button{
+    border: none;
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.pagination button:hover{
+    background-color: rgb(199, 36, 36);
 }
 
 @media(max-width:620px){
@@ -72,10 +94,20 @@
     .catalogWrapper form div input,.catalogWrapper form div select{
         font-size: 12pt;
     }
-    .catalogWrapper section{
+    .catalogWrapper .productWrapper{
         flex-direction: column;
         align-items: center;
         flex-wrap: nowrap;
         justify-content: baseline;
+    }
+
+    .pagination{
+        gap:10px;
+    }
+
+    .pagination button{
+        width: 30px;
+        height: 30px;
+        font-size: 10pt;
     }
 }

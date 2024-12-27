@@ -44,6 +44,7 @@ export function useGetLatsetProducts(initalValue) {
 export function useGetAllProducts(initalValue) {
     const [products, dispatch] = useReducer(productReducer, initalValue);
     const {isLoading,setIsLoading,isError,setIsError}=useLoadingError(false,false);
+    const [maximumPage,setMaximumPage]=useState(0);
 
     function setProducts(products) {
         if (typeof products === "object") {
@@ -67,8 +68,9 @@ export function useGetAllProducts(initalValue) {
         (async () => {
             try {
                 setIsLoading(true);
-                const products = await getAllProducts();
+                const {products,maxPage} = await getAllProducts();
                 dispatch({ payload: products, type: "getAll" });
+                setMaximumPage(maxPage);
                 setIsLoading(false);
             } catch (err) {
                 setIsError(true);
@@ -84,6 +86,7 @@ export function useGetAllProducts(initalValue) {
         setLoading,
         isError,
         setError,
+        maximumPage
     };
 }
 
