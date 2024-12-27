@@ -9,6 +9,7 @@ import { Form, Formik } from "formik";
 import CustomInput from "../../commons/custom-input/CustomInput";
 import CustomSelect from "../../commons/custom-select/CustomSelect";
 import { useState } from "react";
+import { getAllProducts } from "../../api/productService";
 
 export default function Catalog() {
     const [isSearched, setIsSearched] = useState(false);
@@ -31,16 +32,20 @@ export default function Catalog() {
 
     async function onSearch(value) {
         try {
+            setLoading(true);
+            setIsSearched(true);
             let query = value.query;
             const criteria = value.criteria;
             if (query == "") {
                 query = "No value";
+                setIsSearched(false);
+                const { products } = await getAllProducts();
+                setProducts({ type: "getAll", payload: products });
+            } else {
+                const products = await searchProducts(query, criteria);
+                setProducts({ type: "search", payload: products });
             }
-            setLoading(true);
-            const products = await searchProducts(query, criteria);
-            setProducts({ type: "search", payload: products });
             setLoading(false);
-            setIsSearched(true);
         } catch (err) {
             setError(true);
             setLoading(false);
@@ -117,31 +122,35 @@ export default function Catalog() {
                     ))
                 )}
             </section>
-            <section className={styles.pagination}>
-                <button onClick={firstPage}>
-                    <i className="fa-solid fa-angles-left"></i>
-                </button>
-                {curPage <= 1 ? (
-                    ""
-                ) : (
-                    <button onClick={previousPage}>
-                        <i className="fa-solid fa-angle-left"></i>
+            {!isSearched ? (
+                <section className={styles.pagination}>
+                    <button onClick={firstPage}>
+                        <i className="fa-solid fa-angles-left"></i>
                     </button>
-                )}
-                <p>
-                    {curPage} от {maximumPage}
-                </p>
-                {curPage >= maximumPage ? (
-                    ""
-                ) : (
-                    <button onClick={nextPage}>
-                        <i className="fa-solid fa-angle-right"></i>
+                    {curPage <= 1 ? (
+                        ""
+                    ) : (
+                        <button onClick={previousPage}>
+                            <i className="fa-solid fa-angle-left"></i>
+                        </button>
+                    )}
+                    <p>
+                        {curPage} от {maximumPage}
+                    </p>
+                    {curPage >= maximumPage ? (
+                        ""
+                    ) : (
+                        <button onClick={nextPage}>
+                            <i className="fa-solid fa-angle-right"></i>
+                        </button>
+                    )}
+                    <button onClick={lastPage}>
+                        <i className="fa-solid fa-angles-right"></i>
                     </button>
-                )}
-                <button onClick={lastPage}>
-                    <i className="fa-solid fa-angles-right"></i>
-                </button>
-            </section>
+                </section>
+            ) : (
+                ""
+            )}
         </section>
     );
 }
