@@ -13,7 +13,6 @@
     height: 150px;
     width: 150px;
     border-radius: 7px;
-    object-fit: cover;
 }
 
 .cartProductWrapper button{
