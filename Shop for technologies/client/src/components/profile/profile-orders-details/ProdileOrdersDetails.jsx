@@ -14,7 +14,7 @@ export default function ProfileOrdersDetails() {
     return (
         <section className={styles.cartWrapper}>
             <div className={styles.title}>
-                <h2>Продукти в поръчаката:</h2>
+                <h2>Продукти в поръчката:</h2>
             </div>
             <section className={styles.products}>
                 {isLoading && !isError ? (
