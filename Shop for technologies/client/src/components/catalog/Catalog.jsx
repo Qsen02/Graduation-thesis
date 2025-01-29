@@ -122,7 +122,7 @@ export default function Catalog() {
                     ))
                 )}
             </section>
-            {!isSearched ? (
+            {!isSearched && !isError ? (
                 <section className={styles.pagination}>
                     <button onClick={firstPage}>
                         <i className="fa-solid fa-angles-left"></i>

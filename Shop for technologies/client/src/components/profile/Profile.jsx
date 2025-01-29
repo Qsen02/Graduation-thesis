@@ -43,26 +43,28 @@ export default function Profile() {
                         ) : isError ? (
                             <h2>Нещо се обърка, моля опитайте по късно.</h2>
                         ) : (
-                            <section className={styles.headerData}>
-                                <div>
-                                    <h2>{profileUser.username}</h2>
-                                    <p>{profileUser.email}</p>
-                                    <p>{profileUser.address}</p>
+                            <>
+                                <section className={styles.headerData}>
+                                    <div>
+                                        <h2>{profileUser.username}</h2>
+                                        <p>{profileUser.email}</p>
+                                        <p>{profileUser.address}</p>
+                                    </div>
+                                    <div>
+                                        <h2>Създадени продукти:</h2>
+                                        <h2>{adminProducts?.length}</h2>
+                                    </div>
+                                </section>
+                                <div className={styles.buttons}>
+                                    <Link to="/profile/edit">
+                                        <button>Редактирай профил</button>
+                                    </Link>
+                                    <Link to="/profile/changePassword">
+                                        <button>Промени парола</button>
+                                    </Link>
                                 </div>
-                                <div>
-                                    <h2>Създадени продукти:</h2>
-                                    <h2>{adminProducts?.length}</h2>
-                                </div>
-                            </section>
+                            </>
                         )}
-                        <div className={styles.buttons}>
-                            <Link to="/profile/edit">
-                                <button>Редактирай профил</button>
-                            </Link>
-                            <Link to="/profile/changePassword">
-                                <button>Промени парола</button>
-                            </Link>
-                        </div>
                     </section>
                     {!isError ? (
                         <>
@@ -102,26 +104,30 @@ export default function Profile() {
                         ) : isError ? (
                             <h2>Нещо се обърка, моля опитайте по късно.</h2>
                         ) : (
-                            <section className={styles.headerData}>
-                                <div>
-                                    <h2>{profileUser.username}</h2>
-                                    <p>{profileUser.email}</p>
-                                    <p>{profileUser.address}</p>
+                            <>
+                                <section className={styles.headerData}>
+                                    <div>
+                                        <h2>{profileUser.username}</h2>
+                                        <p>{profileUser.email}</p>
+                                        <p>{profileUser.address}</p>
+                                    </div>
+                                    <div>
+                                        <h2>Брой поръчки:</h2>
+                                        <h2>
+                                            {profileUser.orderHistory.length}
+                                        </h2>
+                                    </div>
+                                </section>
+                                <div className={styles.buttons}>
+                                    <Link to="/profile/edit">
+                                        <button>Редактирай профил</button>
+                                    </Link>
+                                    <Link to="/profile/changePassword">
+                                        <button>Промени парола</button>
+                                    </Link>
                                 </div>
-                                <div>
-                                    <h2>Брой поръчки:</h2>
-                                    <h2>{profileUser.orderHistory.length}</h2>
-                                </div>
-                            </section>
+                            </>
                         )}
-                        <div className={styles.buttons}>
-                            <Link to="/profile/edit">
-                                <button>Редактирай профил</button>
-                            </Link>
-                            <Link to="/profile/changePassword">
-                                <button>Промени парола</button>
-                            </Link>
-                        </div>
                     </section>
                     {!isError ? (
                         <>
