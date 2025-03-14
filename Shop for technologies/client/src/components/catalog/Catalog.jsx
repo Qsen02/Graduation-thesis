@@ -6,10 +6,11 @@ import {
 import HomeProducts from "../home/home-products/HomeProducts";
 import styles from "./Catalog.module.css";
 import { Form, Formik } from "formik";
-import CustomInput from "../../commons/custom-input/CustomInput";
 import CustomSelect from "../../commons/custom-select/CustomSelect";
 import { useState } from "react";
 import { getAllProducts } from "../../api/productService";
+import CustomSearchInput from "../../commons/custom-search-input/CustomSearchInput";
+import ProductResults from "./product-results/ProductResults";
 
 export default function Catalog() {
     const [isSearched, setIsSearched] = useState(false);
@@ -29,6 +30,8 @@ export default function Catalog() {
         setError,
         setLoading
     );
+    const [typed, setTyped] = useState(false);
+    const [results, setResults] = useState([]);
 
     async function onSearch(value) {
         try {
@@ -45,6 +48,7 @@ export default function Catalog() {
                 const products = await searchProducts(query, criteria);
                 setProducts({ type: "search", payload: products });
             }
+            setTyped(false);
             setLoading(false);
         } catch (err) {
             setError(true);
@@ -68,6 +72,27 @@ export default function Catalog() {
         setCurPage(maximumPage);
     }
 
+    async function checkResultsOnChange(value) {
+        try {
+            setLoading(true);
+            setTyped(true);
+            let query = value.query;
+            const criteria = value.criteria;
+            if (query == "") {
+                const { products } = await getAllProducts();
+                setResults(products);
+            } else {
+                const products = await searchProducts(query, criteria);
+                setResults(products);
+            }
+            setLoading(false);
+        } catch (err) {
+            setTyped(false);
+            setError(true);
+            setLoading(false);
+        }
+    }
+
     return (
         <section className={styles.catalogWrapper}>
             <Formik
@@ -78,8 +103,9 @@ export default function Catalog() {
                     <Form>
                         <h2>Търсете продукти</h2>
                         <div>
-                            <CustomInput
+                            <CustomSearchInput
                                 label=""
+                                changeHandler={checkResultsOnChange}
                                 type="text"
                                 name="query"
                                 id="query"
@@ -90,10 +116,28 @@ export default function Catalog() {
                                 <i className="fa-solid fa-magnifying-glass"></i>
                             </button>
                         </div>
+                        {typed? (
+                            <section className={styles.resultWrapper}>
+                                {results.length > 0 ? (
+                                    results.map((el) => (
+                                        <ProductResults
+                                            key={el._id}
+                                            productId={el._id}
+                                            image={el.imageUrl}
+                                            name={el.name}
+                                        />
+                                    ))
+                                ) : (
+                                    <h2>Няма намерени резултати.</h2>
+                                )}
+                            </section>
+                        ) : (
+                            ""
+                        )}
                     </Form>
                 )}
             </Formik>
-            <h2>Всички продукти</h2>
+            {!typed ? <h2>Всички продукти</h2> : ""}
             <section className={styles.productWrapper}>
                 {isLoading && !isError ? (
                     <span className="loader"></span>
@@ -109,7 +153,7 @@ export default function Catalog() {
                     <div className="message">
                         <p>Няма резултати :(</p>
                     </div>
-                ) : (
+                ) : !typed ? (
                     products.map((el) => (
                         <HomeProducts
                             key={el._id}
@@ -120,9 +164,11 @@ export default function Catalog() {
                             category={el.category}
                         />
                     ))
+                ) : (
+                    ""
                 )}
             </section>
-            {!isSearched && !isError ? (
+            {!isSearched && !isError && !typed ? (
                 <section className={styles.pagination}>
                     <button onClick={firstPage}>
                         <i className="fa-solid fa-angles-left"></i>

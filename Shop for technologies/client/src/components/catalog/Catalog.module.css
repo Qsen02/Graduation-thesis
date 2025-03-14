@@ -23,10 +23,11 @@
     flex-wrap: wrap;
     gap: 5px;
 }
-.catalogWrapper form div input{
+.catalogWrapper form div input {
     width: 400px;
 }
-.catalogWrapper form div input,.catalogWrapper form div select{
+.catalogWrapper form div input,
+.catalogWrapper form div select {
     border-radius: 20px;
     padding-left: 7px;
     font-size: 14pt;
@@ -34,37 +35,37 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.catalogWrapper form div button{
+.catalogWrapper form div button {
     position: absolute;
-    top:8px;
-    left:360px;
+    top: 8px;
+    left: 360px;
     border: none;
     background-color: white;
     font-size: 16pt;
     cursor: pointer;
 }
 
-.catalogWrapper form div button:hover{
+.catalogWrapper form div button:hover {
     color: darkgrey;
 }
 
-.catalogWrapper .productWrapper{
+.catalogWrapper .productWrapper {
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    gap:20px;
+    gap: 20px;
     justify-content: center;
 }
 
-.pagination{
+.pagination {
     display: flex;
-    gap:20px;
+    gap: 20px;
     justify-content: center;
     align-items: center;
 }
 
-.pagination button{
+.pagination button {
     border: none;
     width: 40px;
     height: 40px;
@@ -75,37 +76,57 @@
     cursor: pointer;
 }
 
-.pagination button:hover{
+.pagination button:hover {
     background-color: rgb(199, 36, 36);
 }
 
-@media(max-width:620px){
-    .catalogWrapper form div{
+.resultWrapper {
+    z-index: 100;
+    margin-top: -20px;
+    padding: 10px;
+    font-size: 12pt;
+    width: 100%;
+    height: 40vh;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+        rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    display: "flex";
+    flex-direction: "column";
+    gap:10px;
+    overflow: auto;
+}
+
+@media (max-width: 620px) {
+    .catalogWrapper form div {
         flex-direction: column;
         align-items: center;
-        gap:10px;
+        gap: 10px;
     }
-    .catalogWrapper form div input{
+    .catalogWrapper form div input {
         width: 250px;
     }
-    .catalogWrapper form div button{
+    .catalogWrapper form div button {
         left: 210px;
     }
-    .catalogWrapper form div input,.catalogWrapper form div select{
+    .catalogWrapper form div input,
+    .catalogWrapper form div select {
         font-size: 12pt;
     }
-    .catalogWrapper .productWrapper{
+    .catalogWrapper .productWrapper {
         flex-direction: column;
         align-items: center;
         flex-wrap: nowrap;
         justify-content: baseline;
     }
 
-    .pagination{
-        gap:10px;
+    .pagination {
+        gap: 10px;
     }
 
-    .pagination button{
+    .pagination button {
         width: 30px;
         height: 30px;
         font-size: 10pt;

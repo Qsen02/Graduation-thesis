@@ -1,7 +1,8 @@
-import { useField } from "formik";
+import { useField, useFormikContext } from "formik";
 
 export default function CustomSelect({ ...props }) {
-    const [field,meta]=useField(props);
+    const [field, meta] = useField(props);
+
     return (
         <select {...field} {...props}>
             <option value="name">Име</option>

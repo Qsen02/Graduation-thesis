@@ -5,7 +5,7 @@ export default function CustomInput({ label, ...props }) {
     return (
         <>
             {label ? <label>{label}</label> : ""}
-            <input {...field} {...props} />
+            <input {...field} {...props}/>
             {meta.touched && meta.error ? <p className="error">{meta.error}</p> : ""}
         </>
     );
