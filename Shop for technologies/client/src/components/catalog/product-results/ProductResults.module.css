@@ -7,10 +7,11 @@
     flex-direction: "row";
     gap:20px;
     justify-content: "flex-start";
+    border-radius:10px;
 }
 
 .wrapper section:hover{
-    background-color: lightgrey;
+    background-color: rgb(220, 220, 220);
 }
 
 .wrapper img{
