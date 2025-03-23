@@ -5,9 +5,9 @@ This is web site for shop for searching and selling technologies.
 
 -Back-end: Express.js and MongoDB database
 # How to start client and server:
--Client: first you must install all dependancies with `npm i` command an then you can start client with `npm run dev` command.
+-Client: first you must install all dependencies with `npm i` command an then you can start client with `npm run dev` command.
 
--Server first you must install all dependancies with `npm i` command an then you can start server with `npm start` command.
+-Server first you must install all dependencies with `npm i` command an then you can start server with `npm start` command.
 
 -Data: If server is builded successfully you must have all 3 collections in your MongoDB Compass, you can import data from folder `data` in collections in MongoDB compass.
 # Features
