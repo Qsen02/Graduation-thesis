@@ -1,33 +1,32 @@
-.navigation{
-    width:100%;
+.navigation {
+    width: 100%;
     background-color: rgb(238, 20, 20);
     padding: 20px;
 }
 
-.navigation nav ul img{
+.navigation nav ul img {
     width: 80px;
     height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
+    clip-path: circle(50%);
 }
 
-.navigation nav ul{
+.navigation nav ul {
     display: flex;
-    gap:20px;
+    gap: 20px;
     color: white;
-    font-size:14pt;
+    font-size: 14pt;
     font-weight: bold;
     align-items: center;
 }
 
-@media(max-width:620px){
-    .navigation nav ul{
+@media (max-width: 620px) {
+    .navigation nav ul {
         font-size: 12pt;
         flex-direction: column;
         align-items: center;
     }
 
-    .navigation nav ul img{
+    .navigation nav ul img {
         width: 50px;
         height: 50px;
     }
