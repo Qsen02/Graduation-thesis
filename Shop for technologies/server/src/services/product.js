@@ -37,7 +37,7 @@ async function searchProducts(query, criteria) {
 async function pagination(page) {
     const skipCount = 6 * page;
     const products = await Products.find().limit(6).skip(skipCount).lean();
-    const maxPage = Math.floor((await Products.find().lean()).length / 6);
+    const maxPage = Math.ceil((await Products.find().lean()).length / 6);
     const data={
         products,maxPage
     }
