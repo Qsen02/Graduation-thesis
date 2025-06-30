@@ -1,6 +1,8 @@
 import { getUserData, removeUserData } from "../utils/userHelper";
 
-const host = "http://localhost:3000";
+// const host = "http://localhost:3000";
+
+const host = "https://shop-for-technologies-server.onrender.com";
 
 async function request(method, url, data) {
     const options = {
