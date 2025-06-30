@@ -6,7 +6,7 @@ const Orders = require("../models/Order.js");
 const localDB = "mongodb://127.0.0.1:27017/Shop-for-technologies";
 
 async function runDB() {
-    mongoose.connect(localDB, {
+    mongoose.connect(process.env.PRODUCTIONDB, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
