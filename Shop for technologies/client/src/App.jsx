@@ -15,7 +15,7 @@ import ProductsDelete from "./components/products-delete/ProductsDelete";
 import ProductsEdit from "./components/products-edit/ProductsEdit";
 import NoProducts from "./components/cart/no-products/NoPoroducts";
 import Profile from "./components/profile/Profile";
-import Cart from "./components/cart/Cart";
+import Cart from "./components/cart/cart";
 import ProfileOrdersDetails from "./components/profile/profile-orders-details/ProdileOrdersDetails";
 import ProfileEdit from "./components/profile/profile-edit/ProfileEdit";
 import ProfileChangePassword from "./components/profile/profile-change-password/ProfileChangePassword";
