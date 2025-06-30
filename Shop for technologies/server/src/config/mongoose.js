@@ -8,10 +8,7 @@ dotenv.config();
 const localDB = "mongodb://127.0.0.1:27017/Shop-for-technologies";
 
 async function runDB() {
-    mongoose.connect(process.env.PRODUCTIONDB, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    mongoose.connect(process.env.PRODUCTIONDB);
     console.log("Database is running");
 }
 
