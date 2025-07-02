@@ -5,7 +5,7 @@ This is web site for shop for searching and selling technologies.
 
 -Back-end: Express.js and MongoDB database
 # How to start client and server:
--Client: first you must install all dependencies with `npm i` command, next in src/api/requester.js just user host variable for localhost and then you can start client with `npm run dev` command.
+-Client: first you must install all dependencies with `npm i` command, next in src/api/requester.js just use host variable for localhost and then you can start client with `npm run dev` command.
 
 -Server: first you must install all dependencies with `npm i` command, next in src/config/mongoose.js in mongoose.connect() delete env variable and add localDB variable, then you can start server with `npm start` command.
 
