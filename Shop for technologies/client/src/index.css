@@ -224,7 +224,8 @@ main {
     .form input,
     .form textarea,
     .form select{
-        width: 175px;
+        width: 200px;
+        height: 30px;
         font-size: 10pt;
     }
     .error {
@@ -233,7 +234,7 @@ main {
 
     .form .field i {
         font-size: 16pt;
-        top: 37px;
+        top: 30px;
         right: 20px;
     }
 }
