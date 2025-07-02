@@ -5,9 +5,9 @@ This is web site for shop for searching and selling technologies.
 
 -Back-end: Express.js and MongoDB database
 # How to start client and server:
--Client: first you must install all dependencies with `npm i` command an then you can start client with `npm run dev` command.
+-Client: first you must install all dependencies with `npm i` command, next in src/api/requester.js just user host variable for localhost and then you can start client with `npm run dev` command.
 
--Server first you must install all dependencies with `npm i` command an then you can start server with `npm start` command.
+-Server: first you must install all dependencies with `npm i` command, next in src/config/mongoose.js in mongoose.connect() delete env variable and add localDB variable, then you can start server with `npm start` command.
 
 -Data: If server is builded successfully you must have all 3 collections in your MongoDB Compass, you can import data from folder `data` in collections in MongoDB compass.
 # Features
@@ -20,6 +20,10 @@ This is web site for shop for searching and selling technologies.
 -Guests only can see catalog and details about products but they can't like or buy products.
 
 -For exmaple in folder `data` in file `Shop-for-technologies.users.json` you have 4 users, Ясен is admin and Пешо, Гошо and Драго are common users you can use them.
+# Deployment link
+https://graduation-thesis-0it6.onrender.com
+
+WARNING: For deployment is used free Render instance and the server may take about 50 seconds to start.
 # Screenshots:
 -Catalog
 ![Screenshot 2024-12-27 164735](https://github.com/user-attachments/assets/71c3b577-07a4-4f20-997b-76041c3ea143)
