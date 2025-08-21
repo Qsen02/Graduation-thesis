@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
-import Redirect from "./commons/redirect/Redirect";
 import NotFound from "./components/not-found/NotFound";
 import Catalog from "./components/catalog/Catalog";
 import UserContextProvider from "./contexts/userContext";
