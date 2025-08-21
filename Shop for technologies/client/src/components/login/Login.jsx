@@ -21,7 +21,7 @@ export default function Login() {
             const user = await login({ username, password });
             setUserHanlder(user);
             actions.resetForm();
-            navigate("/home");
+            navigate("/");
         } catch (err) {
             setIsError(true);
             setErrMessage(err.message);

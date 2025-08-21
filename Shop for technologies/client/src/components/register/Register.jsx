@@ -31,7 +31,7 @@ export default function Register() {
             });
             setUserHanlder(user);
             actions.resetForm();
-            navigate("/home");
+            navigate("/");
         } catch (err) {
             setIsError(true);
             setErrMessage(err.message);
