@@ -9,7 +9,7 @@ export default function GuestGuard() {
             {
                 !user 
                 ? <Outlet /> 
-                : <Navigate to="/home" />
+                : <Navigate to="/" />
             }
         </>
     );

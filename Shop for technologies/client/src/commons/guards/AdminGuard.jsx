@@ -10,7 +10,7 @@ export default function AdminGuard() {
             {
                 user && user.isAdmin
                 ? <Outlet context={parentContext}/> 
-                : <Navigate to="/home" />
+                : <Navigate to="/" />
             }
         </>
     );

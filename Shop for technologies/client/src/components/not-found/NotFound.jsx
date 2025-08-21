@@ -5,7 +5,7 @@ export default function NotFound(){
     return (
         <section className={styles.notFoundwrapper}>
             <h2>Страницата не е намерена!</h2>
-            <p>Моля върнете се в <Link to="/home">Начало</Link>.</p>
+            <p>Моля върнете се в <Link to="/">Начало</Link>.</p>
         </section>
     )
 }

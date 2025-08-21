@@ -9,7 +9,7 @@ export default function OnlyUsersGuard() {
             {
                 user && !user.isAdmin
                 ? <Outlet /> 
-                : <Navigate to="/home" />
+                : <Navigate to="/" />
             }
         </>
     );
