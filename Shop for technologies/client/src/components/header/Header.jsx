@@ -27,7 +27,7 @@ export default function Header() {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/home"><img src="assets/logo.png"/></Link>
+                        <Link to="/"><img src="assets/logo.png"/></Link>
                     </li>
                 {
                   user

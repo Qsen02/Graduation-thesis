@@ -33,8 +33,7 @@ function App() {
             <main>
                 <ErrorBoundary>
                     <Routes>
-                        <Route path="/" element={<Redirect />} />
-                        <Route path="/home" element={<Home />} />
+                        <Route path="/" element={<Home />} />
                         <Route path="/catalog" element={<Catalog />} />
                         <Route
                             path="/catalog/:productId"
