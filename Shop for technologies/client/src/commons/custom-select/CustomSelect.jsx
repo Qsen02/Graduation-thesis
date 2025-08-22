@@ -1,4 +1,4 @@
-import { useField, useFormikContext } from "formik";
+import { useField } from "formik";
 
 export default function CustomSelect({ ...props }) {
     const [field, meta] = useField(props);
