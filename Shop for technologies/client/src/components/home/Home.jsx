@@ -4,13 +4,23 @@ import { useGetLatsetProducts } from "../../hooks/useProducts";
 import HomeProducts from "./home-products/HomeProducts";
 
 export default function Home() {
-	const { products, isLoading, isError } = useGetLatsetProducts([]);
+	const {
+		products,
+		isLoading,
+		isError,
+		curProductCount,
+		setCurProductCount,
+	} = useGetLatsetProducts([]);
+
+    function onProductCountChange(e){
+        setCurProductCount(Number(e.target.value)); 
+    }
 
 	return (
 		<section className={styles.homeWrapper}>
 			<div className={styles.productCount}>
 				<p>Изберете по колко продукта да виждате</p>
-				<select>
+				<select onChange={onProductCountChange} value={curProductCount}>
 					<option value="3">3</option>
 					<option value="6">6</option>
 					<option value="9">9</option>

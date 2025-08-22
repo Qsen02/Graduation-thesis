@@ -19,6 +19,7 @@ import { useLoadingError } from "./useLoadingError";
 
 export function useGetLatsetProducts(initalValue) {
     const [products, setProducts] = useState(initalValue);
+    const [curProductCount, setCurProductCount] = useState(6);
     const { isLoading, setIsLoading, isError, setIsError } = useLoadingError(
         false,
         false
@@ -28,7 +29,7 @@ export function useGetLatsetProducts(initalValue) {
         (async () => {
             try {
                 setIsLoading(true);
-                const products = await getLatestProducts();
+                const products = await getLatestProducts(curProductCount);
                 setProducts(products);
                 setIsLoading(false);
             } catch (err) {
@@ -36,12 +37,14 @@ export function useGetLatsetProducts(initalValue) {
                 setIsLoading(false);
             }
         })();
-    }, []);
+    }, [curProductCount]);
 
     return {
         products,
         isLoading,
         isError,
+        curProductCount,
+        setCurProductCount
     };
 }
 

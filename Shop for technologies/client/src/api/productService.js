@@ -6,8 +6,8 @@ export async function getAllProducts(){
     return await get(`${endpoint}/page/0`);
 }
 
-export async function getLatestProducts() {
-    return await get(`${endpoint}/latest`);
+export async function getLatestProducts(productCount) {
+    return await get(`${endpoint}/latest/${productCount}`);
 }
 
 export async function getNextProducts(count) {
