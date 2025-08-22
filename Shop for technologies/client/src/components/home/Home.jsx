@@ -12,32 +12,37 @@ export default function Home() {
 		setCurProductCount,
 	} = useGetLatsetProducts([]);
 
-    function onProductCountChange(e){
-        setCurProductCount(Number(e.target.value)); 
-    }
+	function onProductCountChange(e) {
+		setCurProductCount(Number(e.target.value));
+	}
 
 	return (
 		<section className={styles.homeWrapper}>
-			<div className={styles.productCount}>
-				<p>Изберете по колко продукта да виждате</p>
-				<select onChange={onProductCountChange} value={curProductCount}>
-					<option value="3">3</option>
-					<option value="6">6</option>
-					<option value="9">9</option>
-					<option value="12">12</option>
-					<option value="15">15</option>
-				</select>
-			</div>
-			<section className={styles.title}>
-				<h1>Добре дошли в нашия сайт за техника!</h1>
-				<p>
-					Тук ще намерите най-различна , разнообразна и съвременна
-					техника!
-				</p>
-				<p>
-					Можете да разгледате нашите продукти тук в нашия{" "}
-					<Link to="/catalog">Каталог</Link>.
-				</p>
+			<section className={styles.titleWrapper}>
+				<section className={styles.title}>
+					<h1>Добре дошли в нашия сайт за техника!</h1>
+					<p>
+						Тук ще намерите най-различна , разнообразна и съвременна
+						техника!
+					</p>
+					<p>
+						Можете да разгледате нашите продукти тук в нашия{" "}
+						<Link to="/catalog">Каталог</Link>.
+					</p>
+				</section>
+				<div className={styles.productCount}>
+					<p>Изберете по колко продукта да виждате</p>
+					<select
+						onChange={onProductCountChange}
+						value={curProductCount}
+					>
+						<option value="3">3</option>
+						<option value="6">6</option>
+						<option value="9">9</option>
+						<option value="12">12</option>
+						<option value="15">15</option>
+					</select>
+				</div>
 			</section>
 			<h1>Най-новите продукти</h1>
 			<section className={styles.productWrapper}>
