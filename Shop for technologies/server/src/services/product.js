@@ -115,8 +115,8 @@ async function checkProductId(productId) {
     return false;
 }
 
-function getLatestProducts() {
-    const products = Products.find().sort({ $natural: -1 }).limit(6);
+function getLatestProducts(productCount) {
+    const products = Products.find().sort({ $natural: -1 }).limit(productCount);
     return products;
 }
 

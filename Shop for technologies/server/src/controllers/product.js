@@ -24,8 +24,9 @@ productRouter.get("/", async (req, res) => {
     res.json(products);
 });
 
-productRouter.get("/latest", async (req, res) => {
-    const product = await getLatestProducts().lean();
+productRouter.get("/latest/:productCount", async (req, res) => {
+    const productCount = Number(req.params.productCount);
+    const product = await getLatestProducts(productCount).lean();
     res.json(product);
 });
 
