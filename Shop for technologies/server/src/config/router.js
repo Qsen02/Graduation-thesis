@@ -9,6 +9,8 @@ function routerConfig(app) {
 
     app.use("/orders", orderRouter);
 
+    app.use("/mail", mailRouter);
+
     app.use("*", (req, res) => {
         return res.status(404).json({ message: "Resource not found!" });
     })
