@@ -1,6 +1,7 @@
 const { userRouter } = require("../controllers/user");
 const { productRouter } = require("../controllers/product");
 const { orderRouter } = require("../controllers/order");
+const { mailRouter } = require("../controllers/mailer");
 
 function routerConfig(app) {
     app.use("/users", userRouter);
