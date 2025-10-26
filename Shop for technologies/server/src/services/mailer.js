@@ -17,9 +17,9 @@ function registrationEmail(username) {
 	const mailOptions = {
 		from: process.env.GMAIL_USER,
 		to: "my+test1@gmail.com",
-		subject: "Successful Registration at Shop for technologies",
-		text: `Hello ${username},\n\nThank you for registering at Shop for technologies! We're excited to have you on board.\n\nBest regards,\nThe Shop for technologies Team.`,
-		html: `<p>Hello ${username},</p><p>Thank you for registering at Shop for technologies! We're excited to have you on board.</p><p>Best regards,<br>The Shop for technologies Team.</p>`,
+		subject: "Добре дошли! Вие направихте успешна регистрация в Shop for technologies",
+		text: `Здравейте ${username},\n\nБлагодарим ви, че се регистрирахте в Shop for technologies! Радваме се, че сте с нас.\n\nС най-добри пожелания,\nЕкипът на Shop for technologies.`,
+		html: `<p>Здравейте ${username},</p><p>Благодарим ви, че се регистрирахте в Shop for technologies! Радваме се, че сте с нас.</p><p>С най-добри пожелания,<br>Екипът на Shop for technologies.</p>`,
 	};
 	try {
 		transporter.sendMail(mailOptions);
@@ -32,9 +32,9 @@ function orderEmail(username,totalPrice){
     const mailOptions = {
         from: process.env.GMAIL_USER,
         to: "my+test1@gmail.com",
-        subject: "Successful Order at Shop for technologies",
-        text: `Hello ${username},\n\nThank you for your order at Shop for technologies! We're excited to have you on board.\n\nYour total price is: $${totalPrice}\n\nBest regards,\nThe Shop for technologies Team.`,
-        html: `<p>Hello ${username},</p><p>Thank you for your order at Shop for technologies! We're excited to have you on board.</p><p>Your total price is: <strong>$${totalPrice}</strong></p><p>Best regards,<br>The Shop for technologies Team.</p>`,
+        subject: "Успешна поръчка в Shop for technologies",
+        text: `Здравейте ${username},\n\nБлагодарим ви, че направихте поръчка в Shop for technologies! Радваме се, че сте с нас.\n\nОбщата стойност на поръчката ви е: ${totalPrice}лв\n\nС най-добри пожелания,\nЕкипът на Shop for technologies.`,
+        html: `<p>Здравейте ${username},</p><p>Благодарим ви, че направихте поръчка в Shop for technologies! Радваме се, че сте с нас.</p><p>Общата стойност на поръчката ви е: <strong>${totalPrice}лв</strong></p><p>С най-добри пожелания,<br>Екипът на Shop for technologies.</p>`,
     };
     try {
         transporter.sendMail(mailOptions);
