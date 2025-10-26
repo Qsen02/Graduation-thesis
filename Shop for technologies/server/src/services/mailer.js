@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 function registrationEmail(username) {
 	const mailOptions = {
 		from: process.env.GMAIL_USER,
-		to: username,
+		to: "my+test1@gmail.com",
 		subject: "Successful Registration at Shop for technologies",
 		text: `Hello ${username},\n\nThank you for registering at Shop for technologies! We're excited to have you on board.\n\nBest regards,\nThe Shop for technologies Team.`,
 		html: `<p>Hello ${username},</p><p>Thank you for registering at Shop for technologies! We're excited to have you on board.</p><p>Best regards,<br>The Shop for technologies Team.</p>`,
@@ -31,7 +31,7 @@ function registrationEmail(username) {
 function orderEmail(username,totalPrice){
     const mailOptions = {
         from: process.env.GMAIL_USER,
-        to: username,
+        to: "my+test1@gmail.com",
         subject: "Successful Order at Shop for technologies",
         text: `Hello ${username},\n\nThank you for your order at Shop for technologies! We're excited to have you on board.\n\nYour total price is: $${totalPrice}\n\nBest regards,\nThe Shop for technologies Team.`,
         html: `<p>Hello ${username},</p><p>Thank you for your order at Shop for technologies! We're excited to have you on board.</p><p>Your total price is: <strong>$${totalPrice}</strong></p><p>Best regards,<br>The Shop for technologies Team.</p>`,
