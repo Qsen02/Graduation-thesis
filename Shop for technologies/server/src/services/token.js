@@ -7,7 +7,7 @@ function setToken(user) {
         _id: user._id,
         username: user.username,
         password: user.password,
-        email: user.password,
+        email: user.email,
         isAdmin: user.isAdmin,
         address:user.address
     }

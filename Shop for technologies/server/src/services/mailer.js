@@ -1,6 +1,17 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const nodemailer = require("nodemailer");
+const { google }=require("googleapis");
+
+const oauth2Client= new google.auth.OAuth2(
+	process.env.GOOGLE_CLIENT_ID,
+	process.env.GOOGLE_CLIENT_SECRET,
+	"https://developers.google.com/oauthplayground"
+);
+
+oauth2Client.setCredentials({
+	refresh_token:process.env.GOOGLE_REFRESH_TOKEN
+});
 
 const transporter = nodemailer.createTransport({
 	service: "gmail",
@@ -11,6 +22,9 @@ const transporter = nodemailer.createTransport({
 		clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 		refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
 	},
+	tls:{
+		rejectUnauthorized:false
+	}
 });
 
 function registrationEmail(username,email) {
@@ -39,6 +53,7 @@ function orderEmail(username,email,totalPrice){
     try {
         transporter.sendMail(mailOptions);
     } catch (err) {
+		console.log(err.message)
         throw new Error("Email sending failed");
     }
 }
