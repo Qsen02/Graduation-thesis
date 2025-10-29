@@ -19,6 +19,20 @@ export default function CustomInput({ label, ...props }) {
 	return (
 		<>
 			{label ? <label>{label}</label> : ""}
+			{props.type === "file" ? (
+				<div className="inputFileWrapper">
+					<label htmlFor="imageUrl" className="fileInput">
+						Качи снимка
+					</label>
+					{!field.value ? (
+						<p>Няма избран файл</p>
+					) : (
+						<p>{field.value.name}</p>
+					)}
+				</div>
+			) : (
+				""
+			)}
 			<input {...inputProps} />
 			{meta.touched && meta.error ? (
 				<p className="error">{meta.error}</p>

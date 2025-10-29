@@ -71,6 +71,7 @@ export default function Create() {
 							type="file"
 							name="imageUrl"
 							encType="multipart/form-data"
+							id="imageUrl"
 						/>
 					</div>
 					<div className="field">

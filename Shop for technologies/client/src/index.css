@@ -127,6 +127,27 @@ main {
     font-size: 14pt;
     padding-left: 10px;
 }
+.form input[type="file"]{
+    display: none;
+}
+.fileInput{
+    border: none;
+    padding: 10px 20px 10px 20px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.fileInput:hover {
+    background-color: rgb(199, 36, 36);
+}
+.inputFileWrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 16pt;
+}
 
 .form textarea{
     height: 70px;
@@ -184,6 +205,9 @@ main {
 }
 
 @media (max-width: 620px) {
+    .inputFileWrapper{
+        font-size: 14pt;
+    }
     body {
         font-size: 12pt;
     }
@@ -218,6 +242,16 @@ main {
 }
 
 @media (max-width: 400px) {
+    .inputFileWrapper{
+        font-size: 10pt;
+    }
+    .fileInput{
+        padding: 5px 10px 5px 10px;
+    }
+    .form button {
+        font-size: 10pt;
+        padding: 5px 10px 5px 10px;
+    }
     body {
         font-size: 10pt;
     }
