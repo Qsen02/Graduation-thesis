@@ -2,12 +2,13 @@ import { Link } from "react-router-dom";
 import styles from "./ProductResults.module.css";
 import { imageErrorHandler } from "../../../utils/imageErrorHandler";
 import { addDots } from "../../../utils/addDots";
+import { host } from "../../../api/requester";
 
 export default function ProductResults({ productId, image, name }) {
     return (
         <Link to={`/catalog/${productId}`} className={styles.wrapper}>
             <section>
-                <img src={image} onError={imageErrorHandler}/>
+                <img src={`${host}/${image}`} onError={imageErrorHandler}/>
                 {name.length >= 30 ? (
                     <h2>{addDots(name)}</h2>
                 ) : (

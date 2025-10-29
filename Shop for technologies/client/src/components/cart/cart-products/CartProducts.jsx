@@ -1,3 +1,4 @@
+import { host } from "../../../api/requester";
 import { useRemoveProductFromCart } from "../../../hooks/useProducts";
 import { addDots } from "../../../utils/addDots";
 import { imageErrorHandler } from "../../../utils/imageErrorHandler";
@@ -23,7 +24,7 @@ export default function CartProducts({
 
     return (
         <article className={styles.cartProductWrapper}>
-            <img src={imageUrl} alt={name} onError={imageErrorHandler} />
+            <img src={`${host}/${imageUrl}`} alt={name} onError={imageErrorHandler} />
             {name.length >= 30 ? (
                 <p className={styles.bold}>{addDots(name)}</p>
             ) : (

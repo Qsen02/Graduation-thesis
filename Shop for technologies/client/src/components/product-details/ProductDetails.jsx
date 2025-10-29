@@ -4,6 +4,7 @@ import { useUserContext } from "../../contexts/userContext";
 import styles from "./ProductDetails.module.css";
 import ProductDetailsChars from "./product-details-chars/ProductDetailsChars";
 import ProductDetailsButtons from "./product-details-buttons/ProductDetailsButtons";
+import { host } from "../../api/requester";
 
 export default function ProductDetails() {
     const { productId } = useParams();
@@ -32,7 +33,7 @@ export default function ProductDetails() {
                         <section className={styles.header}>
                             <div className={styles.left}>
                                 <img
-                                    src={product.imageUrl}
+                                    src={`${host}/${product.imageUrl}`}
                                     alt="details image"
                                 />
                             </div>

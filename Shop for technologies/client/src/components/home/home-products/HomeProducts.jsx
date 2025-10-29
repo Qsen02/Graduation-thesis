@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./HomeProducts.module.css";
 import { imageErrorHandler } from "../../../utils/imageErrorHandler";
 import { addDots } from "../../../utils/addDots";
+import { host } from "../../../api/requester";
 
 export default function HomeProducts({
     name,
@@ -12,7 +13,7 @@ export default function HomeProducts({
 }) {
     return (
         <article className={styles.productItem}>
-            <img src={imageUrl} alt={name} onError={imageErrorHandler} />
+            <img src={`${host}/${imageUrl}`} alt={name} onError={imageErrorHandler} />
             {name.length >= 30 ? (
                 <h3 className={styles.bold}>{addDots(name)}</h3>
             ) : (
