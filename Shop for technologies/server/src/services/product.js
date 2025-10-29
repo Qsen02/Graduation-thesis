@@ -45,7 +45,7 @@ async function pagination(page) {
 	return data;
 }
 
-async function createProduct(product, user,filename) {
+async function createProduct(product, user, filename) {
 	const characteristics = parseCharacteristics(product.characteristics);
 	const newProduct = new Products({
 		name: product.name,
@@ -71,7 +71,10 @@ async function updateProduct(productId, data) {
 }
 
 async function deleteProduct(productId) {
-	await Products.findByIdAndDelete(productId);
+	const deletedProduct = await Products.findByIdAndDelete(productId, {
+		new: true,
+	}).lean();
+	return deletedProduct;
 }
 
 async function likeProduct(user, productId) {
