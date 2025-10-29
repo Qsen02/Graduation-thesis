@@ -45,14 +45,14 @@ async function pagination(page) {
 	return data;
 }
 
-async function createProduct(product, user) {
+async function createProduct(product, user,filename) {
 	const characteristics = parseCharacteristics(product.characteristics);
 	const newProduct = new Products({
 		name: product.name,
 		description: product.description,
 		price: product.price,
 		characteristics: characteristics,
-		imageUrl: product.imageUrl,
+		imageUrl: `images/${filename}`,
 		category: product.category,
 	});
 	newProduct.ownerId = user._id;

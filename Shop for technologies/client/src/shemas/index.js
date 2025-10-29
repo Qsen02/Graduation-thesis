@@ -50,10 +50,6 @@ export const createShema = yup.object().shape({
         .number()
         .required("Цената е задължителна!")
         .min(0, "Цената трябва да бъде положително число!"),
-    imageUrl: yup
-        .string()
-        .required("Снимката е задължителна!")
-        .matches(/^https?:\/\//, "URL-a трябва да бъде валиден!"),
     description: yup
         .string()
         .required("Описанието е задължително!")

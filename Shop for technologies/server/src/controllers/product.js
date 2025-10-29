@@ -16,6 +16,7 @@ const {
 } = require("../services/product");
 const { isUser } = require("../middlewares/guard");
 const { body, validationResult } = require("express-validator");
+const upload = require("../config/multer");
 
 const productRouter = Router();
 
@@ -67,21 +68,25 @@ productRouter.get("/search/:query/by/:criteria", async (req, res) => {
 productRouter.post(
     "/",
     isUser(),
+    upload.single("imageUrl"),
     body("name").isLength({ min: 2 }),
-    body("price").isNumeric({ min: 0 }),
+    body("price").isInt({ min: 0 }),
     body("characteristics").matches(/^(?=.*[,])(?=.*[:])(?=.*\s).+$/),
     body("description").isLength({ min: 10, max: 300 }),
-    body("imageUrl").matches(/^https?:\/\//),
     body("category").isLength({ min: 1 }),
     async (req, res) => {
         const fields = req.body;
         const user = req.user;
+        const filename=req.file?.filename;
+        if(filename==undefined){
+            return res.status(400).json({ message: "Снимката е задължителна!" });
+        }
         try {
             const result = validationResult(req);
             if (result.errors.length) {
                 throw new Error("Your data is not in valid format!");
             }
-            const newProduct = await createProduct(fields, user);
+            const newProduct = await createProduct(fields, user, filename);
             res.json(newProduct);
         } catch (err) {
             return res.status(400).json({ message: err.message });

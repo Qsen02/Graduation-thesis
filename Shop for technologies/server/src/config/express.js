@@ -1,6 +1,7 @@
 const express = require("express");
 const { setCors } = require("../middlewares/cors");
 const { session } = require("../middlewares/session");
+const multer = require("multer");
 
 function epxressConfig(app) {
     app.use(setCors());
