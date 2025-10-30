@@ -60,9 +60,10 @@ async function createProduct(product, user, filename) {
 	return newProduct;
 }
 
-async function updateProduct(productId, data) {
+async function updateProduct(productId, data, filename) {
 	const characteristics = parseCharacteristics(data.characteristics);
 	data.characteristics = characteristics;
+	data.imageUrl = `images/${filename}`;
 	return await Products.findByIdAndUpdate(
 		productId,
 		{ $set: data },

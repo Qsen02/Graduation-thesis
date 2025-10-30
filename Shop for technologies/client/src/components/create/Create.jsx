@@ -21,7 +21,6 @@ export default function Create() {
         formData.append("description", value.description);
         formData.append("characteristics", value.characteristics);
         formData.append("category", value.category);
-        console.log(formData.get("imageUrl"));
 		try {
 			await createProduct(formData);
 			actions.resetForm();

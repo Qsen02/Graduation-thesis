@@ -21,7 +21,7 @@ const upload = multer({
 		) {
 			cb(null, true);
 		} else {
-			cb(null, false);
+			cb(new Error("Невалиден тип на файла!"), false);
 		}
 	},
 });

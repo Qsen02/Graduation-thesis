@@ -19,6 +19,7 @@ const { body, validationResult } = require("express-validator");
 const upload = require("../config/multer");
 const fs = require("fs/promises");
 const { checkFileExists } = require("../utils/files");
+const { checkFileUpload } = require("../middlewares/fileErrorHandler");
 
 const productRouter = Router();
 
@@ -88,7 +89,7 @@ productRouter.post(
 		try {
 			const result = validationResult(req);
 			if (result.errors.length) {
-				throw new Error("Your data is not in valid format!");
+				throw new Error("Данните ти не са в правилен формат!");
 			}
 			const newProduct = await createProduct(fields, user, filename);
 			res.json(newProduct);
@@ -115,25 +116,32 @@ productRouter.delete("/:productId", isUser(), async (req, res) => {
 productRouter.put(
 	"/:productId",
 	isUser(),
+	upload.single("imageUrl"),
+	checkFileUpload(),
 	body("name").isLength({ min: 2 }),
-	body("price").isNumeric({ min: 0 }),
+	body("price").isInt({ min: 0 }),
 	body("characteristics").matches(/^(?=.*[,])(?=.*[:])(?=.*\s).+$/),
 	body("description").isLength({ min: 10, max: 300 }),
-	body("imageUrl").matches(/^https?:\/\//),
 	body("category").isLength({ min: 1 }),
 	async (req, res) => {
-		const productId = req.params.productId;
-		const isValid = await checkProductId(productId);
-		if (!isValid) {
-			return res.status(404).json({ message: "Resource not found!" });
-		}
-		const fields = req.body;
 		try {
+			const productId = req.params.productId;
+			const isValid = await checkProductId(productId);
+			if (!isValid) {
+				return res.status(404).json({ message: "Resource not found!" });
+			}
+			const fields = req.body;
+			const filename = req.file?.filename;
 			const result = validationResult(req);
 			if (result.errors.length) {
-				throw new Error("Your data is not in valid format!");
+				throw new Error("Данните ти не са в правилен формат!");
 			}
-			const product = await updateProduct(productId, fields);
+			const oldProduct = await getProductById(productId).lean();
+			const isFileExist = await checkFileExists(oldProduct.imageUrl);
+			if (isFileExist) {
+				await fs.unlink(oldProduct.imageUrl);
+			}
+			const product = await updateProduct(productId, fields, filename);
 			res.status(200).json(product);
 		} catch (err) {
 			return res.status(400).json({ message: err.message });
