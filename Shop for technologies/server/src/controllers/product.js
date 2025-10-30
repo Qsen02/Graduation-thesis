@@ -17,10 +17,9 @@ const {
 const { isUser } = require("../middlewares/guard");
 const { body, validationResult } = require("express-validator");
 const upload = require("../config/multer");
-const fs = require("fs/promises");
 const { checkFileExists } = require("../utils/files");
 const { checkFileUpload } = require("../middlewares/fileErrorHandler");
-const cloudinary = require("cloudinary").v2;
+const cloudinary = require("cloudinary");
 
 const productRouter = Router();
 
