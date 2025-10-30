@@ -24,7 +24,7 @@ export default function Create() {
 		try {
 			await createProduct(formData);
 			actions.resetForm();
-			navigate("/catalog");
+			navigate("/");
 		} catch (err) {
 			setIsError(true);
 			setErrMessage(err.message);
