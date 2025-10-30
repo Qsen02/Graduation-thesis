@@ -19,7 +19,7 @@ const { body, validationResult } = require("express-validator");
 const upload = require("../config/multer");
 const { checkFileExists } = require("../utils/files");
 const { checkFileUpload } = require("../middlewares/fileErrorHandler");
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary").v2;
 
 const productRouter = Router();
 
@@ -80,9 +80,9 @@ productRouter.post(
 	async (req, res) => {
 		const fields = req.body;
 		const user = req.user;
-		const imageUrl = req.file?.path;
+		const imagePath = req.file?.path;
 		const image_id = req.file?.filename;
-		if (imageUrl == undefined) {
+		if (imagePath == undefined) {
 			return res
 				.status(400)
 				.json({ message: "Снимката е задължителна!" });
@@ -95,7 +95,7 @@ productRouter.post(
 			const newProduct = await createProduct(
 				fields,
 				user,
-				imageUrl,
+				imagePath,
 				image_id
 			);
 			res.json(newProduct);
