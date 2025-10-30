@@ -8,7 +8,7 @@ dotenv.config();
 const localDB = "mongodb://127.0.0.1:27017/Shop-for-technologies";
 
 async function runDB() {
-    mongoose.connect(process.env.PPRODUCTIONDB || localDB, {
+    mongoose.connect(process.env.PRODUCTIONDB || localDB, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
