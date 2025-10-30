@@ -1,6 +1,6 @@
 function setCors() {
     return function(req, res, next) {
-        const allowedOrigins = ["http://localhost:3000", "https://graduation-thesis-0it6.onrender.com"];
+        const allowedOrigins = ["http://localhost:5173", "https://graduation-thesis-0it6.onrender.com"];
         const origin = req.headers.origin;
         if (allowedOrigins.includes(origin)) {
             res.setHeader("Access-Control-Allow-Origin", origin);
