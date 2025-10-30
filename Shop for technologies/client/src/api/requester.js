@@ -1,52 +1,55 @@
 import { getUserData, removeUserData } from "../utils/userHelper";
 
-// const host = "http://localhost:3000";
+// export const host = "http://localhost:3000";
 
-const host = "https://shop-for-technologies-server.onrender.com";
+export const host = "https://shop-for-technologies-server.onrender.com";
 
 async function request(method, url, data) {
-    const options = {
-        method: method,
-        headers: {
-            "Content-Type": "application/json",
-        },
-    };
-    const userData = getUserData();
-    if (userData) {
-        options.headers["X-Authorization"] = userData.accessToken;
-    }
-    if (data) {
-        options.body = JSON.stringify(data);
-    }
+	const options = {
+		method: method,
+		headers: {},
+	};
+	const userData = getUserData();
+	if (userData) {
+		options.headers["X-Authorization"] = userData.accessToken;
+	}
+	if (data) {
+		if (data instanceof FormData) {
+			options.body = data;
+		} else {
+			options.body = JSON.stringify(data);
+			options.headers["Content-Type"] = "application/json";
+		}
+	}
 
-    const res = await fetch(url, options);
+	const res = await fetch(url, options);
 
-    try {
-        if (!res.ok) {
-            if (res.status === 403) {
-                removeUserData();
-            }
-            const err = await res.json();
-            throw new Error(err.message);
-        }
-        return await res.json();
-    } catch (err) {
-        throw new Error(err.message);
-    }
+	try {
+		if (!res.ok) {
+			if (res.status === 403) {
+				removeUserData();
+			}
+			const err = await res.json();
+			throw new Error(err.message);
+		}
+		return await res.json();
+	} catch (err) {
+		throw new Error(err.message);
+	}
 }
 
 export async function get(url) {
-    return await request("get", host + url);
+	return await request("get", host + url);
 }
 
 export async function post(url, data) {
-    return await request("post", host + url, data);
+	return await request("post", host + url, data);
 }
 
 export async function del(url) {
-    return await request("delete", host + url);
+	return await request("delete", host + url);
 }
 
 export async function put(url, data) {
-    return await request("put", host + url, data);
+	return await request("put", host + url, data);
 }

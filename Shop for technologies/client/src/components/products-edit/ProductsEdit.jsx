@@ -7,8 +7,6 @@ import { useEditProduct } from "../../hooks/useProducts";
 import { createShema } from "../../shemas";
 import styles from "./ProductsEdit.module.css";
 import { useState } from "react";
-import { host } from "../../api/requester";
-import { fetchFileFromUrl } from "../../utils/files";
 
 export default function ProductsEdit() {
 	const { productId } = useParams();
