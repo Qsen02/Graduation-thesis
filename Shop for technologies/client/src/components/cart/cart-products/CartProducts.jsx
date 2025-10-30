@@ -24,7 +24,7 @@ export default function CartProducts({
 
     return (
         <article className={styles.cartProductWrapper}>
-            <img src={`${host}/${imageUrl}`} alt={name} onError={imageErrorHandler} />
+            <img src={imageUrl} alt={name} onError={imageErrorHandler} />
             {name.length >= 30 ? (
                 <p className={styles.bold}>{addDots(name)}</p>
             ) : (

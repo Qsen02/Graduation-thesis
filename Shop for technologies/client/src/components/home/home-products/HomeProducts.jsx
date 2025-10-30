@@ -13,7 +13,7 @@ export default function HomeProducts({
 }) {
     return (
         <article className={styles.productItem}>
-            <img src={`${host}/${imageUrl}`} alt={name} onError={imageErrorHandler} />
+            <img src={imageUrl} alt={name} onError={imageErrorHandler} />
             {name.length >= 30 ? (
                 <h3 className={styles.bold}>{addDots(name)}</h3>
             ) : (

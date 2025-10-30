@@ -33,7 +33,7 @@ export default function ProductDetails() {
                         <section className={styles.header}>
                             <div className={styles.left}>
                                 <img
-                                    src={`${host}/${product.imageUrl}`}
+                                    src={product.imageUrl}
                                     alt="details image"
                                 />
                             </div>

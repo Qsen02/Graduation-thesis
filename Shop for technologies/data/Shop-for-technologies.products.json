@@ -10,23 +10,27 @@
     "Цвят: Черен"
   ],
   "description": "Много хубав телефон",
-  "imageUrl": "https://images.samsung.com/is/image/samsung/p6pim/bg/sm-a136bzkveue/gallery/bg-galaxy-a13-5g-sm-a136-sm-a136bzkveue-533362782?$650_519_PNG$",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842668/images/suyjwdqlapo1jzc8xdp8.jpg",
   "category": "Телефони",
   "likes": [
-    {
-      "$oid": "6761e047d8fdb78015ca9e0f"
-    },
     {
       "$oid": "6763eeead7d4e3010b141e93"
     },
     {
       "$oid": "67693d7ae2be7a7efaea9eca"
+    },
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
+    },
+    {
+      "$oid": "68ff677d8ebc46fc6952ef34"
     }
   ],
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "suyjwdqlapo1jzc8xdp8"
 },
 {
   "_id": {
@@ -41,7 +45,7 @@
     "SSD: 1 TB"
   ],
   "description": "Много добър лаптоп, подходящ за работа и игри.",
-  "imageUrl": "https://s13emagst.akamaized.net/products/75397/75396943/images/res_4f5c235cf119839847c558a03fdf42bc.jpg",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842931/i7bjvhvil5fpiunflxhs.jpg",
   "category": "Лаптопи",
   "likes": [
     {
@@ -49,12 +53,16 @@
     },
     {
       "$oid": "67693d7ae2be7a7efaea9eca"
+    },
+    {
+      "$oid": "68ff677d8ebc46fc6952ef34"
     }
   ],
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "i7bjvhvil5fpiunflxhs"
 },
 {
   "_id": {
@@ -68,7 +76,7 @@
     "Мощност: 27W"
   ],
   "description": "Хубави тонколони със кристален, плътен звук. 5 броя тонколони със суб буфер.",
-  "imageUrl": "https://cdncloudcart.com/402/products/images/3924/image_57c086f086ca9_800x800.jpeg?1564752283",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761843106/alfaqhuwhrz7rlfrdzcx.jpg",
   "category": "Тонколони и слушалки",
   "likes": [
     {
@@ -78,7 +86,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "alfaqhuwhrz7rlfrdzcx"
 },
 {
   "_id": {
@@ -92,7 +101,7 @@
     "Цвят: Черен"
   ],
   "description": "Хубава мишка със 7 бутона , голяма бързина и RGB светлина",
-  "imageUrl": "https://s13emagst.akamaized.net/products/37334/37333172/images/res_a2f87b53e3be64017d276763014f27bf.jpg?width=720&height=720&hash=E92D93988EDD8ED22D12C61CBDB94EBC",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842948/ym6zbnnwgbsydusrsyns.jpg",
   "category": "Мишки и клавиатури",
   "likes": [
     {
@@ -105,7 +114,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "ym6zbnnwgbsydusrsyns"
 },
 {
   "_id": {
@@ -120,7 +130,7 @@
     "Живот на клавишите: 50 милиона клика"
   ],
   "description": "Много добра геймърска клавиатура.",
-  "imageUrl": "https://www.store.bg/prdimg/419749287/gejmyrska-mehanichna-klaviatura-surefire-kingpin-m1.jpg",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842963/zxt3smwxy58n8usocyyx.jpg",
   "category": "Мишки и клавиатури",
   "likes": [
     {
@@ -133,7 +143,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "zxt3smwxy58n8usocyyx"
 },
 {
   "_id": {
@@ -146,7 +157,7 @@
     "Обем на контейнера за боклук: 500мл  "
   ],
   "description": "Много добра  и удобна за използване прахосмукачка робот.",
-  "imageUrl": "https://magprom.net/bmz_cache/r/rr6875jpg.image.750x750.jpg",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842972/qppnbz9sqz0hctxrjnis.jpg",
   "category": "Електроуреди",
   "likes": [
     {
@@ -154,12 +165,19 @@
     },
     {
       "$oid": "67693d7ae2be7a7efaea9eca"
+    },
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
+    },
+    {
+      "$oid": "67ba3f0999603d1970a49a60"
     }
   ],
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "qppnbz9sqz0hctxrjnis"
 },
 {
   "_id": {
@@ -176,7 +194,7 @@
     "Цвят: Бял"
   ],
   "description": "Много добра печка , идеална за приготвяне на каквито и да е ястия.",
-  "imageUrl": "https://reno.bg/product_images/30241/1006228.jpg",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842937/nhtxk1uo9pcu2kvkqh9r.jpg",
   "category": "Електроуреди",
   "likes": [
     {
@@ -192,7 +210,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "nhtxk1uo9pcu2kvkqh9r"
 },
 {
   "_id": {
@@ -208,7 +227,7 @@
     "Графична карта: Intel Iris Xe Graphics"
   ],
   "description": "Хубав лаптоп, подходящ за работа.",
-  "imageUrl": "https://s13emagst.akamaized.net/products/74604/74603270/images/res_f3164c911c38b1a3ce39606e682b5213.jpg?width=720&height=720&hash=C504E88F7FFFB1CF6A1F81FCA2AAC922",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842955/v896orropyfzmywckaiq.jpg",
   "category": "Лаптопи",
   "likes": [
     {
@@ -218,7 +237,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "v896orropyfzmywckaiq"
 },
 {
   "_id": {
@@ -234,7 +254,7 @@
     "Процесор: Qualcom Snapdragon 8 gen 3"
   ],
   "description": "Страхотен телефон, подходящ за ежедневни нужди, игри и забавления.",
-  "imageUrl": "https://api.technopolis.bg/medias/503271.jpg-Product-details-main?context=bWFzdGVyfHJvb3R8MjI0NjMxfGltYWdlL2pwZWd8YUdZMEwyaGhOQzh6TXpBeE1EQXlPREE0TlRJM09DNXFjR2N8MDA1NGY4ZGM1N2VlYmEzYzQ5NWRmNmNmMmJlYTU5ZmE3MjE1MDdlNmYyYTA5NGIyNmUyZmFiY2U4OTRlMjg2ZA",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761843014/opuo05yn24wgh3ntpsmq.jpg",
   "category": "Телефони",
   "likes": [
     {
@@ -247,7 +267,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "opuo05yn24wgh3ntpsmq"
 },
 {
   "_id": {
@@ -264,7 +285,7 @@
     "Брой USB входа: 2"
   ],
   "description": "Хубав телевизор със добра резолюция, Wi-Fi и вградена операционна система.",
-  "imageUrl": "https://cdncloudcart.com/402/products/images/153526/televizor-philips-65pus700912--led--65-inch-164-sm-3840x2160-uhd-4k--smart-tv--titan-os-6661aa8c2e014_1280x1280.jpeg?1717676707",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842981/koy0gp160kpf7vkjfakn.jpg",
   "category": "Други",
   "likes": [
     {
@@ -272,12 +293,16 @@
     },
     {
       "$oid": "67693d7ae2be7a7efaea9eca"
+    },
+    {
+      "$oid": "6761e047d8fdb78015ca9e0f"
     }
   ],
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "koy0gp160kpf7vkjfakn"
 },
 {
   "_id": {
@@ -292,7 +317,7 @@
     "Процесорни ядра: 8"
   ],
   "description": "Много хубав телефон, подходящ за ежедневни задачи, игри и забавления.",
-  "imageUrl": "https://expresslink.bg/wp-content/uploads/2024/01/xiaomi_redmi_note_13_pro_4g_negro_01_l.jpg",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842990/y1v92lhpd75uh5imjuzt.jpg",
   "category": "Телефони",
   "likes": [
     {
@@ -302,7 +327,8 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "y1v92lhpd75uh5imjuzt"
 },
 {
   "_id": {
@@ -316,7 +342,7 @@
     "енергиен клас: A"
   ],
   "description": "Много добра пералня.",
-  "imageUrl": "https://www.relaxbg.org/wp-content/uploads/2023/06/WGG2440REU.jpg",
+  "imageUrl": "https://res.cloudinary.com/dr0ykfclu/image/upload/v1761842813/images/ibb4xll6spq7snd1rayp.png",
   "category": "Електроуреди",
   "likes": [
     {
@@ -332,5 +358,6 @@
   "ownerId": {
     "$oid": "675b3bf24f911a8b0a74e23d"
   },
-  "__v": 0
+  "__v": 0,
+  "image_id": "ibb4xll6spq7snd1rayp"
 }]

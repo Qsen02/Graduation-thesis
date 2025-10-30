@@ -8,7 +8,7 @@ export default function ProductResults({ productId, image, name }) {
     return (
         <Link to={`/catalog/${productId}`} className={styles.wrapper}>
             <section>
-                <img src={`${host}/${image}`} onError={imageErrorHandler}/>
+                <img src={image} onError={imageErrorHandler}/>
                 {name.length >= 30 ? (
                     <h2>{addDots(name)}</h2>
                 ) : (

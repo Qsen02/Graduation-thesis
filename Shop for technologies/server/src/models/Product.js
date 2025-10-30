@@ -31,6 +31,10 @@ const productSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.ObjectId,
         ref: "Users"
     },
+    image_id:{
+        type: String,
+        require: true
+    },
     likes: {
         type: [mongoose.SchemaTypes.ObjectId],
         ref: "Users",

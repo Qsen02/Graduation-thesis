@@ -45,25 +45,27 @@ async function pagination(page) {
 	return data;
 }
 
-async function createProduct(product, user, filename) {
+async function createProduct(product, user, imageUrl,image_id) {
 	const characteristics = parseCharacteristics(product.characteristics);
 	const newProduct = new Products({
 		name: product.name,
 		description: product.description,
 		price: product.price,
 		characteristics: characteristics,
-		imageUrl: `images/${filename}`,
+		imageUrl: imageUrl,
 		category: product.category,
+		image_id: image_id.split("/")[1]
 	});
 	newProduct.ownerId = user._id;
 	await newProduct.save();
 	return newProduct;
 }
 
-async function updateProduct(productId, data, filename) {
+async function updateProduct(productId, data, imageUrl, image_id) {
 	const characteristics = parseCharacteristics(data.characteristics);
 	data.characteristics = characteristics;
-	data.imageUrl = `images/${filename}`;
+	data.imageUrl = imageUrl;
+	data.image_id = image_id.split("/")[1];
 	return await Products.findByIdAndUpdate(
 		productId,
 		{ $set: data },

@@ -1,11 +1,10 @@
-const fs = require("fs/promises");
-const path = require("path");
+const cloudinary = require("cloudinary").v2;
 
-async function checkFileExists(filePath) {
-	const file = path.join(__dirname, "../../", filePath);
+async function checkFileExists(fileId) {
 	try {
-		await fs.access(file);
+	    const file=await cloudinary.api.resource(fileId);
 		return true;
+
 	} catch (err) {
 		return false;
 	}

@@ -20,6 +20,7 @@ const upload = require("../config/multer");
 const fs = require("fs/promises");
 const { checkFileExists } = require("../utils/files");
 const { checkFileUpload } = require("../middlewares/fileErrorHandler");
+const cloudinary = require("cloudinary").v2;
 
 const productRouter = Router();
 
@@ -80,8 +81,9 @@ productRouter.post(
 	async (req, res) => {
 		const fields = req.body;
 		const user = req.user;
-		const filename = req.file?.filename;
-		if (filename == undefined) {
+		const imageUrl = req.file?.path;
+		const image_id = req.file?.filename;
+		if (imageUrl == undefined) {
 			return res
 				.status(400)
 				.json({ message: "Снимката е задължителна!" });
@@ -91,7 +93,12 @@ productRouter.post(
 			if (result.errors.length) {
 				throw new Error("Данните ти не са в правилен формат!");
 			}
-			const newProduct = await createProduct(fields, user, filename);
+			const newProduct = await createProduct(
+				fields,
+				user,
+				imageUrl,
+				image_id
+			);
 			res.json(newProduct);
 		} catch (err) {
 			return res.status(400).json({ message: err.message });
@@ -106,9 +113,9 @@ productRouter.delete("/:productId", isUser(), async (req, res) => {
 		return res.status(404).json({ message: "Resource not found!" });
 	}
 	const deletedProduct = await deleteProduct(productId);
-	const isFileExist = await checkFileExists(deletedProduct.imageUrl);
-	if (isFileExist) {
-		await fs.unlink(deletedProduct.imageUrl);
+	const isImageExist = await checkFileExists(deletedProduct.image_id);
+	if (isImageExist) {
+		await cloudinary.uploader.destroy(deletedProduct.image_id);
 	}
 	res.status(200).json({ message: "Record was deleted successfully!" });
 });
@@ -131,17 +138,18 @@ productRouter.put(
 				return res.status(404).json({ message: "Resource not found!" });
 			}
 			const fields = req.body;
-			const filename = req.file?.filename;
+			const imageUrl = req.file?.path;
+			const image_id = req.file?.filename;
 			const result = validationResult(req);
 			if (result.errors.length) {
 				throw new Error("Данните ти не са в правилен формат!");
 			}
 			const oldProduct = await getProductById(productId).lean();
-			const isFileExist = await checkFileExists(oldProduct.imageUrl);
-			if (isFileExist) {
-				await fs.unlink(oldProduct.imageUrl);
+			const isImageExist = await checkFileExists(oldProduct.image_id);
+			if (isImageExist) {
+				await cloudinary.uploader.destroy(oldProduct.image_id);
 			}
-			const product = await updateProduct(productId, fields, filename);
+			const product = await updateProduct(productId, fields, imageUrl, image_id);
 			res.status(200).json(product);
 		} catch (err) {
 			return res.status(400).json({ message: err.message });

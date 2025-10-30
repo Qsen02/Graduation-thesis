@@ -1,33 +1,21 @@
 const multer = require("multer");
-const path = require("path");
-const fs = require("fs");
-const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		const uploadPath = "images/";
-		if (!fs.existsSync(uploadPath)) {
-			fs.mkdirSync(uploadPath, { recursive: true });
-		}
-		cb(null, uploadPath);
-	},
-	filename: function (req, file, cb) {
-		const ext = path.extname(file.originalname);
-		const name = path.basename(file.originalname, ext);
-		const random = Math.floor(Math.random() * 1000000); // случайно число
-		cb(null, `${name}-${random}${ext}`);
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+cloudinary.config({
+	cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+	api_key: process.env.CLOUDINARY_API_KEY,
+	api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+	cloudinary: cloudinary,
+	params: {
+		folder: "images",
+		allowed_formats: ["jpg", "png", "jpeg"],
+		unique_filename: true,
 	},
 });
-const upload = multer({
-	storage: storage,
-	fileFilter: function (req, file, cb) {
-		if (
-			file.mimetype === "image/jpeg" ||
-			file.mimetype === "image/png" ||
-			file.mimetype === "image/jpg"
-		) {
-			cb(null, true);
-		} else {
-			cb(new Error("Невалиден тип на файла!"), false);
-		}
-	},
-});
+
+const upload = multer({ storage: storage });
 module.exports = upload;
