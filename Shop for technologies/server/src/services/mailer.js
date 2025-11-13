@@ -53,7 +53,6 @@ function orderEmail(username,email,totalPrice){
     try {
         transporter.sendMail(mailOptions);
     } catch (err) {
-		console.log(err.message)
         throw new Error("Email sending failed");
     }
 }
@@ -62,3 +61,4 @@ module.exports = {
     registrationEmail,
     orderEmail
 }
+
