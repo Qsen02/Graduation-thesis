@@ -4,10 +4,10 @@ const { registrationEmail, orderEmail } = require("../services/mailer");
 
 const mailRouter=Router();
 
-mailRouter.post("/register", (req, res) => {
+mailRouter.post("/register", async (req, res) => {
     const user=req.user;
     try {
-        registrationEmail(user.username,user.email);
+        await registrationEmail(user.username,user.email);
         return res.status(200).json({ message: "Registration email sent successfully!" });
     } catch (error) {
         return res.status(400).json({ message: error.message });
@@ -23,7 +23,7 @@ mailRouter.post("/order/:orderId", async (req, res) => {
     }
     try {
         const order=await getOrderById(orderId);
-        orderEmail(user.username,user.email,order.totalPrice);
+        await orderEmail(user.username,user.email,order.totalPrice);
         return res.status(200).json({ message: "Order email sent successfully!" });
     } catch (error) {
         return res.status(400).json({ message: error.message });
