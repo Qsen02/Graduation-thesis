@@ -6,6 +6,11 @@ function encodeEmail(email) {
 		.replace(/=+$/, "");
 }
 
+function encodeEmailSubject(subject) {
+	return "Subject: =?UTF-8?B?" + Buffer.from(subject).toString("base64") + "?=";
+}
+
 module.exports = {
     encodeEmail,
+    encodeEmailSubject,
 };
