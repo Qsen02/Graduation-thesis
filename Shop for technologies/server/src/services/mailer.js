@@ -1,7 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 const { google } = require("googleapis");
-const { encodeEmail } = require("../utils/encoder");
+const { encodeEmail, encodeEmailSubject } = require("../utils/encoder");
 
 const oauth2Client = new google.auth.OAuth2(
 	process.env.GOOGLE_CLIENT_ID,
