@@ -53,7 +53,7 @@ userRouter.post(
                 basket: user.basket,
                 accessToken: token,
             });
-            registrationEmail(user.username,user.email);
+            await registrationEmail(user.username,user.email);
         } catch (err) {
             return res.status(400).json({ message: err.message });
         }

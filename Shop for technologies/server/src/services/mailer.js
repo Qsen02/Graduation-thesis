@@ -8,6 +8,12 @@ const oauth2Client = new google.auth.OAuth2(
 	process.env.GOOGLE_CLIENT_SECRET
 );
 
+oauth2Client.generateAuthUrl({
+  access_type: "offline",
+  prompt: "consent",
+  scope: ["https://mail.google.com/"]
+});
+
 oauth2Client.setCredentials({
 	refresh_token: process.env.GOOGLE_REFRESH_TOKEN,
 });
@@ -58,7 +64,7 @@ async function orderEmail(username, email, totalPrice) {
 			},
 		});
 	} catch (err) {
-		throw new Error("Email sending failed");
+		throw new Error(err.messages);
 	}
 }
 
