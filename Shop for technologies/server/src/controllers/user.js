@@ -12,7 +12,6 @@ const {
 const { body, validationResult } = require("express-validator");
 const { setToken } = require("../services/token");
 const { isUser } = require("../middlewares/guard");
-const { registrationEmail } = require("../services/mailer");
 
 const userRouter = Router();
 
@@ -53,7 +52,6 @@ userRouter.post(
                 basket: user.basket,
                 accessToken: token,
             });
-            // await registrationEmail(user.username,user.email);
         } catch (err) {
             return res.status(400).json({ message: err.message });
         }

@@ -21,11 +21,11 @@ async function buyProducts(user) {
     await Users.findByIdAndUpdate(user._id.toString(), {
         $push: { orderHistory: newOrder },
     });
-    return [await Users.findByIdAndUpdate(
+    return await Users.findByIdAndUpdate(
         user._id.toString(),
         { $set: { basket: [] } },
         { new: true }
-    ), newOrder];
+    );
 }
 
 async function checkOrderId(orderId) {
