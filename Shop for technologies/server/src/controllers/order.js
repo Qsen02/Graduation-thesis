@@ -2,7 +2,6 @@ const { Router } = require("express");
 const { checkOrderId, getOrderById, buyProducts } = require("../services/order");
 const { checkUserId, getUserById } = require("../services/user");
 const { isUser } = require("../middlewares/guard");
-const { orderEmail } = require("../services/mailer");
 
 const orderRouter = Router();
 
