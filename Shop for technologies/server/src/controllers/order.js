@@ -16,7 +16,7 @@ orderRouter.post("/buy/:userId",isUser(), async(req, res) => {
     const updatedUser=await buyProducts(user);
     const newOrder=updatedUser[1];
     const returnedUser=updatedUser[0];
-    await orderEmail(user.username,user.email, newOrder.totalPrice);
+    // await orderEmail(user.username,user.email, newOrder.totalPrice);
     res.json(returnedUser);
 })
 
